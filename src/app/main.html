@@ -1,0 +1,9 @@
+<div class="container-fluid container-o2o" ng-controller="MainController">
+    <div ui-view="menu"></div>
+    <div class="main" ui-view="main"></div>
+
+    <!--提示信息-->
+	<div j-dialog options="errorService.dialogOptions"></div>
+	<div j-loading is-loading="errorService.isLoading"></div>
+	<div j-toast toast-message="errorService.toastMessage"></div>
+</div>

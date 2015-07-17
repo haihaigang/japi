@@ -1,0 +1,15 @@
+<div class="panel-group" id="accordion">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class=""><span class="glyphicon glyphicon-folder-close"></span>Content</a>
+            </h4>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse in" style="height: auto;">
+            <ul class="list-group">
+                <li class="list-group-item" ng-repeat="item in subnavs"><span class="glyphicon glyphicon-file text-info"></span><a ui-sref="{{ item.link }}">{{ item.title }}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

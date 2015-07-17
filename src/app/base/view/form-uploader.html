@@ -1,0 +1,16 @@
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <input class="btn btn-default" type="file" name="{{file.parameter}}" multiple/>
+    </div>
+    <div class="panel-body">
+        <div ng-repeat="file in fileList" class="bg-primary"><span>{{file.filename}}</span>
+            <button ng-click="erase(this)" type="button" class="close" aria-hidden="true">&times;</button>
+            <div class="progress">
+                <div min-width="10%" class="progress-bar" role="progressbar" aria-valuenow="{{file.value}}" aria-valuemin="0" aria-valuemax="100" style="width: {{file.value}}%;">{{file.size}}/{{file.total}}</div>
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer">
+        <button class="btn btn-success" type="button" ng-click="startUpload(event)">Upload</button>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+{
+    "code": 0,
+    "body": {
+        "id": "",
+        "data": [{
+            "name": "基本信息",
+            "data": [{
+                "key": "name",
+                "title": "项目名称",
+                "type": "txt",
+                "display": true
+            }, {
+                "key": "desc",
+                "title": "项目描述",
+                "type": "textarea",
+                "display": true
+
+            }, {
+                "key": "version",
+                "title": "项目版本",
+                "type": "txt",
+                "display": true
+            }]
+        }]
+    }
+}

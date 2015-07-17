@@ -1,0 +1,95 @@
+<div j-breadcrumb j-data="breadcrumbs"></div>
+<h1 class="page-header">{{page.title}}</h1>
+<div class="row">
+    <div class="col-md-2 sidebar">
+        <div class="panel-group" id="accordion">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class=""><span class="glyphicon glyphicon-folder-close"></span>Content</a>
+                </h4>
+                </div>
+                <div class="list-group">
+                    <a class="list-group-item" href="#to{{$index}}" ng-repeat="item in page.groups.data"><span class="glyphicon glyphicon-file text-info"></span><span>{{ item.name }}</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--
+//一个表单错误信息
+//正在获取数据提示
+//请求数据错误
+//校验失败错误
+//正在提交数据提示
+//提交响应错误
+-->
+    <div class="col-md-10">
+        <form class="main-content form-horizontal" novalidate ng-submit="page.save(page.groups)">
+            <div class="panel panel-default" ng-repeat="group in page.groups.data">
+                <div class="panel-heading">{{group.name}}</div>
+                <div class="panel-body">
+                    <div class="form-group" ng-repeat="item in group.fields" ng-show="{{item.display}}">
+                        <label class="col-md-2 control-label">{{item.title}}</label>
+                        <div class="col-md-10" ng-switch="item.type">
+                            <input ng-switch-when="text" type="text" class="form-control" placeholder="{{item.title}}" ng-model="item.value" ng-required="true">
+                            <input ng-switch-when="password" type="password" class="form-control" placeholder="{{item.title}}" ng-model="item.value" ng-required="true">
+                            <textarea ng-switch-when="textarea" class="form-control" rows="5" placeholder="{{item.title}}" ng-model="item.value" ng-required="true"></textarea>
+                            <select ng-switch-when="select" class="form-control" ng-model="item.value" ng-options="eo.value as eo.name for eo in item.enumObj">
+                            </select>
+                            <label ng-switch-when="bool" class="radio-inline">
+                                <input type="radio" name="{{item.key}}" ng-model="item.value" value="1">是
+                            </label>
+                            <label ng-switch-when="bool" class="radio-inline">
+                                <input type="radio" name="{{item.key}}" ng-model="item.value" value="0">否
+                            </label>
+                            <div ng-switch-when="enum_check">
+                                <label ng-repeat="eo in item.enumObj" class="checkbox-inline">
+                                    <input type="checkbox" name="{{item.key}}" ng-model="eo.checked" ng-value="{{eo.value}}">{{eo.name}}
+                                </label>
+                            </div>
+                            <div ng-switch-when="file" j-file j-img="item.value" j-max="5"></div>
+                            <div ng-switch-when="uploader" j-uploader="data/upload.json"></div>
+                            <div ng-switch-when="date" class="input-group date">
+                                <input j-date type="text" class="form-control" placeholder="{{item.title}}" ng-model="item.value" ng-required="true">
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </div>
+                            </div>
+                            <div ng-switch-when="expires" class="row">
+                                <div class="col-md-6">
+                                    <div class="input-group">
+                                        <input j-date type="text" class="form-control" ng-model="item.start.value" end="item.end.value">
+                                        <div class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="input-group">
+                                        <input j-date type="text" class="form-control" ng-model="item.end.value" start="item.start.value">
+                                        <div class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-switch-when="region" j-region options="item" selects="item.selects"></div>
+                            <div ng-switch-when="mutiple" j-mutiple options="item" data="item.data"></div>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-if="$last">
+                        <div class="col-md-offset-2 col-md-10">
+                            <button class="btn btn-primary" type="submit" ng-disabled="form.$invalid || isSubmiting">确认</button>
+                            <button class="btn btn-default" type="button" ng-click="abc()">取消</button>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-if="$last && !isSuccess">
+                        <div class="col-md-offset-2 col-md-10">{{errorMsg}}</div>
+                    </div>
+                </div>
+                <div class="panel-footer">1.0</div>
+            </div>
+        </form>
+    </div>
+</div>

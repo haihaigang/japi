@@ -1,0 +1,13 @@
+<div class="form-image clearfix">
+	<div class="thumbnail form-image-item" ng-repeat="item in items">
+	    <input type="file" class="file" ng-show="!item.active" idx="{{$index}}">
+	    <img ng-src="{{item.url}}" alt="">
+	    <div class="form-image-loading" ng-show="item.active"><span>上传中...</span></div>
+	    <a href="javascript:;" class="remove" title="移除" ng-click="remove($index)" style="display: none;"><span class="glyphicon glyphicon-remove"></span></a>
+	</div>
+	<a class="thumbnail form-image-item form-image-plus" href="javascript:;" ng-click="add()" title="添加" ng-show="showAdd">
+		<span class="glyphicon glyphicon-plus"></span>
+	</a>
+</div>
+<div class="tips">上传图片大小限制为5M内的JPG、PNG、JPEG</div>
+<div class="error" ng-show="msg">{{msg}}</div>

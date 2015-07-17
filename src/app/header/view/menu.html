@@ -1,0 +1,28 @@
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" ui-sref="home" title="后台管理系统">后台管理系统</a>
+    </div>
+    <ul class="nav navbar-nav">
+        <li ng-repeat="menu in menus">
+            <a ui-sref="{{menu.link}}">{{menu.name}}</a>
+            <ul class="dropdown-menu" ng-hide={{!menu.subMenus}}>
+                <li ng-repeat="sm in menu.subMenus">
+                    <a ui-sref="{{sm.link}}">{{sm.name}}</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+            <a ui-sref="system.password" title="修改密码">{{Auth.getAuth()}}</a>
+        </li>
+        <li><a href="javascript:;" title="注销" ng-click="logout()">注销</a>
+        </li>
+    </ul>
+</div>

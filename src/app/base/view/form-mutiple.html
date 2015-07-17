@@ -1,0 +1,33 @@
+<div class="form-group" ng-repeat="item in data">
+    <div class="row">
+        <div class="col-md-2">
+            <input type="text" class="form-control" placeholder="Key">
+        </div>
+        <div class="col-md-3">
+            <input type="text" class="form-control" placeholder="描述">
+        </div>
+        <div class="col-md-2">
+	        <select name="" class="form-control">
+	        	<option value="">类型</option>
+	        	<option value="string">String</option>
+	        	<option value="number">Number</option>
+	        	<option value="enum">Enum</option>
+	        	<option value="object">Object</option>
+	        	<option value="other">Other</option>
+	        </select>
+        </div>
+        <div class="col-md-2">
+        <label class="checkbox">
+            <input type="checkbox">是否必填
+        </label>
+        </div>
+        <div class="col-md-1">
+            <div class="btn btn-default" ng-if="!$last" ng-click="remove($index)">
+                <span class="glyphicon glyphicon-remove"></span>
+            </div>
+            <div class="btn btn-default" ng-if="$last" ng-click="add($index)">
+                <span class="glyphicon glyphicon-plus"></span>
+            </div>
+        </div>
+    </div>
+</div>

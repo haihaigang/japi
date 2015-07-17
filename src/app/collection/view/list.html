@@ -1,0 +1,30 @@
+<div class="row">
+    <div class="col-md-12 clearfix main-header">
+        <div class="page-header pull-left">
+            <h3>支付方式列表</h3>
+        </div>
+        <div class="list-buttons pull-right">
+            <a type="button" class="btn btn-default" ui-sref=".add">新增</a>
+            <a type="button" class="btn btn-default">删除</a>
+        </div>
+    </div>
+    <form class="col-md-12 form-inline main-search" ng-submit="search(condition)">
+        <div class="form-group">
+            <label class="sr-only" for="exampleInputEmail3">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail3" placeholder="Email">
+        </div>
+        <div class="form-group">
+            <label class="sr-only" for="exampleInputPassword3">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword3" placeholder="Password">
+        </div>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox"> Remember me
+            </label>
+        </div>
+        <button type="submit" class="btn btn-primary">搜索</button>
+    </form>
+    <div class="col-md-12">
+        <div class="gridStyle" ng-grid="gridOptions"></div>
+    </div>
+</div>
