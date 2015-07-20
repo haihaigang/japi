@@ -9,7 +9,7 @@ define(function(require) {
         .config(['$stateProvider', 'ROLES', function($stateProvider, ROLES) {
             $stateProvider
                 .state('requests', {
-                    url: '/requests',
+                    url: '/requests/p-:project',
                     views: {
                         '': {
                             templateUrl: 'app/main.html'
@@ -19,7 +19,7 @@ define(function(require) {
                             controller: 'HeaderController'
                         },
                         'main@requests': {
-                            templateUrl: 'app/base/view/list.html',
+                            templateUrl: 'app/request/view/list.html',
                             controller: 'RequestListController'
                         }
                     },
@@ -52,47 +52,10 @@ define(function(require) {
         .controller('RequestListController', [
             '$scope', '$state', '$stateParams', 'Request',
             function($scope, $state, $stateParams, Request) {
-
                 $scope.page = Request;
-
-                $scope.page.search({
-                    pageSize: $scope.pagingOptions.pageSize,
-                    page: $scope.pagingOptions.currentPage
-                });
-
-                $scope.columns = $scope.gridOptions.columnDefs = [{
-                    field: 'id',
-                    displayName: '序号',
-                    width: 60,
-                    pinnable: false,
-                    sortable: false
-                }, {
-                    field: 'name',
-                    displayName: '接口名称',
-                    enableCellEdit: true,
-                    width: 120
-                }, {
-                    field: 'url',
-                    displayName: '接口地址',
-                    enableCellEdit: true
-                }, {
-                    field: 'desc',
-                    displayName: '接口描述',
-                    enableCellEdit: true
-                }, {
-                    field: 'project',
-                    displayName: '所属项目',
-                    enableCellEdit: true,
-                    width: 120
-                }, {
-                    field: 'id',
-                    displayName: '操作',
-                    enableCellEdit: false,
-                    sortable: false,
-                    pinnable: false,
-                    cellTemplate: '<div class="ngCellOpt"><a ui-sref=".edit({id:row.getProperty(col.field)})" id="{{row.getProperty(col.field)}}">编辑</a><a ui-sref=".edit({id:row.getProperty(col.field)})" id="{{row.getProperty(col.field)}}">删除</a></div>'
-                }];
+                $scope.page.search();
                 $scope.breadcrumbs = $scope.page.init($state);
+                $scope.page.getCondition();
             }
         ])
         //添加编辑

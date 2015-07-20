@@ -25,7 +25,7 @@
 //提交响应错误
 -->
     <div class="col-md-10">
-        <form class="main-content form-horizontal" novalidate ng-submit="page.save(page.groups)">
+        <form name="form" class="main-content form-horizontal" novalidate ng-submit="page.save(page.groups)">
             <div class="panel panel-default" ng-repeat="group in page.groups.data">
                 <div class="panel-heading">{{group.name}}</div>
                 <div class="panel-body">
@@ -35,7 +35,8 @@
                             <input ng-switch-when="text" type="text" class="form-control" placeholder="{{item.title}}" ng-model="item.value" ng-required="true">
                             <input ng-switch-when="password" type="password" class="form-control" placeholder="{{item.title}}" ng-model="item.value" ng-required="true">
                             <textarea ng-switch-when="textarea" class="form-control" rows="5" placeholder="{{item.title}}" ng-model="item.value" ng-required="true"></textarea>
-                            <select ng-switch-when="select" class="form-control" ng-model="item.value" ng-options="eo.value as eo.name for eo in item.enumObj">
+                            <select ng-switch-when="select" class="form-control" ng-model="item.value" ng-options="eo.id as eo.name for eo in item.enumObj">
+                                <option value="">请选择</option>
                             </select>
                             <label ng-switch-when="bool" class="radio-inline">
                                 <input type="radio" name="{{item.key}}" ng-model="item.value" value="1">是

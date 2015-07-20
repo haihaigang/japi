@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-{{cols}}" ng-repeat="sel in selects">
-        <select class="form-control" ng-model="sel.value" ng-options="item.value as item.name for (key,item) in sel.data" ng-change="sel.change($index)">
+        <select class="form-control" ng-model="sel.value" ng-options="item.id as item.name for (key,item) in sel.data" ng-change="sel.change($index)">
             <option value="">{{sel.tip}}</option>
         </select>
     </div>

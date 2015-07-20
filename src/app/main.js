@@ -52,7 +52,7 @@ define(function(require) {
         $rootScope.$on('$stateChangeStart', function(evt, next, current) {
             var roles = next.data && next.data.roles;
             if (next.name != 'login' && next.name != 'error' && !Auth.isAuthorized(roles)) {
-                $location.url('login');
+                //$location.url('login');
             }
         })
 

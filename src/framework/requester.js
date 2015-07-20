@@ -58,13 +58,8 @@ CollectionRequest.prototype.init = function() {
         "fields": [{
             "key": "project",
             "title": "所属项目",
-            "type": "region",
-            "selects": [{
-                "key": "project",
-                // "value": 1,
-                "tip": "请选择项目",
-                "hasChild": false
-            }],
+            "type": "select",
+            "enumObj":[],
             "display": true
         }, {
             "key": "name",
@@ -92,11 +87,6 @@ CollectionRequest.prototype.init = function() {
                 "name": "POST",
                 "value": "POST"
             }],
-            "display": true
-        }, {
-            "key": "timestamp",
-            "title": "创建时间",
-            "type": "text",
             "display": true
         }, {
             "key": "dataMode",
@@ -413,31 +403,6 @@ pm.indexedDB = {
                     unique: false
                 });
             }
-
-            if (db.objectStoreNames.contains("collection_responses")) {
-                db.deleteObjectStore("collection_responses");
-            }
-
-            if (!db.objectStoreNames.contains("environments")) {
-                var environmentsStore = db.createObjectStore("environments", {
-                    keyPath: "id"
-                });
-                environmentsStore.createIndex("timestamp", "timestamp", {
-                    unique: false
-                });
-                environmentsStore.createIndex("id", "id", {
-                    unique: false
-                });
-            }
-
-            if (!db.objectStoreNames.contains("header_presets")) {
-                var requestStore = db.createObjectStore("header_presets", {
-                    keyPath: "id"
-                });
-                requestStore.createIndex("timestamp", "timestamp", {
-                    unique: false
-                });
-            }
         };
 
         request.onsuccess = function(e) {
@@ -451,7 +416,8 @@ pm.indexedDB = {
     },
 
     open: function() {
-        if (parseInt(navigator.userAgent.match(/Chrom(e|ium)\/([0-9]+)\./)[2]) < 23) {
+        var m = navigator.userAgent.match(/Chrom(e|ium)\/([0-9]+)\./);
+        if (m && parseInt(m[2]) < 23) {
             pm.indexedDB.open_v21();
         } else {
             pm.indexedDB.open_latest();
@@ -493,14 +459,8 @@ pm.indexedDB = {
             req.id = guid();
             req.timestamp = new Date().getTime();
         }
-        console.log(req);
 
-        var collectionRequest = store.put({
-            collectionId: "ffa4f191-b8a2-e411-d819-ef7c0abb003d",
-            id:"5ffebb48-4358-3356-a57b-caf97a84f48f",
-            data:[],
-            timestamp: 1437124563131
-        });
+        var collectionRequest = store.put(req);
 
         collectionRequest.onsuccess = function() {
             callback && callback(req);
@@ -571,8 +531,8 @@ pm.indexedDB = {
 
         //Get everything in the store
         var keyRange = IDBKeyRange.lowerBound(0);
-        if (collection.id) {
-            keyRange = IDBKeyRange.only(collection.id);
+        if (collection.project) {
+            keyRange = IDBKeyRange.only(collection.project);
         }
         var store = trans.objectStore("collection_requests");
 
@@ -585,7 +545,7 @@ pm.indexedDB = {
             var result = e.target.result;
 
             if (!result) {
-                callback && callback(collection, requests);
+                callback && callback(requests);
                 return;
             }
 

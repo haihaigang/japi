@@ -132,7 +132,16 @@ define(function(require) {
                 for (var i in data.data) {
                     for (var j in data.data[i].fields) {
                         var d = data.data[i].fields[j];
-                        s[d.key] = d.value;
+                        var name = '';
+                        if (d.type == 'select') {
+                            for (var k in d.enumObj) {
+                                if (d.enumObj[k].id == d.value) {
+                                    name = d.enumObj[k].name;
+                                    break;
+                                }
+                            }
+                        }
+                        s[d.key] = name || d.value;
                     }
                 }
                 s.id = data.id;
@@ -140,14 +149,15 @@ define(function(require) {
                 return s;
             }
 
-            ajax.setCurrent = function(data,id, d){
-                for(var i in data){
-                    if(data[i].id == id){
-                        data[i] = d;
-                    }
+            ajax.formatCondition = function(data) {
+                var s = {};
+                for (var i in data) {
+                    var d = data[i];
+                    s[d.key] = d.value;
                 }
-            }
 
+                return s;
+            }
             return ajax;
         }])
 

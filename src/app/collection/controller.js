@@ -19,7 +19,7 @@ define(function(require) {
                             controller: 'HeaderController'
                         },
                         'main@collections': {
-                            templateUrl: 'app/base/view/list.html',
+                            templateUrl: 'app/collection/view/list.html',
                             controller: 'CollectionListController'
                         }
                     },
