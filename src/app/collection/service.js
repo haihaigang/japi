@@ -15,7 +15,7 @@ define(function(require) {
                 query: function(id) {
                     pm.indexedDB.getCollection(id, function(response) {
                         result.groups = response;
-                        //$rootScope.$apply();//为什么这里不能添加$apply
+                        $rootScope.$apply();//为什么这里不能添加$apply，必须加上，以便立即更新视图
                     });
                 },
                 save: function(callback) {

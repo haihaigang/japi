@@ -44,6 +44,36 @@ Collection.prototype.init = function() {
     })
 }
 
+Collection.prototype.setProperty = function(key, value){
+    var flag = false;
+    for (var i in this.data) {
+        for (var j in this.data[i].fields) {
+            if (this.data[i].fields[j].key == key) {
+                this.data[i].fields[j].value = value;
+                flag = true;
+                break;
+            }
+        }
+        if (flag) break;
+    }
+}
+
+Collection.prototype.setId = function(value) {
+    this.id = value
+}
+
+Collection.prototype.setName = function(value) {
+    this.setProperty('name', value);
+}
+
+Collection.prototype.setDesc = function(value) {
+    this.setProperty('desc', value);
+}
+
+Collection.prototype.setVersion = function(value) {
+    this.setProperty('version', value || 'v0.1');
+}
+
 function CollectionRequest() {
     this.collectionId = "";
     this.id = "";
@@ -59,7 +89,7 @@ CollectionRequest.prototype.init = function() {
             "key": "project",
             "title": "所属项目",
             "type": "select",
-            "enumObj":[],
+            "enumObj": [],
             "display": true
         }, {
             "key": "name",
@@ -134,6 +164,60 @@ CollectionRequest.prototype.init = function() {
             "display": true
         }]
     });
+}
+
+CollectionRequest.prototype.setProperty = function(key, value){
+    var flag = false;
+    for (var i in this.data) {
+        for (var j in this.data[i].fields) {
+            if (this.data[i].fields[j].key == key) {
+                this.data[i].fields[j].value = value;
+                flag = true;
+                break;
+            }
+        }
+        if (flag) break;
+    }
+}
+
+CollectionRequest.prototype.setCollectionId = function(value){
+    this.collectionId = value;
+}
+
+CollectionRequest.prototype.setId = function(value){
+    this.id = value;
+}
+
+CollectionRequest.prototype.setName = function(value){
+    this.setProperty('name', value);
+}
+
+CollectionRequest.prototype.setUrl = function(value){
+    this.setProperty('url', value);
+}
+
+CollectionRequest.prototype.setDesc = function(value){
+    this.setProperty('desc', value);
+}
+
+CollectionRequest.prototype.setMethod = function(value){
+    this.setProperty('method', value);
+}
+
+CollectionRequest.prototype.setDataMode = function(value){
+    this.setProperty('dataMode', value);
+}
+
+CollectionRequest.prototype.setProject = function(value){
+    this.setProperty('project', value);
+}
+
+CollectionRequest.prototype.setParams = function(data){
+    var result = [];
+    for(var i in data){
+        result.push(new Field(data[i].key, '', data[i].type, data[i].value, true));
+    }
+    this.setProperty('params',result);
 }
 
 function Request() {
@@ -264,6 +348,7 @@ window.requestFileSystem = window.requestFileSystem || window.webkitRequestFileS
 
 pm.init = function() {
     pm.indexedDB.open();
+    pm.filesystem.init();
 };
 
 pm.indexedDB = {
@@ -457,8 +542,8 @@ pm.indexedDB = {
             var boundKeyRange = IDBKeyRange.only(req.id);
         } else {
             req.id = guid();
-            req.timestamp = new Date().getTime();
         }
+        req.timestamp = req.timestamp || new Date().getTime();
 
         var collectionRequest = store.put(req);
 
@@ -531,8 +616,8 @@ pm.indexedDB = {
 
         //Get everything in the store
         var keyRange = IDBKeyRange.lowerBound(0);
-        if (collection.project) {
-            keyRange = IDBKeyRange.only(collection.project);
+        if (collection.collectionId) {
+            keyRange = IDBKeyRange.only(collection.collectionId);
         }
         var store = trans.objectStore("collection_requests");
 
@@ -714,7 +799,7 @@ pm.indexedDB = {
             }
 
             var request = result.value;
-            pm.collections.deleteCollectionRequest(request.id);
+            pm.indexedDB.deleteCollectionRequest(request.id);
             result['continue']();
         };
         cursorRequest.onerror = pm.indexedDB.onerror;
@@ -735,203 +820,6 @@ pm.indexedDB = {
         request.onerror = function(e) {
             console.log(e);
         };
-    },
-
-    environments: {
-        addEnvironment: function(environment, callback) {
-            var db = pm.indexedDB.db;
-            var trans = db.transaction(["environments"], "readwrite");
-            var store = trans.objectStore("environments");
-            var request = store.put(environment);
-
-            request.onsuccess = function(e) {
-                callback(environment);
-            };
-
-            request.onerror = function(e) {
-                console.log(e);
-            };
-        },
-
-        getEnvironment: function(id, callback) {
-            var db = pm.indexedDB.db;
-            var trans = db.transaction(["environments"], "readwrite");
-            var store = trans.objectStore("environments");
-
-            //Get everything in the store
-            var cursorRequest = store.get(id);
-
-            cursorRequest.onsuccess = function(e) {
-                var result = e.target.result;
-                callback(result);
-            };
-            cursorRequest.onerror = pm.indexedDB.onerror;
-        },
-
-        deleteEnvironment: function(id, callback) {
-            var db = pm.indexedDB.db;
-            var trans = db.transaction(["environments"], "readwrite");
-            var store = trans.objectStore(["environments"]);
-
-            var request = store['delete'](id);
-
-            request.onsuccess = function() {
-                callback(id);
-            };
-
-            request.onerror = function(e) {
-                console.log(e);
-            };
-        },
-
-        getAllEnvironments: function(callback) {
-            var db = pm.indexedDB.db;
-            if (db == null) {
-                return;
-            }
-
-            var trans = db.transaction(["environments"], "readwrite");
-            var store = trans.objectStore("environments");
-
-            //Get everything in the store
-            var keyRange = IDBKeyRange.lowerBound(0);
-            var index = store.index("timestamp");
-            var cursorRequest = index.openCursor(keyRange);
-            var environments = [];
-
-            cursorRequest.onsuccess = function(e) {
-                var result = e.target.result;
-
-                if (!result) {
-                    callback(environments);
-                    return;
-                }
-
-                var request = result.value;
-                environments.push(request);
-
-                //This wil call onsuccess again and again until no more request is left
-                result['continue']();
-            };
-
-            cursorRequest.onerror = pm.indexedDB.onerror;
-        },
-
-        updateEnvironment: function(environment, callback) {
-            var db = pm.indexedDB.db;
-            var trans = db.transaction(["environments"], "readwrite");
-            var store = trans.objectStore("environments");
-
-            var boundKeyRange = IDBKeyRange.only(environment.id);
-            var request = store.put(environment);
-
-            request.onsuccess = function(e) {
-                callback(environment);
-            };
-
-            request.onerror = function(e) {
-                console.log(e.value);
-            };
-        }
-    },
-
-    headerPresets: {
-        addHeaderPreset: function(headerPreset, callback) {
-            var db = pm.indexedDB.db;
-            var trans = db.transaction([pm.indexedDB.TABLE_HEADER_PRESETS], "readwrite");
-            var store = trans.objectStore(pm.indexedDB.TABLE_HEADER_PRESETS);
-            var request = store.put(headerPreset);
-
-            request.onsuccess = function(e) {
-                callback(headerPreset);
-            };
-
-            request.onerror = function(e) {
-                console.log(e);
-            };
-        },
-
-        getHeaderPreset: function(id, callback) {
-            var db = pm.indexedDB.db;
-            var trans = db.transaction([pm.indexedDB.TABLE_HEADER_PRESETS], "readwrite");
-            var store = trans.objectStore(pm.indexedDB.TABLE_HEADER_PRESETS);
-
-            //Get everything in the store
-            var cursorRequest = store.get(id);
-
-            cursorRequest.onsuccess = function(e) {
-                var result = e.target.result;
-                callback(result);
-            };
-            cursorRequest.onerror = pm.indexedDB.onerror;
-        },
-
-        deleteHeaderPreset: function(id, callback) {
-            var db = pm.indexedDB.db;
-            var trans = db.transaction([pm.indexedDB.TABLE_HEADER_PRESETS], "readwrite");
-            var store = trans.objectStore([pm.indexedDB.TABLE_HEADER_PRESETS]);
-
-            var request = store['delete'](id);
-
-            request.onsuccess = function() {
-                callback(id);
-            };
-
-            request.onerror = function(e) {
-                console.log(e);
-            };
-        },
-
-        getAllHeaderPresets: function(callback) {
-            var db = pm.indexedDB.db;
-            if (db == null) {
-                console.log("Db is null");
-                return;
-            }
-
-            var trans = db.transaction([pm.indexedDB.TABLE_HEADER_PRESETS], "readwrite");
-            var store = trans.objectStore(pm.indexedDB.TABLE_HEADER_PRESETS);
-
-            //Get everything in the store
-            var keyRange = IDBKeyRange.lowerBound(0);
-            var index = store.index("timestamp");
-            var cursorRequest = index.openCursor(keyRange);
-            var headerPresets = [];
-
-            cursorRequest.onsuccess = function(e) {
-                var result = e.target.result;
-
-                if (!result) {
-                    callback(headerPresets);
-                    return;
-                }
-
-                var request = result.value;
-                headerPresets.push(request);
-
-                //This wil call onsuccess again and again until no more request is left
-                result['continue']();
-            };
-
-            cursorRequest.onerror = pm.indexedDB.onerror;
-        },
-
-        updateHeaderPreset: function(headerPreset, callback) {
-            var db = pm.indexedDB.db;
-            var trans = db.transaction([pm.indexedDB.TABLE_HEADER_PRESETS], "readwrite");
-            var store = trans.objectStore(pm.indexedDB.TABLE_HEADER_PRESETS);
-
-            var boundKeyRange = IDBKeyRange.only(headerPreset.id);
-            var request = store.put(headerPreset);
-
-            request.onsuccess = function(e) {
-                callback(headerPreset);
-            };
-
-            request.onerror = function(e) {
-                console.log(e.value);
-            };
-        }
     }
 };
 
@@ -2796,5 +2684,125 @@ pm.urlCache = {
             source: pm.urlCache.urls,
             delay: 50
         });
+    }
+};
+
+pm.filesystem = {
+    fs: {},
+
+    onInitFs: function(filesystem) {
+        pm.filesystem.fs = filesystem;
+    },
+
+    errorHandler: function(e) {
+        console.log(e.name + ':' + e.message);
+    },
+
+    init: function() {
+        window.requestFileSystem(window.TEMPORARY, 5 * 1024 * 1024, this.onInitFs, this.errorHandler);
+    },
+
+    removeFileIfExists: function(name, callback) {
+        pm.filesystem.fs.root.getFile(name, {
+            create: false
+        }, function(fileEntry) {
+            fileEntry.remove(function() {
+                callback();
+            }, function() {
+                callback();
+            });
+        }, function() {
+            callback();
+        });
+    },
+
+    renderResponsePreview: function(name, data, type, callback) {
+        name = encodeURI(name);
+        name = name.replace("/", "_");
+        pm.filesystem.removeFileIfExists(name, function() {
+            pm.filesystem.fs.root.getFile(name, {
+                    create: true
+                },
+                function(fileEntry) {
+                    fileEntry.createWriter(function(fileWriter) {
+
+                        fileWriter.onwriteend = function(e) {
+                            var properties = {
+                                url: fileEntry.toURL()
+                            };
+
+                            callback && callback(properties.url);
+                        };
+
+                        fileWriter.onerror = function(e) {
+                            callback && callback(false);
+                        };
+
+                        var blob;
+                        if (type == "pdf") {
+                            blob = new Blob([data], {
+                                type: 'application/pdf'
+                            });
+                        } else {
+                            blob = new Blob([data], {
+                                type: 'text/plain'
+                            });
+                        }
+                        fileWriter.write(blob);
+
+
+                    }, pm.filesystem.errorHandler);
+
+
+                }, pm.filesystem.errorHandler
+            );
+        });
+    },
+
+    saveAndOpenFile: function(name, data, type, callback) {
+        name = encodeURI(name);
+        name = name.replace("/", "_");
+        pm.filesystem.removeFileIfExists(name, function() {
+            pm.filesystem.fs.root.getFile(name, {
+                    create: true
+                },
+                function(fileEntry) {
+                    fileEntry.createWriter(function(fileWriter) {
+
+                        fileWriter.onwriteend = function(e) {
+                            var properties = {
+                                url: fileEntry.toURL()
+                            };
+
+                            if (typeof chrome !== "undefined") {
+                                chrome.tabs.create(properties, function(tab) {});
+                            }
+
+                            callback();
+                        };
+
+                        fileWriter.onerror = function(e) {
+                            callback();
+                        };
+
+                        var blob;
+                        if (type == "pdf") {
+                            blob = new Blob([data], {
+                                type: 'application/pdf'
+                            });
+                        } else {
+                            blob = new Blob([data], {
+                                type: 'text/plain'
+                            });
+                        }
+                        fileWriter.write(blob);
+
+                    }, pm.filesystem.errorHandler);
+
+
+                }, pm.filesystem.errorHandler
+            );
+        });
+
     }
 };

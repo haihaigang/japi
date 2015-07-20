@@ -62,8 +62,24 @@ define(function(require) {
                         for (var i in response) {
                             response[i] = Ajax.formatData(response[i]);
                         }
-                        result.pageData = response;
-                        $rootScope.$apply();
+                        // result.pageData = response;
+                        // $rootScope.$apply();
+                        
+                        pm.indexedDB.getCollections(function(response1){
+                            for(var i in response1){
+                                response1[i] = Ajax.formatData(response1[i]);
+                            }
+                            for(var i in response){
+                                for(var j in response1){
+                                    if(response[i].collectionId == response1[j].id){
+                                        response[i].project = response1[j].name;
+                                    }
+                                }
+                            }
+                            result.pageData = response;
+                            $rootScope.$apply();
+                        })
+
                     });
                 },
                 remove: function(id) {
@@ -94,6 +110,32 @@ define(function(require) {
                         result.conditionItems = d;
                         $rootScope.$apply();
                     })
+                },
+                importFromPM: function(data){
+                    if(!data.id || !data.requests){
+                        return false;
+                    }
+
+                    var col = new Collection();
+                    col.setId(data.id);
+                    col.setName(data.name);
+                    col.setDesc(data.description);
+                    pm.indexedDB.saveCollection(col, function(collection){
+                        for(var i in data.requests){
+                            var d = data.requests[i],
+                                req = new CollectionRequest();
+                            req.setCollectionId(collection.id);
+                            req.setProject(collection.name);
+                            req.setId(d.id);
+                            req.setName(d.name);
+                            req.setUrl(d.url);
+                            req.setDesc(d.description);
+                            req.setMethod(d.method);
+                            req.setDataMode(d.dataMode);
+
+                            pm.indexedDB.saveCollectionRequest(req);
+                        }
+                    });
                 }
             };
 

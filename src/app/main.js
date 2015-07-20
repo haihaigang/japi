@@ -9,6 +9,7 @@ define(function(require) {
     require('./base/directive-form');
     require('./base/controller');
     require('./header/controller');
+    require('./home/controller');
     require('./collection/controller');
     require('./request/controller');
 
@@ -23,6 +24,7 @@ define(function(require) {
         'formDirective',
         'mainModule',
         'headerModule',
+        'homeModule',
         'collectionModule',
         'requestModule'
     ]);
@@ -116,7 +118,8 @@ define(function(require) {
                         controller: 'HeaderController'
                     },
                     'main@home': {
-                        templateUrl: 'app/home/view/index.html'
+                        templateUrl: 'app/home/view/index.html',
+                        controller: 'HomeController'
                     }
                 }
             })

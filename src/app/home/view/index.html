@@ -4,14 +4,8 @@
             <div class="panel-heading">
                 <h3 class="panel-title">最近的项目</h3>
             </div>
-            <div class="panel-body">
-                <div class="list-group">
-                    <a href="#" class="list-group-item"><span class="badge">5</span>Cras justo odio</a>
-                    <a href="#" class="list-group-item"><span class="badge">7</span>Dapibus ac facilisis in</a>
-                    <a href="#" class="list-group-item"><span class="badge">10</span>Morbi leo risus</a>
-                    <a href="#" class="list-group-item"><span class="badge">2</span>Porta ac consectetur ac</a>
-                    <a href="#" class="list-group-item"><span class="badge">4</span>Vestibulum at eros</a>
-                </div>
+            <div class="list-group">
+                <a class="list-group-item" ng-repeat="item in page.collections" ui-sref="collections.edit({id:item['id']})"><span class="badge">5</span>{{item.name}}</a>
             </div>
         </div>
     </div>
@@ -20,15 +14,10 @@
             <div class="panel-heading">
                 <h3 class="panel-title">最近的接口</h3>
             </div>
-            <div class="panel-body">
-                <div class="list-group">
-                    <a href="#" class="list-group-item">Cras justo odio</a>
-                    <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
-                    <a href="#" class="list-group-item">Morbi leo risus</a>
-                    <a href="#" class="list-group-item">Porta ac consectetur ac</a>
-                    <a href="#" class="list-group-item">Vestibulum at eros</a>
-                </div>
+            <div class="list-group">
+                <a class="list-group-item" ng-repeat="item in page.collectionRequests" ui-sref="requests.edit({id:item['id']})">{{item.name}}</a>
             </div>
         </div>
     </div>
 </div>
+<input type="file">

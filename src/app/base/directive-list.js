@@ -31,13 +31,14 @@ define(function(require) {
                 replace: true,
                 transclude: true,
                 scope: {
+                    jTip: '@jTip',
                     jClick: '&jClick' //当传递的函数有参数的时候，在指令中调用也不需添加参数
                 },
                 template: '<a href="javascript:;" ng-click="doClick()" ng-transclude></a>',
                 link: function($scope, element, attrs) {
                     $scope.doClick = function() {
                         errorService.showConfirm({
-                            message: '确认删除吗？',
+                            message: attrs.jTip || '确认删除吗？',
                             yesCallback: $scope.jClick
                         });
                     }

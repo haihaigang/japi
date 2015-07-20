@@ -145,6 +145,10 @@ define(function(require) {
                     }
                 }
                 s.id = data.id;
+                if(data.collectionId){
+                    //扩展可能存在的字段
+                    s.collectionId = data.collectionId
+                }
 
                 return s;
             }

@@ -12,20 +12,20 @@
     <table class="table table-striped table-hover">
         <thead>
             <tr>
-                <th width="50">序号</th>
-                <th width="200">项目名称</th>
+                <th width="5%">序号</th>
+                <th width="20%">项目名称</th>
                 <th>项目描述</th>
-                <th width="100">项目版本</th>
-                <th width="200">操作</th>
+                <th width="10%">项目版本</th>
+                <th width="20%">操作</th>
             </tr>
         </thead>
         <tbody>
             <tr ng-repeat="item in page.pageData">
                 <td>{{$index+1}}</td>
                 <td>{{item['name']}}</td>
-                <td>{{item['desc']}}</td>
+                <td class="ellipsis">{{item['desc']}}</td>
                 <td>{{item['version']}}</td>
-                <td><div class="ngCellOpt"><a ui-sref=".edit({id:item['id']})">接口</a><a ui-sref=".edit({id:item['id']})">编辑</a><div j-delete j-click="page.remove(item['id'])">删除</div></div></td>
+                <td><div class="ngCellOpt"><a ui-sref=".edit({id:item['id']})">查看接口</a><a ui-sref=".edit({id:item['id']})">编辑</a><div j-delete j-click="page.remove(item['id'])" j-tip="确认删除吗？同时将删除对应的接口信息">删除</div></div></td>
             </tr>
         </tbody>
     </table>

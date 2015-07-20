@@ -2,17 +2,15 @@
 <h1 class="page-header">{{page.title}}</h1>
 <div class="row">
     <div class="col-md-2 sidebar">
-        <div class="panel-group" id="accordion">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class=""><span class="glyphicon glyphicon-folder-close"></span>Content</a>
-                </h4>
-                </div>
-                <div class="list-group">
-                    <a class="list-group-item" href="#to{{$index}}" ng-repeat="item in page.groups.data"><span class="glyphicon glyphicon-file text-info"></span><span>{{ item.name }}</span>
-                    </a>
-                </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class=""><span class="glyphicon glyphicon-folder-close"></span>Content</a>
+            </h4>
+            </div>
+            <div class="list-group">
+                <a class="list-group-item" href="#to{{$index}}" ng-repeat="item in page.groups.data"><span class="glyphicon glyphicon-file text-info"></span><span>{{ item.name }}</span>
+                </a>
             </div>
         </div>
     </div>
