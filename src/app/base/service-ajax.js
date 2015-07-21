@@ -122,7 +122,7 @@ define(function(require) {
             };
 
             /**
-             * 转换自定义表单对象为列表对象
+             * 转换自定义表单对象为普通对象
              * {"id":"",data:[{"name":"",data:[{}]},{...}]} => {"id":"","name":""...}
              * @param  {[type]} data [description]
              * @return {[type]}      [description]
@@ -145,12 +145,40 @@ define(function(require) {
                     }
                 }
                 s.id = data.id;
-                if(data.collectionId){
+                if (data.collectionId) {
                     //扩展可能存在的字段
                     s.collectionId = data.collectionId
                 }
 
                 return s;
+            }
+
+            /**
+             * 转换普通对象为自定义的表单对象
+             * {"id":"","name":""...} ＝> {"id":"",data:[{"name":"",data:[{}]},{...}]}
+             * @param  {[type]} json [description]
+             * @return {[type]}      [description]
+             */
+            ajax.jsonToForm = function(json) {
+                //{id: 1,name:"",desc:"",version: ""}
+                var ret = {};
+                for(var i in json){
+
+                }
+
+                // this.id = "";
+                // this.data = [];
+
+                // var fields = [];
+                // fields.push(new Field('name', '项目名称', 'text', '', true));
+                // fields.push(new Field('desc', '项目描述', 'textarea', '', true));
+                // fields.push(new Field('version', '项目版本', 'text', '', true));
+                // this.data.push({
+                //     name: "基本信息",
+                //     fields: fields
+                // })
+
+
             }
 
             ajax.formatCondition = function(data) {

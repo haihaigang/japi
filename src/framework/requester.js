@@ -272,29 +272,6 @@ pm.indexedDB.modes = {
 
 pm.fs = {};
 pm.webUrl = "http://getpostman.com";
-pm.bannedHeaders = [
-    'accept-charset',
-    'accept-encoding',
-    'access-control-request-headers',
-    'access-control-request-method',
-    'connection',
-    'content-length',
-    'cookie',
-    'cookie2',
-    'content-transfer-encoding',
-    'date',
-    'expect',
-    'host',
-    'keep-alive',
-    'origin',
-    'referer',
-    'te',
-    'trailer',
-    'transfer-encoding',
-    'upgrade',
-    'user-agent',
-    'via'
-];
 
 // IndexedDB implementations still use API prefixes
 var indexedDB = window.indexedDB || // Use the standard DB API
@@ -331,13 +308,6 @@ window.requestFileSystem = window.requestFileSystem || window.webkitRequestFileS
  Dependencies
 
  jQuery
- jQuery UI - AutoComplete plugin
- jQuery HotKeys
- jQuery jScrollPane
- jQuery MouseWheel
- Bootstrap
- CodeMirror
- Underscore
 
  Code status
 

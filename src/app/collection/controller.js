@@ -52,47 +52,8 @@ define(function(require) {
         .controller('CollectionListController', [
             '$scope', '$state', '$stateParams', 'Collection',
             function($scope, $state, $stateParams, Collection) {
-
                 $scope.page = Collection;
-
-                $scope.page.search({
-                    pageSize: $scope.pagingOptions.pageSize,
-                    page: $scope.pagingOptions.currentPage
-                });
-
-                $scope.columns = $scope.gridOptions.columnDefs = [{
-                    field: 'id',
-                    displayName: '序号',
-                    width: 60,
-                    pinnable: false,
-                    sortable: false
-                }, {
-                    field: 'name',
-                    displayName: '项目名称',
-                    enableCellEdit: true,
-                    width: 120
-                }, {
-                    field: 'desc',
-                    displayName: '项目描述',
-                    enableCellEdit: true
-                }, {
-                    field: 'version',
-                    displayName: '项目版本',
-                    enableCellEdit: true,
-                    width: 120
-                }, {
-                    field: 'sort',
-                    displayName: '...',
-                    enableCellEdit: true,
-                    width: 120
-                }, {
-                    field: 'id',
-                    displayName: '操作',
-                    enableCellEdit: false,
-                    sortable: false,
-                    pinnable: false,
-                    cellTemplate: '<div class="ngCellOpt"><a ui-sref=".edit({id:row.getProperty(col.field)})">编辑</a><div j-delete j-click="page.remove(row.getProperty(col.field))">删除</div></div>'
-                }];
+                $scope.page.search();
                 $scope.breadcrumbs = $scope.page.init($state);
             }
         ])

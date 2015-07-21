@@ -12,6 +12,7 @@ define(function(require) {
     require('./home/controller');
     require('./collection/controller');
     require('./request/controller');
+    require('./about/controller');
 
     //声明一个基础模块，
     angular.module('baseModule',[]);
@@ -26,7 +27,8 @@ define(function(require) {
         'headerModule',
         'homeModule',
         'collectionModule',
-        'requestModule'
+        'requestModule',
+        'aboutModule'
     ]);
 
     //使用已定义模块名称，需要在模块声明之后在引入
@@ -55,6 +57,9 @@ define(function(require) {
             var roles = next.data && next.data.roles;
             if (next.name != 'login' && next.name != 'error' && !Auth.isAuthorized(roles)) {
                 //$location.url('login');
+            }
+            if(!'indexedDB' in window){
+                $location.path('lower');
             }
         })
 
@@ -101,6 +106,24 @@ define(function(require) {
                     },
                     'main@error': {
                         templateUrl: 'app/base/view/404.html'
+                    }
+                },
+                data: {
+                    roles: [ROLES.GUEST]
+                }
+            })
+            .state('lower', {
+                url: '/sorry',
+                views: {
+                    '': {
+                        templateUrl: 'app/main.html'
+                    },
+                    'menu@lower': {
+                        templateUrl: 'app/header/view/menu.html',
+                        controller: 'HeaderController'
+                    },
+                    'main@lower': {
+                        templateUrl: 'app/base/view/lower.html'
                     }
                 },
                 data: {

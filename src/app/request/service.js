@@ -110,32 +110,6 @@ define(function(require) {
                         result.conditionItems = d;
                         $rootScope.$apply();
                     })
-                },
-                importFromPM: function(data){
-                    if(!data.id || !data.requests){
-                        return false;
-                    }
-
-                    var col = new Collection();
-                    col.setId(data.id);
-                    col.setName(data.name);
-                    col.setDesc(data.description);
-                    pm.indexedDB.saveCollection(col, function(collection){
-                        for(var i in data.requests){
-                            var d = data.requests[i],
-                                req = new CollectionRequest();
-                            req.setCollectionId(collection.id);
-                            req.setProject(collection.name);
-                            req.setId(d.id);
-                            req.setName(d.name);
-                            req.setUrl(d.url);
-                            req.setDesc(d.description);
-                            req.setMethod(d.method);
-                            req.setDataMode(d.dataMode);
-
-                            pm.indexedDB.saveCollectionRequest(req);
-                        }
-                    });
                 }
             };
 
