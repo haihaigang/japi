@@ -1,10 +1,10 @@
 <div class="form-group" ng-repeat="item in data">
-    <div class="row">
+    <div class="row" {{item.key}}>
         <div class="col-md-2">
-            <input type="text" class="form-control" placeholder="Key">
+            <input type="text" class="form-control" placeholder="Key" ng-model="item.key">
         </div>
         <div class="col-md-3">
-            <input type="text" class="form-control" placeholder="描述">
+            <input type="text" class="form-control" placeholder="描述" ng-model="item.description">
         </div>
         <div class="col-md-2">
 	        <select name="" class="form-control">
@@ -18,7 +18,7 @@
         </div>
         <div class="col-md-2">
         <label class="checkbox">
-            <input type="checkbox">是否必填
+            <input type="checkbox" ng-model="item.checked">是否必填
         </label>
         </div>
         <div class="col-md-1">

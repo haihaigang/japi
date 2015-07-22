@@ -18,7 +18,7 @@ define(function(require) {
                             if(i >= result.max){
                                 break;
                             }
-                            ret[i] = Ajax.formatData(response[i]);
+                            ret[i] = response[i];
                             // pm.indexedDB.getAllRequestsInCollection(ret[i],function(requests){
                             //     ret[i].count = requests.length;
                             // })
@@ -33,7 +33,7 @@ define(function(require) {
                             if(i >= result.max){
                                 break;
                             }
-                            ret[i] = Ajax.formatData(response[i]);
+                            ret[i] = response[i];
                         }
                         result.collectionRequests = ret;
                     });

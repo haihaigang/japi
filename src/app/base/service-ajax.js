@@ -132,63 +132,23 @@ define(function(require) {
                 for (var i in data.data) {
                     for (var j in data.data[i].fields) {
                         var d = data.data[i].fields[j];
-                        var name = '';
-                        if (d.type == 'select') {
-                            for (var k in d.enumObj) {
-                                if (d.enumObj[k].id == d.value) {
-                                    name = d.enumObj[k].name;
-                                    break;
-                                }
-                            }
-                        }
-                        s[d.key] = name || d.value;
+                        s[d.key] = d.value;
                     }
                 }
                 s.id = data.id;
-                if (data.collectionId) {
-                    //扩展可能存在的字段
-                    s.collectionId = data.collectionId
-                }
-
                 return s;
-            }
-
-            /**
-             * 转换普通对象为自定义的表单对象
-             * {"id":"","name":""...} ＝> {"id":"",data:[{"name":"",data:[{}]},{...}]}
-             * @param  {[type]} json [description]
-             * @return {[type]}      [description]
-             */
-            ajax.jsonToForm = function(json) {
-                //{id: 1,name:"",desc:"",version: ""}
-                var ret = {};
-                for(var i in json){
-
-                }
-
-                // this.id = "";
-                // this.data = [];
-
-                // var fields = [];
-                // fields.push(new Field('name', '项目名称', 'text', '', true));
-                // fields.push(new Field('desc', '项目描述', 'textarea', '', true));
-                // fields.push(new Field('version', '项目版本', 'text', '', true));
-                // this.data.push({
-                //     name: "基本信息",
-                //     fields: fields
-                // })
-
-
             }
 
             ajax.formatCondition = function(data) {
                 var s = {};
-                for (var i in data) {
-                    var d = data[i];
-                    s[d.key] = d.value;
+                if(data && typeof data.length != 'undefined'){
+                    for (var i in data) {
+                        var d = data[i];
+                        s[d.key] = d.value;
+                    }
                 }
 
-                return s;
+                return data || s;
             }
             return ajax;
         }])

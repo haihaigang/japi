@@ -18,207 +18,192 @@
  */
 "use strict";
 
-function Field(key, title, type, value, display) {
+function Field(key, title, type, value, display, required) {
     this.key = key;
     this.title = title;
     this.type = type;
     this.value = value;
-    this.display = display;
+    this.display = display || true;
+    this.required = required || false;
 }
 
-function Collection() {
-    this.id = "";
-    this.data = [];
+function Collection(data) {
+    this.id = null;
+    this.name = null;
+    this.description = null;
+    this.version = null;
 
-    this.init();
+    this.synced = false;
+    this.remoteLink = null;
+
+    this.init(data);
 }
 
-Collection.prototype.init = function() {
-    var fields = [];
-    fields.push(new Field('name', '项目名称', 'text', '', true));
-    fields.push(new Field('desc', '项目描述', 'textarea', '', true));
-    fields.push(new Field('version', '项目版本', 'text', '', true));
-    this.data.push({
+Collection.prototype.toForm = function(data) {
+    var ret = {
+            id: null,
+            data: []
+        },
+        fields = [],
+        field;
+
+    if (this.id) {
+        ret.id = this.id;
+    }
+    field = new Field('name', '项目名称', 'text', '', true, true);
+    if (this.name) {
+        field.value = this.name;
+    }
+    fields.push(field);
+    field = new Field('description', '项目描述', 'textarea');
+    if (this.description) {
+        field.value = this.description;
+    }
+    fields.push(field);
+    field = new Field('version', '项目版本', 'text');
+    if (this.version) {
+        field.value = this.version;
+    }else{
+        field.value = 'v0.1';
+    }
+    fields.push(field);
+    ret.data.push({
         name: "基本信息",
         fields: fields
     })
+    return ret;
 }
 
-Collection.prototype.setProperty = function(key, value){
-    var flag = false;
-    for (var i in this.data) {
-        for (var j in this.data[i].fields) {
-            if (this.data[i].fields[j].key == key) {
-                this.data[i].fields[j].value = value;
-                flag = true;
-                break;
-            }
+Collection.prototype.init = function(data) {
+    if (data) {
+        for (var i in data) {
+            this[i] = data[i];
         }
-        if (flag) break;
     }
 }
 
-Collection.prototype.setId = function(value) {
-    this.id = value
+function CollectionRequest(data) {
+    this.id = null;
+    this.collectionId = null;
+    this.name = null;
+    this.url = null;
+    this.description = null;
+    this.method = null;
+    this.dataMode = null;
+    this.data = null;
+
+    this.init(data);
 }
 
-Collection.prototype.setName = function(value) {
-    this.setProperty('name', value);
-}
+CollectionRequest.prototype.toForm = function() {
+    var ret = {
+            id: null,
+            data: []
+        },
+        fields = [],
+        field;
 
-Collection.prototype.setDesc = function(value) {
-    this.setProperty('desc', value);
-}
-
-Collection.prototype.setVersion = function(value) {
-    this.setProperty('version', value || 'v0.1');
-}
-
-function CollectionRequest() {
-    this.collectionId = "";
-    this.id = "";
-    this.data = [];
-
-    this.init();
-}
-
-CollectionRequest.prototype.init = function() {
-    this.data.push({
-        "name": "基本信息",
-        "fields": [{
-            "key": "project",
-            "title": "所属项目",
-            "type": "select",
-            "enumObj": [],
-            "display": true
-        }, {
-            "key": "name",
-            "title": "接口名称",
-            "type": "text",
-            "display": true
-        }, {
-            "key": "url",
-            "title": "接口地址",
-            "type": "text",
-            "display": true
-        }, {
-            "key": "desc",
-            "title": "接口描述",
-            "type": "textarea",
-            "display": true
-        }, {
-            "key": "method",
-            "title": "请求方式",
-            "type": "select",
-            "enumObj": [{
-                "name": "GET",
-                "value": "GET"
-            }, {
-                "name": "POST",
-                "value": "POST"
-            }],
-            "display": true
-        }, {
-            "key": "dataMode",
-            "title": "请求类型",
-            "type": "select",
-            "enumObj": [{
-                "name": "formdata",
-                "value": "formdata"
-            }, {
-                "name": "urlencoded",
-                "value": "urlencoded"
-            }, {
-                "name": "raw",
-                "value": "raw"
-            }],
-            "display": true
-        }]
+    if (this.id) {
+        ret.id = this.id;
+    }
+    field = new Field('collectionId', '所属项目', 'select', '', true, true);
+    if (this.collectionId) {
+        field.value = this.collectionId;
+    }
+    fields.push(field);
+    field = new Field('name', '接口名称', 'text', '', true, true);
+    if (this.name) {
+        field.value = this.name;
+    }
+    fields.push(field);
+    field = new Field('url', '接口地址', 'text', '', true, true);
+    if (this.url) {
+        field.value = this.url;
+    }
+    fields.push(field);
+    field = new Field('method', '请求方式', 'select', '', true);
+    field.enumObj = [{
+        "name": "GET",
+        "id": "GET"
+    }, {
+        "name": "POST",
+        "id": "POST"
+    }];
+    if (this.method) {
+        field.value = this.method;
+    }
+    fields.push(field);
+    field = new Field('dataMode', '请求类型', 'select', '', true);
+    field.enumObj = [{
+        "name": "formdata",
+        "id": "formdata"
+    }, {
+        "name": "urlencoded",
+        "id": "urlencoded"
+    }, {
+        "name": "raw",
+        "id": "raw"
+    }];
+    if (this.dataMode) {
+        field.value = this.dataMode;
+    }
+    fields.push(field);
+    field = new Field('description', '接口描述', 'textarea');
+    if (this.description) {
+        field.value = this.description;
+    }
+    fields.push(field);
+    ret.data.push({
+        name: "基本信息",
+        fields: fields
     });
-    this.data.push({
-        "name": "请求参数",
-        "fields": [{
-            "key": "params",
-            "title": "请求参数",
-            "type": "mutiple",
-            "data": [{
-                "key": "",
-                "type": "",
-                "value": "",
-                "checked": false
-            }],
-            "display": true
-        }]
-    });
-    this.data.push({
-        "name": "响应参数",
-        "fields": [{
-            "key": "response",
-            "title": "响应参数",
-            "type": "mutiple",
-            "data": [{
-                "key": "",
-                "type": "",
-                "value": ""
-            }],
-            "display": true
-        }]
-    });
-}
 
-CollectionRequest.prototype.setProperty = function(key, value){
-    var flag = false;
-    for (var i in this.data) {
-        for (var j in this.data[i].fields) {
-            if (this.data[i].fields[j].key == key) {
-                this.data[i].fields[j].value = value;
-                flag = true;
-                break;
-            }
+    fields = [];
+    field = new Field('data', '请求参数', 'mutiple', '', true);
+    field.value = [];
+    if (this.data) {
+        for (var i in this.data) {
+            field.value.push(this.data[i]);
         }
-        if (flag) break;
+    } else {
+        field.value.push({
+            "key": "",
+            "type": "",
+            "value": "",
+            "checked": false
+        })
+    }
+    fields.push(field);
+    ret.data.push({
+        name: "请求参数",
+        fields: fields
+    });
+
+    fields = [];
+    field = new Field('responses', '请求参数', 'mutiple', '', true);
+    field.value = [{
+        "key": "",
+        "type": "",
+        "value": "",
+        "checked": false
+    }];
+    fields.push(field);
+    ret.data.push({
+        name: "响应参数",
+        fields: fields
+    });
+
+    return ret;
+}
+
+CollectionRequest.prototype.init = function(data) {
+    if (data) {
+        for (var i in data) {
+            this[i] = data[i];
+        }
     }
 }
 
-CollectionRequest.prototype.setCollectionId = function(value){
-    this.collectionId = value;
-}
-
-CollectionRequest.prototype.setId = function(value){
-    this.id = value;
-}
-
-CollectionRequest.prototype.setName = function(value){
-    this.setProperty('name', value);
-}
-
-CollectionRequest.prototype.setUrl = function(value){
-    this.setProperty('url', value);
-}
-
-CollectionRequest.prototype.setDesc = function(value){
-    this.setProperty('desc', value);
-}
-
-CollectionRequest.prototype.setMethod = function(value){
-    this.setProperty('method', value);
-}
-
-CollectionRequest.prototype.setDataMode = function(value){
-    this.setProperty('dataMode', value);
-}
-
-CollectionRequest.prototype.setProject = function(value){
-    this.setProperty('project', value);
-}
-
-CollectionRequest.prototype.setParams = function(data){
-    var result = [];
-    for(var i in data){
-        result.push(new Field(data[i].key, '', data[i].type, data[i].value, true));
-    }
-    this.setProperty('params',result);
-}
 
 function Request() {
     this.id = "";
@@ -539,7 +524,7 @@ pm.indexedDB = {
 
             cursorRequest.onsuccess = function(e) {
                 var result = e.target.result;
-                callback && callback(result);
+                callback && callback(new Collection(result));
             };
             cursorRequest.onerror = pm.indexedDB.onerror;
         }
@@ -567,7 +552,7 @@ pm.indexedDB = {
                 return;
             }
 
-            var collection = result.value;
+            var collection = new Collection(result.value);
             numCollections++;
 
             items.push(collection);
@@ -605,7 +590,7 @@ pm.indexedDB = {
             }
 
             var request = result.value;
-            requests.push(request);
+            requests.push(new CollectionRequest(request));
 
             //This wil call onsuccess again and again until no more request is left
             result['continue']();
@@ -664,7 +649,7 @@ pm.indexedDB = {
                     return;
                 }
 
-                callback && callback(result);
+                callback && callback(new CollectionRequest(result));
                 return result;
             };
             cursorRequest.onerror = pm.indexedDB.onerror;

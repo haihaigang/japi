@@ -10,7 +10,8 @@ define(function(require) {
             var result = {
                 message: null,//导入提示信息
                 importFromPM: function(files) {
-                    if (!files || !files.length || files.length == 0 || files[0].type != 'application/json') {
+                    //有的文件读取为空
+                    if (!files || !files.length || files.length == 0) {
                         result.message = '导入失败，文件不正确（未选择文件或文件格式不正确）。';
                         $rootScope.$apply();
                         return false;
@@ -25,23 +26,11 @@ define(function(require) {
                             return false;
                         }
 
-                        var col = new Collection();
-                        col.setId(data.id);
-                        col.setName(data.name);
-                        col.setDesc(data.description);
-                        col.setVersion(data.version);
+                        var col = new Collection(data);
                         pm.indexedDB.saveCollection(col, function(collection) {
                             for (var i in data.requests) {
                                 var d = data.requests[i],
-                                    req = new CollectionRequest();
-                                req.setCollectionId(collection.id);
-                                req.setProject(collection.name);
-                                req.setId(d.id);
-                                req.setName(d.name);
-                                req.setUrl(d.url);
-                                req.setDesc(d.description);
-                                req.setMethod(d.method);
-                                req.setDataMode(d.dataMode);
+                                    req = new CollectionRequest(data.requests[i]);
 
                                 pm.indexedDB.saveCollectionRequest(req);
                             }

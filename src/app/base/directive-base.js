@@ -48,4 +48,46 @@ define(function(reqiure) {
                 template: '<ol class="breadcrumb"><li ng-repeat="d in jData" ng-class="d.active"><a ui-sref="{{d.url}}" ng-if="!$last">{{d.name}}</a><span ng-if="$last">{{d.name}}</span></li></ol>'
             };
         }])
+        .directive('jScrollTo', ['$log', function($log) {
+            return {
+                restrict: 'A',
+                link: function($scope, element, attrs) {
+                    $(element).click(function(e) {
+                        e.preventDefault();
+
+                        var idx = $(this).index();
+                        var top = $('#p-' + idx).offset().top;
+                        window.scrollTo(0, top);
+                    })
+                }
+            }
+        }])
+        .directive('jFixed', ['$log', function($log) {
+            return {
+                restrict: 'A',
+                link: function($scope, element, attrs) {
+                    var stop = $(element).offset().top + 20;
+                    var flag = false;
+
+                    $(window).scroll(function() {
+                        if ($(window).scrollTop() > stop) {
+                            if (!flag) {
+                                flag = true;
+                                $(element).css({
+                                    'position': 'fixed',
+                                    'top': '0px',
+                                    'width': $(element).width()
+                                });
+                            }
+                        } else {
+                            flag = false;
+                            $(element).css({
+                                'position': 'inherit',
+                                'top': 'inherit'
+                            });
+                        }
+                    })
+                }
+            }
+        }])
 })

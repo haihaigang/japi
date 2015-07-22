@@ -14,12 +14,13 @@ define(function(require) {
                 condition: null, //搜索条件
                 query: function(id) {
                     pm.indexedDB.getCollection(id, function(response) {
-                        result.groups = response;
+                        result.groups = response.toForm();
                         $rootScope.$apply();//为什么这里不能添加$apply，必须加上，以便立即更新视图
                     });
                 },
                 save: function(callback) {
-                    pm.indexedDB.saveCollection(result.groups, function(response) {
+                    var data = Ajax.formatData(result.groups);
+                    pm.indexedDB.saveCollection(data, function(response) {
                         $location.path('collections');
                         $rootScope.$apply();
                     });
@@ -27,9 +28,6 @@ define(function(require) {
                 search: function(data) {
                     result.condition = data;
                     pm.indexedDB.getCollections(function(response) {
-                        for (var i in response) {
-                            response[i] = Ajax.formatData(response[i]);
-                        }
                         result.pageData = response;
                         $rootScope.$apply();
                     });
@@ -38,6 +36,15 @@ define(function(require) {
                     pm.indexedDB.deleteCollection(id, function(response) {
                         result.search(result.condition);
                     });
+                },
+                export: function(id){
+                    pm.indexedDB.getCollection(id, function(response){
+                        pm.indexedDB.getAllRequestsInCollection({collectionId:id},function(rResponse){
+                            response.requests = rResponse;
+
+                            //TODO 怎么存储导出的数据
+                        })
+                    })
                 }
             };
 

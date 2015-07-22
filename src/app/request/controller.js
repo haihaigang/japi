@@ -9,7 +9,7 @@ define(function(require) {
         .config(['$stateProvider', 'ROLES', function($stateProvider, ROLES) {
             $stateProvider
                 .state('requests', {
-                    url: '/requests/p-:project',
+                    url: '/requests/{collectionId:[0-9a-z-]{0,38}}',
                     views: {
                         '': {
                             templateUrl: 'app/main.html'
@@ -46,16 +46,15 @@ define(function(require) {
                     },
                     data: {}
                 })
-                //page.title += '';
         }])
         //列表
         .controller('RequestListController', [
             '$scope', '$state', '$stateParams', 'Request',
             function($scope, $state, $stateParams, Request) {
                 $scope.page = Request;
-                $scope.page.search();
+                $scope.page.search($stateParams);
                 $scope.breadcrumbs = $scope.page.init($state);
-                $scope.page.getCondition();
+                $scope.page.getCondition($stateParams);
             }
         ])
         //添加编辑

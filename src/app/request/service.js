@@ -15,16 +15,14 @@ define(function(require) {
                 conditionItems: null, //搜索条件项
                 query: function(id) {
                     pm.indexedDB.getCollectionRequest(id, function(response) {
-                        pm.indexedDB.getCollections(function(response1) {
+                        var data = response.toForm();
+                        pm.indexedDB.getCollections(function(cResponse) {
                             var fdata = [],
                                 flag = false;
-                            for (var i in response1) {
-                                fdata.push(Ajax.formatData(response1[i]));
-                            }
-                            for (var i in response.data) {
-                                for (var j in response.data[i].fields) {
-                                    if (response.data[i].fields[j].key = "project") {
-                                        response.data[i].fields[j].enumObj = fdata;
+                            for (var i in data.data) {
+                                for (var j in data.data[i].fields) {
+                                    if (data.data[i].fields[j].key == "collectionId") {
+                                        data.data[i].fields[j].enumObj = cResponse;
                                         flag = true;
                                         break;
                                     }
@@ -32,54 +30,34 @@ define(function(require) {
                                 if (flag) break;
                             }
                             // console.log(response)
-                            result.groups = response;
+                            result.groups = data;
                             $rootScope.$apply(); //这里又需要添加$apply，不同于collection中的用法
                         })
                     });
                 },
                 save: function(callback) {
-                    var v;
-                    for (var i in result.groups.data) {
-                        for (var j in result.groups.data[i].fields) {
-                            if (result.groups.data[i].fields[j].key = "project") {
-                                v = result.groups.data[i].fields[j].value;
-                                break;
-                            }
-                            if (v) break;
-                        }
-                        if (v) break;
-                    }
-                    result.groups.collectionId = v;
-                    pm.indexedDB.saveCollectionRequest(result.groups, function(response) {
+                    var data = Ajax.formatData(result.groups);
+                    pm.indexedDB.saveCollectionRequest(data, function(response) {
                         $location.path('requests');
                         $rootScope.$apply();
                     });
                 },
                 search: function(data) {
-                    data = data || [];
-                    data = Ajax.formatCondition(result.conditionItems);
+                    if (!data) {
+                        data = Ajax.formatCondition(result.conditionItems);
+                    }
                     pm.indexedDB.getAllRequestsInCollection(data, function(response) {
-                        for (var i in response) {
-                            response[i] = Ajax.formatData(response[i]);
-                        }
-                        // result.pageData = response;
-                        // $rootScope.$apply();
-                        
-                        pm.indexedDB.getCollections(function(response1){
-                            for(var i in response1){
-                                response1[i] = Ajax.formatData(response1[i]);
-                            }
-                            for(var i in response){
-                                for(var j in response1){
-                                    if(response[i].collectionId == response1[j].id){
-                                        response[i].project = response1[j].name;
+                        pm.indexedDB.getCollections(function(cResponse) {
+                            for (var i in response) {
+                                for (var j in cResponse) {
+                                    if (response[i].collectionId == cResponse[j].id) {
+                                        response[i].project = cResponse[j].name;
                                     }
                                 }
                             }
                             result.pageData = response;
                             $rootScope.$apply();
                         })
-
                     });
                 },
                 remove: function(id) {
@@ -87,10 +65,10 @@ define(function(require) {
                         result.search(result.condition);
                     });
                 },
-                getCondition: function() {
+                getCondition: function(stateParams) {
                     var d = [],
                         d1 = {
-                            key: 'project',
+                            key: 'collectionId',
                             type: 'select',
                             title: '所属项目',
                             data: []
@@ -102,7 +80,9 @@ define(function(require) {
                         };
                     pm.indexedDB.getCollections(function(response) {
                         for (var i in response) {
-                            response[i] = Ajax.formatData(response[i]);
+                            if (response[i].id == stateParams.collectionId) {
+                                d1.value = response[i].id;
+                            }
                         }
                         d1.data = response;
                         d.push(d1);
