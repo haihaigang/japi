@@ -63,7 +63,7 @@ Collection.prototype.toForm = function(data) {
     field = new Field('version', '项目版本', 'text');
     if (this.version) {
         field.value = this.version;
-    }else{
+    } else {
         field.value = 'v0.1';
     }
     fields.push(field);
@@ -180,13 +180,20 @@ CollectionRequest.prototype.toForm = function() {
     });
 
     fields = [];
-    field = new Field('responses', '请求参数', 'mutiple', '', true);
-    field.value = [{
-        "key": "",
-        "type": "",
-        "value": "",
-        "checked": false
-    }];
+    field = new Field('responses', '响应参数', 'mutiple', '', true);
+    field.value = [];
+    if (this.responses) {
+        for(var i in this.responses){
+            field.value.push(this.responses[i]);
+        }
+    } else {
+        field.value = [{
+            "key": "",
+            "type": "",
+            "value": "",
+            "checked": false
+        }];
+    }
     fields.push(field);
     ret.data.push({
         name: "响应参数",
@@ -259,15 +266,13 @@ pm.fs = {};
 pm.webUrl = "http://getpostman.com";
 
 // IndexedDB implementations still use API prefixes
-var indexedDB = window.indexedDB || // Use the standard DB API
+var myIndexedDB = window.indexedDB || // Use the standard DB API
     window.mozIndexedDB || // Or Firefox's early version of it
     window.webkitIndexedDB; // Or Chrome's early version
 // Firefox does not prefix these two:
 var IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction;
 var IDBKeyRange = window.IDBKeyRange || window.webkitIDBKeyRange;
 var IDBCursor = window.IDBCursor || window.webkitIDBCursor;
-
-window.requestFileSystem = window.requestFileSystem || window.webkitRequestFileSystem;
 
 /*
  Components
@@ -303,7 +308,6 @@ window.requestFileSystem = window.requestFileSystem || window.webkitRequestFileS
 
 pm.init = function() {
     pm.indexedDB.open();
-    pm.filesystem.init();
 };
 
 pm.indexedDB = {
@@ -314,8 +318,7 @@ pm.indexedDB = {
     },
 
     open_v21: function() {
-
-        var request = indexedDB.open("postman", "POSTman request history");
+        var request = myIndexedDB.open("postman", "POSTman request history");
         request.onsuccess = function(e) {
             var v = "0.6";
             pm.indexedDB.db = e.target.result;
@@ -407,9 +410,8 @@ pm.indexedDB = {
     },
 
     open_latest: function() {
-
         var v = 11;
-        var request = indexedDB.open("postman", v);
+        var request = myIndexedDB.open("postman", v);
         request.onupgradeneeded = function(e) {
 
             var db = e.target.result;
@@ -446,6 +448,7 @@ pm.indexedDB = {
         };
 
         request.onsuccess = function(e) {
+            console.log('db.start:'+(new Date().getTime()-tick))
             pm.indexedDB.db = e.target.result;
             // pm.history.getAllRequests();
             // pm.envManager.getAllEnvironments();
@@ -531,6 +534,7 @@ pm.indexedDB = {
     },
 
     getCollections: function(callback) {
+        console.log('getCollections:'+(new Date().getTime() - tick))
         var db = pm.indexedDB.db;
 
         if (db == null) {
@@ -567,6 +571,10 @@ pm.indexedDB = {
 
     getAllRequestsInCollection: function(collection, callback) {
         var db = pm.indexedDB.db;
+        if (db == null) {
+            return;
+        }
+
         var trans = db.transaction(["collection_requests"], "readwrite");
 
         //Get everything in the store
@@ -2639,125 +2647,5 @@ pm.urlCache = {
             source: pm.urlCache.urls,
             delay: 50
         });
-    }
-};
-
-pm.filesystem = {
-    fs: {},
-
-    onInitFs: function(filesystem) {
-        pm.filesystem.fs = filesystem;
-    },
-
-    errorHandler: function(e) {
-        console.log(e.name + ':' + e.message);
-    },
-
-    init: function() {
-        window.requestFileSystem(window.TEMPORARY, 5 * 1024 * 1024, this.onInitFs, this.errorHandler);
-    },
-
-    removeFileIfExists: function(name, callback) {
-        pm.filesystem.fs.root.getFile(name, {
-            create: false
-        }, function(fileEntry) {
-            fileEntry.remove(function() {
-                callback();
-            }, function() {
-                callback();
-            });
-        }, function() {
-            callback();
-        });
-    },
-
-    renderResponsePreview: function(name, data, type, callback) {
-        name = encodeURI(name);
-        name = name.replace("/", "_");
-        pm.filesystem.removeFileIfExists(name, function() {
-            pm.filesystem.fs.root.getFile(name, {
-                    create: true
-                },
-                function(fileEntry) {
-                    fileEntry.createWriter(function(fileWriter) {
-
-                        fileWriter.onwriteend = function(e) {
-                            var properties = {
-                                url: fileEntry.toURL()
-                            };
-
-                            callback && callback(properties.url);
-                        };
-
-                        fileWriter.onerror = function(e) {
-                            callback && callback(false);
-                        };
-
-                        var blob;
-                        if (type == "pdf") {
-                            blob = new Blob([data], {
-                                type: 'application/pdf'
-                            });
-                        } else {
-                            blob = new Blob([data], {
-                                type: 'text/plain'
-                            });
-                        }
-                        fileWriter.write(blob);
-
-
-                    }, pm.filesystem.errorHandler);
-
-
-                }, pm.filesystem.errorHandler
-            );
-        });
-    },
-
-    saveAndOpenFile: function(name, data, type, callback) {
-        name = encodeURI(name);
-        name = name.replace("/", "_");
-        pm.filesystem.removeFileIfExists(name, function() {
-            pm.filesystem.fs.root.getFile(name, {
-                    create: true
-                },
-                function(fileEntry) {
-                    fileEntry.createWriter(function(fileWriter) {
-
-                        fileWriter.onwriteend = function(e) {
-                            var properties = {
-                                url: fileEntry.toURL()
-                            };
-
-                            if (typeof chrome !== "undefined") {
-                                chrome.tabs.create(properties, function(tab) {});
-                            }
-
-                            callback();
-                        };
-
-                        fileWriter.onerror = function(e) {
-                            callback();
-                        };
-
-                        var blob;
-                        if (type == "pdf") {
-                            blob = new Blob([data], {
-                                type: 'application/pdf'
-                            });
-                        } else {
-                            blob = new Blob([data], {
-                                type: 'text/plain'
-                            });
-                        }
-                        fileWriter.write(blob);
-
-                    }, pm.filesystem.errorHandler);
-
-
-                }, pm.filesystem.errorHandler
-            );
-        });
-
     }
 };

@@ -1,6 +1,6 @@
 {
     "name": "jApi",
-    "version": "1.0",
+    "version": "v0.0.1",
     "description": "接口文档",
     "main": "index.js",
     "dependencies": {
@@ -8,7 +8,6 @@
         "grunt-contrib-concat": "~0.4.0",
         "grunt-contrib-jshint": "~0.10.0",
         "grunt-contrib-uglify": "~0.4.0",
-        "grunt-contrib-watch": "~0.6.1",
         "grunt-contrib-copy": "~0.8.0",
         "grunt-contrib-clean": "~0.6.0",
         "grunt-cmd-transport": "~0.5.1"

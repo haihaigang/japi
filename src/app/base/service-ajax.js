@@ -36,10 +36,10 @@ define(function(require) {
                         .then(function(response) {
                             var data = response.data;
                             errorService.hideLoading();
-                            if (data.code != 0) {
-                                $rootScope.errorMsg = data.message || '获取数据失败';
-                                return;
-                            }
+                            // if (data.code != 0) {
+                            //     $rootScope.errorMsg = data.message || '获取数据失败';
+                            //     return;
+                            // }
                             $rootScope.isSuccess = true;
                             $rootScope.isLoading = false;
                             $rootScope.errorMsg = '';
@@ -64,30 +64,32 @@ define(function(require) {
 
                     extendHeaders(options);
 
-                    setTimeout(function() {
-                        $http({
-                                url: options.url,
-                                method: name,
-                                data: options.data,
-                                cache: false
-                            })
-                            .then(function(response) {
-                                errorService.hideLoading();
-                                var data = response.data;
-                                if (data.code != 0) {
-                                    $rootScope.errorMsg = data.message || '获取数据失败';
-                                    return;
-                                }
-                                //$rootScope.isSuccess = true;
-                                $rootScope.isSubmiting = false;
-                                callback && callback(data);
-                            }, function(response) {
-                                errorService.hideLoading();
-                                $rootScope.errorMsg = '服务器响应失败';
-                                $rootScope.isSubmiting = false;
-                                callbackError && callbackError(response);
-                            })
-                    }, 1000)
+                    $http({
+                            url: options.url,
+                            method: name,
+                            data: options.data,
+                            headers: options.headers,
+                            cache: false,
+                            transformRequest: function(data) {
+                                return $.param(data)
+                            }
+                        })
+                        .then(function(response) {
+                            errorService.hideLoading();
+                            var data = response.data;
+                            if (data.code != 0) {
+                                $rootScope.errorMsg = data.message || '获取数据失败';
+                                return;
+                            }
+                            //$rootScope.isSuccess = true;
+                            $rootScope.isSubmiting = false;
+                            callback && callback(data);
+                        }, function(response) {
+                            errorService.hideLoading();
+                            $rootScope.errorMsg = '服务器响应失败';
+                            $rootScope.isSubmiting = false;
+                            callbackError && callbackError(response);
+                        })
                 }
             });
 
@@ -141,7 +143,7 @@ define(function(require) {
 
             ajax.formatCondition = function(data) {
                 var s = {};
-                if(data && typeof data.length != 'undefined'){
+                if (data && typeof data.length != 'undefined') {
                     for (var i in data) {
                         var d = data[i];
                         s[d.key] = d.value;

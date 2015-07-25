@@ -2,11 +2,6 @@
  * Base structure
  */
 
-body {
-    font-family: "微软雅黑";
-    font-size: 14px;
-}
-
 table {
     /*table-layout: fixed;*/
 }
@@ -604,6 +599,21 @@ form .scroll-ad {
 
 .ngViewport {
     /*min-height: 220px;*/
+}
+.ngCellOpt {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    white-space: nowrap;
+    -ms-text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.ngCellOpt a {
+    display: inline-block;
+    padding: 5px;
 }
 
 .form-horizontal input.ng-invalid.ng-dirty {

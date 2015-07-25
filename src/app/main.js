@@ -17,6 +17,9 @@ define(function(require) {
     //声明一个基础模块，
     angular.module('baseModule',[]);
 
+    pm.init();
+    window.tick = new Date().getTime();
+
     var routerApp = angular.module('routerApp', [
         'ui.router',
         'ngGrid',
@@ -66,8 +69,6 @@ define(function(require) {
         $rootScope.$on('$stateChangeError', function(evt, next, current) {
             $location.path('error');
         })
-
-        pm.init();
     });
 
     /**
@@ -131,7 +132,7 @@ define(function(require) {
                 }
             })
             .state('home', {
-                url: '/index',
+                url: '/',
                 views: {
                     '': {
                         templateUrl: 'app/main.html'

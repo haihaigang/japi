@@ -36,7 +36,7 @@ define(function(require) {
                 $scope.page = About;
 
                 $('input[type="file"]').on('change', function() {
-                    About.importFromPM(this.files);
+                    About.importFromPmFile(this.files);
                 });
             }
         ])
