@@ -29,7 +29,6 @@ define(function(require) {
                                 }
                                 if (flag) break;
                             }
-                            // console.log(response)
                             result.groups = data;
                             $rootScope.$apply(); //这里又需要添加$apply，不同于collection中的用法
                         })

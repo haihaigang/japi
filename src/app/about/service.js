@@ -51,6 +51,10 @@ define(function(require) {
                     var col = new Collection(data);
                     pm.indexedDB.saveCollection(col, function(collection) {
                         for (var i in data.requests) {
+                            //转换pm的数据，字段类型统一为string
+                            for(var j in data.requests[i].data){
+                                data.requests[i].data[j].type = 'string';
+                            }
                             var d = data.requests[i],
                                 req = new CollectionRequest(data.requests[i]);
 

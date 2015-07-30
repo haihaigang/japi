@@ -161,7 +161,7 @@ CollectionRequest.prototype.toForm = function() {
     fields = [];
     field = new Field('data', '请求参数', 'mutiple', '', true);
     field.value = [];
-    if (this.data) {
+    if (this.data && this.data.length > 0) {
         for (var i in this.data) {
             field.value.push(this.data[i]);
         }
@@ -182,7 +182,7 @@ CollectionRequest.prototype.toForm = function() {
     fields = [];
     field = new Field('responses', '响应参数', 'mutiple', '', true);
     field.value = [];
-    if (this.responses) {
+    if (this.responses && this.responses.length > 0) {
         for(var i in this.responses){
             field.value.push(this.responses[i]);
         }
