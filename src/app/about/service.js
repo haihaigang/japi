@@ -21,7 +21,8 @@ define(function(require) {
                     reader.onload = function(res) {
                         var data = JSON.parse(this.result);
                         result.importData(data);
-                    }
+                    };
+                    console.log(files);
                     reader.readAsText(files[0]);
                 },
                 importFromPmService: function(url) {
