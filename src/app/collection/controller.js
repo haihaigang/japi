@@ -46,7 +46,15 @@ define(function(require) {
                     },
                     data: {}
                 })
-                //page.title += '';
+                .state('collections.preview', {
+                    url: '/preview/:id',
+                    views: {
+                        'main@collections': {
+                            templateUrl: 'app/collection/view/preview.html',
+                            controller: 'CollectionPreviewController'
+                        }
+                    }
+                })
         }])
         //列表
         .controller('CollectionListController', [
@@ -64,6 +72,14 @@ define(function(require) {
                 $scope.page = Collection;
                 $scope.page.query($stateParams.id);
                 $scope.breadcrumbs = $scope.page.init($state);
+            }
+        ])
+        //预览
+        .controller('CollectionPreviewController', [
+            '$scope', '$state', '$stateParams','$location', 'Collection',
+            function($scope, $state, $stateParams, $location, Collection) {
+                $scope.page = Collection;
+                $scope.page.preview($stateParams.id);
             }
         ])
 })

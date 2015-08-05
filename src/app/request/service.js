@@ -30,7 +30,7 @@ define(function(require) {
                                 if (flag) break;
                             }
                             result.groups = data;
-                            $rootScope.$apply(); //这里又需要添加$apply，不同于collection中的用法
+                            $rootScope.$apply();
                         })
                     });
                 },

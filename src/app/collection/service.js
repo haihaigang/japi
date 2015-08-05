@@ -12,6 +12,7 @@ define(function(require) {
                 groups: null, //表单数据
                 pageData: null, //分页数据
                 condition: null, //搜索条件
+                requests: null,//某项目下的所有接口
                 query: function(id) {
                     pm.indexedDB.getCollection(id, function(response) {
                         result.groups = response.toForm();
@@ -44,6 +45,12 @@ define(function(require) {
 
                             //TODO 怎么存储导出的数据
                         })
+                    })
+                },
+                preview: function(id){
+                    pm.indexedDB.getAllRequestsInCollection({collectionId:id},function(rResponse){
+                        result.requests = rResponse;
+                        console.log(rResponse)
                     })
                 }
             };
