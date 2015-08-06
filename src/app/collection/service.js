@@ -12,11 +12,11 @@ define(function(require) {
                 groups: null, //表单数据
                 pageData: null, //分页数据
                 condition: null, //搜索条件
-                requests: null,//某项目下的所有接口
+                data: null, //某项目数据（含接口）
                 query: function(id) {
                     pm.indexedDB.getCollection(id, function(response) {
                         result.groups = response.toForm();
-                        $rootScope.$apply();//为什么这里不能添加$apply，必须加上，以便立即更新视图
+                        $rootScope.$apply(); //为什么这里不能添加$apply，必须加上，以便立即更新视图
                     });
                 },
                 save: function(callback) {
@@ -38,19 +38,35 @@ define(function(require) {
                         result.search(result.condition);
                     });
                 },
-                export: function(id){
-                    pm.indexedDB.getCollection(id, function(response){
-                        pm.indexedDB.getAllRequestsInCollection({collectionId:id},function(rResponse){
+                export: function(id) {
+                    pm.indexedDB.getCollection(id, function(response) {
+                        pm.indexedDB.getAllRequestsInCollection({
+                            collectionId: id
+                        }, function(rResponse) {
                             response.requests = rResponse;
 
                             //TODO 怎么存储导出的数据
+                            Ajax.post({
+                                url: 'http://61.155.169.177/webapi.php/399',
+                                data: 'data=' + encodeURIComponent(JSON.stringify(response)),
+                                headers: {
+                                    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+                                },
+                            })
                         })
                     })
                 },
-                preview: function(id){
-                    pm.indexedDB.getAllRequestsInCollection({collectionId:id},function(rResponse){
-                        result.requests = rResponse;
-                        console.log(rResponse)
+                preview: function(id) {
+                    pm.indexedDB.getCollection(id, function(response) {
+                        pm.indexedDB.getAllRequestsInCollection({
+                            collectionId: id
+                        }, function(rResponse) {
+                            rResponse.sort(function(a, b) {
+                                return a.timestamp > b.timestamp;
+                            })
+                            response.requests = rResponse;
+                            result.data = response;
+                        })
                     })
                 }
             };

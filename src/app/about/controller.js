@@ -27,16 +27,6 @@ define(function(require) {
                         roles: [ROLES.ADMIN]
                     }
                 })
-                .state('about.preview', {
-                    url: '/preview',
-                    views: {
-                        'main@about': {
-                            templateUrl: 'app/about/view/preview.html',
-                            controller: 'PreviewController'
-                        }
-                    }
-                })
-
         }])
         //列表
         .controller('AboutController', [
@@ -47,13 +37,6 @@ define(function(require) {
                 $('input[type="file"]').on('change', function() {
                     About.importFromPmFile(this.files);
                 });
-            }
-        ])
-        //预览
-        .controller('PreviewController', [
-            '$scope', '$state', '$stateParams', 'About',
-            function($scope, $state, $stateParams, About) {
-                $scope.page = About;
             }
         ])
 })

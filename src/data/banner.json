@@ -1,0 +1,66 @@
+[{
+    "banner_id": "int 'ID'",
+    "position": "string '广告位置",
+    "img": "string '图片'",
+    "banner_type": "enum('img', 'h5link', 'goods', 'group', 'moments', 'other') 默认 'img' 'banner类型'",
+    "h5link": "string 广告链接",
+    "goods_id": "int 广告商品",
+    "group_id": "int 广告组团id",
+    "activity_id": "int 广告朋友圈活动"
+}, {
+        "group_id": "int '开团id'",
+        "name": "string '开团名称'",
+        "description": "string '开团描述'",
+        "main_image": "string '主图'",
+        "sub_image": "string '副图'",
+        "sub_image_href": "string '指定链接'",
+        "content": "string '分享内容'",
+        "limit": "string '开团人数限制'",
+        "begin_time": "int '开始时间'",
+        "end_time": "int '结束时间'",
+        "enabled": "enum('true','false') 默认 'false' '是否启用'",
+        "promotion_pro": "string '团购商品组合'",
+        "order_num": "int '完成订单数限制'",
+        "member_new": "enum('true','false') 默认 'false' '新团员才可参团'",
+        "is_wap": "enum('true','false') 默认 'true' COMMENT 'wap是否启用'",
+        "is_app": "enum('true','false') 默认 'false' COMMENT 'app是否启用'",
+        "is_pc": "enum('true','false') 默认 'false' COMMENT 'pc是否启用'",
+    }, {
+        "second_id": "int '秒杀id'",
+        "name": "string '秒杀名称'",
+        "description": "string '秒杀描述'",
+        "main_image": "string '主图'",
+        "price": "number '秒杀价'",
+        "store": "number '库存'",
+        "second_type": "string '秒杀类型'",
+        "limit_num": "int '秒杀每人限购'",
+        "begin_time": "int '开始时间'",
+        "end_time": "int '结束时间'",
+        "goods_id": "string '秒杀商品'",
+        "activity_type": "int 默认 '1' '1:秒杀，2闪购 '",
+        "buyer_num": "int 购买人数"
+    }, {
+        "goods_id": "int '商品ID'",
+        "bn": "string '商品编号'",
+        "name": "string '商品名称'",
+        "price": " decimal '销售价'",
+        "mktprice": "decimal '市场价'",
+        "thumbnail_pic": "string '缩略图'",
+    }, {
+        "goods_id": "int '商品ID'",
+        "bn": "string '商品编号'",
+        "name": "string '商品名称'",
+        "price": " decimal '销售价'",
+        "mktprice": "decimal '市场价'",
+        "thumbnail_pic": "string '缩略图'",
+        "begin_time": "int '开始时间'",
+        "has_notice": "enum('true','false') 默认 'false' '是否已提醒'",
+        "notice_num": "int '购买人数'",
+    }, {
+        "brand_id": "int '品牌id'",
+        "brand_name": "string '品牌名称'",
+        "brand_url": "string '品牌网址'",
+        "brand_logo": "string '品牌图片标识'"
+    }
+
+]

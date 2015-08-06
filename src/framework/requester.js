@@ -32,6 +32,7 @@ function Collection(data) {
     this.name = null;
     this.description = null;
     this.version = null;
+    this.content = null;
 
     this.synced = false;
     this.remoteLink = null;
@@ -50,6 +51,9 @@ Collection.prototype.toForm = function(data) {
     if (this.id) {
         ret.id = this.id;
     }
+    if(this.timestamp){
+        ret.timestamp = this.timestamp;
+    }
     field = new Field('name', '项目名称', 'text', '', true, true);
     if (this.name) {
         field.value = this.name;
@@ -67,8 +71,34 @@ Collection.prototype.toForm = function(data) {
         field.value = 'v0.1';
     }
     fields.push(field);
+    field = new Field('content', '接口约定', 'textarea');
+    if (this.content) {
+        field.value = this.content;
+    }
+    fields.push(field);
     ret.data.push({
         name: "基本信息",
+        fields: fields
+    });
+
+    fields = [];
+    field = new Field('models', '常用结构', 'mutiple');
+    field.value = [];
+    if (this.models && this.models.length > 0) {
+        for (var i in this.models) {
+            field.value.push(this.models[i]);
+        }
+    } else {
+        field.value.push({
+            "key": "",
+            "type": "",
+            "value": "",
+            "checked": false
+        })
+    }
+    fields.push(field);
+    ret.data.push({
+        name: "附加信息",
         fields: fields
     })
     return ret;
@@ -77,7 +107,7 @@ Collection.prototype.toForm = function(data) {
 Collection.prototype.init = function(data) {
     if (data) {
         for (var i in data) {
-            this[i] = data[i];
+            this[i] = decodeURIComponent(data[i]);
         }
     }
 }
@@ -105,6 +135,9 @@ CollectionRequest.prototype.toForm = function() {
 
     if (this.id) {
         ret.id = this.id;
+    }
+    if(this.timestamp){
+        ret.timestamp = this.timestamp;
     }
     field = new Field('collectionId', '所属项目', 'select', '', true, true);
     if (this.collectionId) {
@@ -501,6 +534,7 @@ pm.indexedDB = {
         } else {
             req.id = guid();
         }
+        console.log(req);
         req.timestamp = req.timestamp || new Date().getTime();
 
         var collectionRequest = store.put(req);

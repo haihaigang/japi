@@ -1,39 +1,82 @@
-<div ng-repeat="item in page.requests">
+<style type="text/css">
+th {
+    border: 1px solid #ccc;
+    height: 35px;
+    padding: 5px 10px 5px 10px;
+}
+
+td {
+    border: 1px solid #ccc;
+    height: 35px;
+    padding: 5px 10px 5px 10px;
+}
+
+table {
+    border: 1px solid #ccc;
+    margin: 10px auto;
+}
+
+th:first-child {
+    width: 15%
+}
+
+th:nth-child(2) {
+    width: 44%
+}
+
+th:nth-child(3) {
+    width: 15%
+}
+</style>
+<div>
+    <h2>{{page.data.name}}</h2>
+    <p>{{page.data.version}}</p>
+    <p>{{page.data.description}}</p>
+    <p>{{page.data.content}}</p>
+</div>
+<div ng-repeat="item in page.data.requests" style="margin-bottom: 40px;">
     <h3>{{$index+1}}：{{item['name']}}</h3>
-    <p>URL：{{item['url']}}</p>
-    <p>说明：{{item['description']}}</>
-    <div>请求参数：
-    <table width="100%" cellpadding="3" cellspacing="1">
-    	<tr>
-    		<th>关键字</th>
-    		<th>描述</th>
-    		<th>类型</th>
-    		<th>是否必填</th>
-    	</tr>
-    	<tr ng-repeat="sitem in item.data">
-    		<td>{{sitem.key}}</td>
-    		<td>{{sitem.description}}</td>
-    		<td>{{sitem.type}}</td>
-    		<td>{{sitem.checked}}</td>
-    	</tr>
-    	<tr ng-if="!item.data.length"><td colspan="6" align="center">暂无数据。</td></tr>
-    </table>
-    </div>
-    <div>响应参数：
-    <table width="100%" cellpadding="3" cellspacing="1">
-    	<tr>
-    		<th>关键字</th>
-    		<th>描述</th>
-    		<th>类型</th>
-    		<th>约束</th>
-    	</tr>
-    	<tr ng-repeat="sitem in item.response">
-    		<td>{{sitem.key}}</td>
-    		<td>{{sitem.description}}</td>
-    		<td>{{sitem.type}}</td>
-    		<td>{{sitem.checked}}</td>
-    	</tr>
-    	<tr ng-if="!item.response.length"><td colspan="6" align="center">暂无数据。</td></tr>
-    </table>
-    </div>
+    <p><strong>URL：</strong>{{item['url']}}</p>
+    <p><strong>说明</strong>：{{item['description']}}
+        <p/>
+        <div><strong>请求参数：</strong>
+            <table width="100%" cellpadding="3" cellspacing="1">
+                <tr>
+                    <th>关键字</th>
+                    <th>描述</th>
+                    <th>类型</th>
+                    <th>是否必填</th>
+                </tr>
+                <tr ng-repeat="sitem in item.data">
+                    <td>{{sitem.key}}</td>
+                    <td>{{sitem.description}}</td>
+                    <td>{{sitem.type}}</td>
+                    <td>{{sitem.checked}}</td>
+                </tr>
+                <tr ng-if="!item.data.length" {{item.data.length}}>
+                    <td colspan="4" align="center">暂无数据。</td>
+                </tr>
+            </table>
+        </div>
+        <div><strong>响应参数：</strong>
+            <table width="100%" cellpadding="3" cellspacing="1">
+                <tr>
+                    <th>关键字</th>
+                    <th>描述</th>
+                    <th>类型</th>
+                    <th>约束</th>
+                    <th>详情</th>
+                </tr>
+                <tr ng-repeat="sitem in item.responses">
+                    <td>{{sitem.key}}</td>
+                    <td>{{sitem.description}}</td>
+                    <td>{{sitem.type}}</td>
+                    <td>{{sitem.checked}}</td>
+                    <td>{{sitem.detail}}</td>
+                </tr>
+                <tr ng-if="!item.responses.length">
+                    <td colspan="4" align="center">暂无数据。</td>
+                </tr>
+            </table>
+        </div>
 </div>

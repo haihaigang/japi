@@ -232,7 +232,6 @@ define(function(require) {
                 })
 
                 $scope.change = function(e, idx) {
-                    console.log(idx);
                     $scope.startUpload(e.target.files, idx);
                 }
 
@@ -493,14 +492,10 @@ define(function(require) {
             templateUrl: 'app/base/view/form-mutiple.html',
             //replace: true,
             scope: {
-                options: '&',
+                options: '=',
                 data: '='
             },
             link: function($scope, element, attrs) {
-                var len = $scope.data.length;
-
-                //定义列宽，以bootstrap12列为基准，长度只能是12的公约数
-                $scope.cols = 12 / len;
 
                 $scope.remove = function(idx){
                     if($scope.data.length <=1) return;
@@ -508,10 +503,20 @@ define(function(require) {
                 }
 
                 $scope.add = function(idx){
+                    //仅在最后一条可以添加新纪录
+                    if(idx < $scope.data.length-1) return;
                     $scope.data.push({
                         name: "",
                         value: ""
                     })
+                }
+
+                $scope.toggle = function(idx){
+                    for(var i in $scope.data){
+                        if(i == idx){
+                            $scope.data[i].showDetail = !$scope.data[i].showDetail;
+                        }
+                    }
                 }
             }
         }

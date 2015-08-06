@@ -69,10 +69,7 @@ define(function(require) {
                             method: name,
                             data: options.data,
                             headers: options.headers,
-                            cache: false,
-                            transformRequest: function(data) {
-                                return $.param(data)
-                            }
+                            cache: false
                         })
                         .then(function(response) {
                             errorService.hideLoading();
@@ -138,6 +135,7 @@ define(function(require) {
                     }
                 }
                 s.id = data.id;
+                s.timestamp = data.timestamp;
                 return s;
             }
 
