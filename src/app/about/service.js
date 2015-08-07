@@ -19,10 +19,8 @@ define(function(require) {
 
                     var reader = new FileReader();
                     reader.onload = function(res) {
-                        var data = JSON.parse(this.result);
-                        result.importData(data);
+                        result.importData(res.result);
                     };
-                    console.log(files);
                     reader.readAsText(files[0]);
                 },
                 importFromPmService: function(url) {
@@ -34,26 +32,37 @@ define(function(require) {
                     }
 
                     Ajax.get({
-                        url: url,//'http://zcbdev.worldunion.com.cn:8282/wu-asset-appinterface/api/account/sendAuthCode?jsonData={mobiletel:18066722251}',
-                        headers:{
-                            'Access-Control-Allow-Origin':'*'
+                        url: url, //'http://zcbdev.worldunion.com.cn:8282/wu-asset-appinterface/api/account/sendAuthCode?jsonData={mobiletel:18066722251}',
+                        headers: {
+                            'Access-Control-Allow-Origin': '*'
                         }
                     }, function(response) {
                         result.importData(response);
                     });
                 },
                 importData: function(data) {
-                    if (!data.id || !data.requests) {
+                    if (!data || !data.id || !data.requests) {
                         result.message = '导入失败，文件内容不正确。';
                         $rootScope.$apply();
                         return false;
+                    }
+
+                    //若data为string，先尝试解析json
+                    if (typeof data == 'string') {
+                        try {
+                            data = JSON.parse(data);
+                        } catch (e) {
+                            result.message = '尝试解析json错误，请检查内容';
+                            $rootScope.$apply();
+                            return;
+                        }
                     }
 
                     var col = new Collection(data);
                     pm.indexedDB.saveCollection(col, function(collection) {
                         for (var i in data.requests) {
                             //转换pm的数据，字段类型统一为string
-                            for(var j in data.requests[i].data){
+                            for (var j in data.requests[i].data) {
                                 data.requests[i].data[j].type = 'string';
                             }
                             var d = data.requests[i],

@@ -3,7 +3,7 @@
  */
 
 table {
-    /*table-layout: fixed;*/
+    table-layout: fixed;
 }
 
 .ellipsis {

@@ -45,6 +45,8 @@ define(function(require) {
                         }, function(rResponse) {
                             response.requests = rResponse;
 
+                            document.write((JSON.stringify(response)))
+
                             //TODO 怎么存储导出的数据
                             Ajax.post({
                                 url: 'http://61.155.169.177/webapi.php/399',

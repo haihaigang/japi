@@ -27,12 +27,17 @@ th:nth-child(2) {
 th:nth-child(3) {
     width: 15%
 }
+.detail{
+    padding: 0;
+    background: white;
+    border: 0;
+}
 </style>
 <div>
     <h2>{{page.data.name}}</h2>
-    <p>{{page.data.version}}</p>
-    <p>{{page.data.description}}</p>
-    <p>{{page.data.content}}</p>
+    <p><b>版本：</b>{{page.data.version}}</p>
+    <p><b>描述：</b>{{page.data.description}}</p>
+    <p><b>约定：</b>{{page.data.content}}</p>
 </div>
 <div ng-repeat="item in page.data.requests" style="margin-bottom: 40px;">
     <h3>{{$index+1}}：{{item['name']}}</h3>
@@ -53,7 +58,7 @@ th:nth-child(3) {
                     <td>{{sitem.type}}</td>
                     <td>{{sitem.checked}}</td>
                 </tr>
-                <tr ng-if="!item.data.length" {{item.data.length}}>
+                <tr ng-if="!item.data.length">
                     <td colspan="4" align="center">暂无数据。</td>
                 </tr>
             </table>
@@ -67,16 +72,47 @@ th:nth-child(3) {
                     <th>约束</th>
                     <th>详情</th>
                 </tr>
-                <tr ng-repeat="sitem in item.responses">
-                    <td>{{sitem.key}}</td>
-                    <td>{{sitem.description}}</td>
-                    <td>{{sitem.type}}</td>
-                    <td>{{sitem.checked}}</td>
-                    <td>{{sitem.detail}}</td>
-                </tr>
+                <tbody ng-repeat="sitem in item.responses">
+                    <tr>
+                        <td>{{sitem.key}}</td>
+                        <td>{{sitem.description}}</td>
+                        <td>{{sitem.type}}</td>
+                        <td>{{sitem.checked}}</td>
+                        <td><a href="" class="check" ng-show="{{sitem.detail}}">隐藏</a><span ng-show="{{!sitem.detail}}">无</span></td>
+                    </tr>
+                    <tr ng-show="sitem.detail">
+                        <td colspan="5">
+                            <pre class="detail">{{sitem.detail}}</pre></td>
+                    </tr>
+                </tbody>
                 <tr ng-if="!item.responses.length">
-                    <td colspan="4" align="center">暂无数据。</td>
+                    <td colspan="5" align="center">暂无数据。</td>
                 </tr>
             </table>
         </div>
 </div>
+<script>
+var a, b;
+$(function() {
+    $("body").on('click', '.check',
+        function() {
+            try {
+                a = $(this).parent().parent().next().children().children().text();
+                b=a;
+                a = JSON.parse(a);
+                a = JSON.stringify(a, null, 5);
+                $(this).parent().parent().next().children().children().text(a);
+            } catch (err) {
+                 $(this).parent().parent().next().children().children().text(b);
+            }
+            if ($(this).parent().parent().next().is(":visible")) {
+                $(this).parent().parent().next().hide();
+                $(this).text("查看");
+            } else {
+                $(this).parent().parent().next().show();
+                $(this).text("隐藏");
+            }
+        }
+    );
+});
+</script>
