@@ -30,7 +30,7 @@ function Field(key, title, type, value, display, required) {
 function Collection(data) {
     this.id = null;
     this.name = null;
-    this.description = null;
+    this.desc = null;
     this.version = null;
     this.content = null;
 
@@ -59,9 +59,9 @@ Collection.prototype.toForm = function(data) {
         field.value = this.name;
     }
     fields.push(field);
-    field = new Field('description', '项目描述', 'textarea');
-    if (this.description) {
-        field.value = this.description;
+    field = new Field('descr', '项目描述', 'textarea');
+    if (this.desc) {
+        field.value = this.desc;
     }
     fields.push(field);
     field = new Field('version', '项目版本', 'text');
@@ -117,7 +117,7 @@ function CollectionRequest(data) {
     this.collectionId = null;
     this.name = null;
     this.url = null;
-    this.description = null;
+    this.desc = null;
     this.method = null;
     this.dataMode = null;
     this.data = null;
@@ -154,6 +154,18 @@ CollectionRequest.prototype.toForm = function() {
         field.value = this.url;
     }
     fields.push(field);
+    field = new Field('type', '接口类型', 'select', '', true);
+    field.enumObj = [{
+        "name": "普通",
+        "id": "common"
+    }, {
+        "name": "分页",
+        "id": "page"
+    }];
+    if (this.type) {
+        field.value = this.type;
+    }
+    fields.push(field);
     field = new Field('method', '请求方式', 'select', '', true);
     field.enumObj = [{
         "name": "GET",
@@ -181,9 +193,9 @@ CollectionRequest.prototype.toForm = function() {
         field.value = this.dataMode;
     }
     fields.push(field);
-    field = new Field('description', '接口描述', 'textarea');
-    if (this.description) {
-        field.value = this.description;
+    field = new Field('desc', '接口描述', 'textarea');
+    if (this.desc) {
+        field.value = this.desc;
     }
     fields.push(field);
     ret.data.push({
@@ -213,6 +225,21 @@ CollectionRequest.prototype.toForm = function() {
     });
 
     fields = [];
+    field = new Field('responseType', '响应类型', 'select', '', true);
+    field.enumObj = [{
+        "name": "Null",
+        "id": "null"
+    }, {
+        "name": "Object",
+        "id": "object"
+    }, {
+        "name": "Array",
+        "id": "array"
+    }];
+    if (this.responseType) {
+        field.value = this.responseType;
+    }
+    fields.push(field);
     field = new Field('responses', '响应参数', 'mutiple', '', true);
     field.value = [];
     if (this.responses && this.responses.length > 0) {
@@ -533,9 +560,8 @@ pm.indexedDB = {
             var boundKeyRange = IDBKeyRange.only(req.id);
         } else {
             req.id = guid();
+            req.timestamp = new Date().getTime();
         }
-        console.log(req);
-        req.timestamp = req.timestamp || new Date().getTime();
 
         var collectionRequest = store.put(req);
 

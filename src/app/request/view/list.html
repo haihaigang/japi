@@ -34,7 +34,7 @@
                 <td>{{$index+1}}</td>
                 <td class="ellipsis">{{item['name']}}</td>
                 <td class="ellipsis">{{item['url']}}</td>
-                <td class="ellipsis">{{item['description']}}</td>
+                <td class="ellipsis">{{item['desc']}}</td>
                 <td>{{item['project']}}</td>
                 <td><div class="ngCellOpt"><a ui-sref="requests.edit({id:item['id']})">编辑</a><div j-delete j-click="page.remove(item['id'])">删除</div></div></td>
             </tr>

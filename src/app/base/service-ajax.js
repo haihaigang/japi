@@ -12,15 +12,12 @@ define(function(require) {
 
             var extendHeaders = function(config) {
                 config.headers = config.headers || {};
-                config.headers['from'] = 'api';
+                //config.headers['Access-Control-Allow-Origin'] = '*';
             }
 
             angular.forEach(['get', 'delete', 'head', 'jsonp'], function(name) {
                 ajax[name] = function(options, callback, callbackError) {
                     if (!options.isSilent) {
-                        $rootScope.isLoading = true;
-                        $rootScope.isSuccess = false;
-                        $rootScope.errorMsg = '正在加载中......';
                         errorService.showLoading();
                     }
 
@@ -40,14 +37,9 @@ define(function(require) {
                             //     $rootScope.errorMsg = data.message || '获取数据失败';
                             //     return;
                             // }
-                            $rootScope.isSuccess = true;
-                            $rootScope.isLoading = false;
-                            $rootScope.errorMsg = '';
                             callback && callback(data);
                         }, function(response) {
                             errorService.hideLoading();
-                            $rootScope.errorMsg = '服务器响应失败';
-                            $rootScope.isLoading = false;
                             callbackError && callbackError(response);
                         });
                 }
@@ -56,9 +48,6 @@ define(function(require) {
             angular.forEach(['post', 'put'], function(name) {
                 ajax[name] = function(options, callback, callbackError) {
                     if (!options.isSilent) {
-                        $rootScope.isSubmiting = true;
-                        //$rootScope.isSuccess = false;
-                        $rootScope.errorMsg = '正在提交中......';
                         errorService.showLoading();
                     }
 
@@ -78,13 +67,9 @@ define(function(require) {
                                 $rootScope.errorMsg = data.message || '获取数据失败';
                                 return;
                             }
-                            //$rootScope.isSuccess = true;
-                            $rootScope.isSubmiting = false;
                             callback && callback(data);
                         }, function(response) {
                             errorService.hideLoading();
-                            $rootScope.errorMsg = '服务器响应失败';
-                            $rootScope.isSubmiting = false;
                             callbackError && callbackError(response);
                         })
                 }
@@ -150,6 +135,27 @@ define(function(require) {
 
                 return data || s;
             }
+
+            /**
+             * 排序，按接口URL字母排序
+             */
+            ajax.order = function(a, b) {
+                if (typeof a.url == 'string' && typeof b.url == 'string') {
+                    var n = Math.min(a.url.length, b.url.length),
+                        i = -1,
+                        aTotal = 0,
+                        bTotal = 0;
+                        
+                    do {
+                        i++;
+                        aTotal += a.url.charCodeAt(i) * Math.pow(10, n - i);
+                        bTotal += b.url.charCodeAt(i) * Math.pow(10, n - i);
+                    }
+                    while (i < n && a.url.charCodeAt(i) == b.url.charCodeAt(i));
+
+                    return aTotal - bTotal;
+                }
+            }
             return ajax;
         }])
 
@@ -169,7 +175,7 @@ define(function(require) {
                 return $q.reject(rejection);
             },
             response: function(response) {
-                if (response.headers('content-type') == 'application/json; charset=utf-8' && response.data.code != 0) {
+                if (response.headers('content-type') == 'application/json' && response.data.code != 0) {
                     errorService.showAlert(response.data.message || 'Server response incorrect');
                 }
 

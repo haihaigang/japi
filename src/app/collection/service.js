@@ -6,7 +6,7 @@ define(function(require) {
     require('../base/service-ajax');
 
     angular.module('collectionService', ['ajaxService'])
-        .factory('Collection', ['$rootScope', '$location', 'Ajax', 'CONFIG', function($rootScope, $location, Ajax, CONFIG) {
+        .factory('Collection', ['$rootScope', '$location', 'Ajax', 'CONFIG', 'errorService', function($rootScope, $location, Ajax, CONFIG, errorService) {
             var result = {
                 title: '项目管理',
                 groups: null, //表单数据
@@ -49,27 +49,49 @@ define(function(require) {
 
                             //TODO 怎么存储导出的数据
                             Ajax.post({
-                                url: 'http://61.155.169.177/webapi.php/399',
-                                data: 'data=' + encodeURIComponent(JSON.stringify(response)),
+                                url: CONFIG.HOST_API + CONFIG.API_COLLECTION_SYNC,
+                                data: 'id=' + response.remoteId + '&data=' + encodeURIComponent(JSON.stringify(response)),
                                 headers: {
                                     'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-                                },
+                                }
+                            }, function(aResponse) {
+                                if (aResponse.code != 0) {
+                                    errorService.showAlert(aResponse.message);
+                                }
+                                response.remoteId = aResponse.body;
+                                pm.indexedDB.saveCollection(response, function(cResponse) {});
                             })
                         })
                     })
                 },
+                /**
+                 * 预览接口，根据传入id长度获取不同状态数据，长度小于32位从服务端获取否则从本地获取
+                 */
                 preview: function(id) {
-                    pm.indexedDB.getCollection(id, function(response) {
-                        pm.indexedDB.getAllRequestsInCollection({
-                            collectionId: id
-                        }, function(rResponse) {
-                            rResponse.sort(function(a, b) {
-                                return a.timestamp > b.timestamp;
-                            })
-                            response.requests = rResponse;
-                            result.data = response;
+                    if (id.length < 32) {
+                        Ajax.get({
+                            url: CONFIG.HOST_API + CONFIG.API_COLLECTION_SYNC,
+                            data: {
+                                id: id
+                            }
+                        }, function(response) {
+                            if (response.code != 0) {
+                                errorService.showAlert(response.message);
+                            }
+                            response.body.requests.sort(Ajax.order);
+                            result.data = response.body;
                         })
-                    })
+                    } else {
+                        pm.indexedDB.getCollection(id, function(response) {
+                            pm.indexedDB.getAllRequestsInCollection({
+                                collectionId: id
+                            }, function(rResponse) {
+                                rResponse.sort(Ajax.order);
+                                response.requests = rResponse;
+                                result.data = response;
+                            })
+                        })
+                    }
                 }
             };
 

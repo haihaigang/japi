@@ -8,12 +8,13 @@ define(function(require) {
     angular.module('baseModule')
         //接口地址等配置信息
         .constant('CONFIG', {
-            HOST_API: '',
+            HOST_API: 'http://'location.host'/',
             HOST_IMAGE: '',
             DEF_URL_IMG: 'image/d300x300-1.png', //默认图片地址
 
             API_ACCOUNT_LOGIN: 'data/account/login.json',
 
+            API_COLLECTION_SYNC: 'webapi.php/399',
             API_COLLECTION_LIST: 'data/collection/list.json',
             API_COLLECTION_ADD: 'data/collection/add.json',
             API_COLLECTION_EDIT: 'data/collection/edit.json',

@@ -58,10 +58,11 @@ define(function(require) {
                                     }
                                 }
                             }
-                            //排序，按照添加时间顺序
-                            response.sort(function(a,b){
-                                return a.timestamp > b.timestamp;
-                            })
+                            //排序
+                            // response.sort(function(a,b){
+                            //     return a.url.charCodeAt(0) - b.url.charCodeAt(0);
+                            // })
+                            response.sort(function(a,b){return Ajax.order(a,b);});
                             result.pageData = response;
                             $rootScope.$apply();
                         })

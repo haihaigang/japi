@@ -1,4 +1,4 @@
-<style type="text/css">
+﻿<style type="text/css">
 th {
     border: 1px solid #ccc;
     height: 35px;
@@ -27,21 +27,62 @@ th:nth-child(2) {
 th:nth-child(3) {
     width: 15%
 }
-.detail{
+
+.detail {
     padding: 0;
     background: white;
     border: 0;
 }
+
+[ng\:cloak],
+[ng-cloak],
+[data-ng-cloak],
+[x-ng-cloak],
+.ng-cloak,
+.x-ng-cloak,
+.ng-hide:not(.ng-animate) {
+    display: none !important;
+}
+
+.quick-nav {
+    padding: 7px;
+    border-radius: 0px 0 5px 5px;
+    background-color: rgb(0, 140, 186);
+}
+
+.quick-nav.fixed {
+    position: fixed;
+    top: 0px;
+    right: 0;
+    left: 0;
+}
+
+.quick-nav a {
+    display: inline-block;
+    width: 25px;
+    text-align: center;
+    color: #fff;
+    text-decoration: none;
+}
+
+.quick-nav a:hover,
+.quick-nav a:focus {
+    background-color: #006687;
+}
 </style>
-<div>
+<div class="quick-nav">
+    <a href="javascript:;" ng-repeat="item in page.data.requests" title="{{item.name}}" data-i="{{$index}}">{{$index+1}}</a>
+</div>
+<div ng-show="page.data">
     <h2>{{page.data.name}}</h2>
     <p><b>版本：</b>{{page.data.version}}</p>
     <p><b>描述：</b>{{page.data.description}}</p>
-    <p><b>约定：</b>{{page.data.content}}</p>
+    <div><b>约定：</b><pre>{{page.data.content}}</pre></div>
 </div>
 <div ng-repeat="item in page.data.requests" style="margin-bottom: 40px;">
-    <h3>{{$index+1}}：{{item['name']}}</h3>
+    <h3 id="r{{$index}}">{{$index+1}}：{{item['name']}}</h3>
     <p><strong>URL：</strong>{{item['url']}}</p>
+    <p><strong>方式：</strong>{{item['method']}}</p>
     <p><strong>说明</strong>：{{item['description']}}
         <p/>
         <div><strong>请求参数：</strong>
@@ -78,9 +119,9 @@ th:nth-child(3) {
                         <td>{{sitem.description}}</td>
                         <td>{{sitem.type}}</td>
                         <td>{{sitem.checked}}</td>
-                        <td><a href="" class="check" ng-show="{{sitem.detail}}">隐藏</a><span ng-show="{{!sitem.detail}}">无</span></td>
+                        <td><a href="" class="check" ng-show="{{sitem.detail.length}}">隐藏</a><span ng-show="{{!sitem.detail}}">无</span></td>
                     </tr>
-                    <tr ng-show="sitem.detail">
+                    <tr ng-show="sitem.detail.length">
                         <td colspan="5">
                             <pre class="detail">{{sitem.detail}}</pre></td>
                     </tr>
@@ -92,27 +133,28 @@ th:nth-child(3) {
         </div>
 </div>
 <script>
-var a, b;
 $(function() {
-    $("body").on('click', '.check',
-        function() {
-            try {
-                a = $(this).parent().parent().next().children().children().text();
-                b=a;
-                a = JSON.parse(a);
-                a = JSON.stringify(a, null, 5);
-                $(this).parent().parent().next().children().children().text(a);
-            } catch (err) {
-                 $(this).parent().parent().next().children().children().text(b);
-            }
-            if ($(this).parent().parent().next().is(":visible")) {
-                $(this).parent().parent().next().hide();
-                $(this).text("查看");
-            } else {
-                $(this).parent().parent().next().show();
-                $(this).text("隐藏");
-            }
+    $("body").on('click', '.check', function() {
+        if ($(this).parent().parent().next().is(":visible")) {
+            $(this).parent().parent().next().hide();
+            $(this).text("查看");
+        } else {
+            $(this).parent().parent().next().show();
+            $(this).text("隐藏");
         }
-    );
+    }).on('click', '.quick-nav a', function(e) {
+        e.preventDefault();
+        var idx = $(this).attr('data-i'),
+            tar = $('#r' + idx).offset();
+
+        window.scrollTo(0, tar.top - 58);
+    });
+    $(window).scroll(function(e){
+        if($(this).scrollTop() > 100){
+            $('.quick-nav').addClass('fixed');
+        }else{
+            $('.quick-nav').removeClass('fixed');
+        }
+    })
 });
 </script>

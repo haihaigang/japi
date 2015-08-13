@@ -67,7 +67,7 @@ define(function(require) {
         ])
         //添加编辑
         .controller('CollectionSaveController', [
-            '$scope', '$state', '$stateParams','$location', 'Collection',
+            '$scope', '$state', '$stateParams', '$location', 'Collection',
             function($scope, $state, $stateParams, $location, Collection) {
                 $scope.page = Collection;
                 $scope.page.query($stateParams.id);
@@ -76,7 +76,7 @@ define(function(require) {
         ])
         //预览
         .controller('CollectionPreviewController', [
-            '$scope', '$state', '$stateParams','$location', 'Collection',
+            '$scope', '$state', '$stateParams', '$location', 'Collection',
             function($scope, $state, $stateParams, $location, Collection) {
                 $scope.page = Collection;
                 $scope.page.preview($stateParams.id);

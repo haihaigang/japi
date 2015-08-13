@@ -19,7 +19,7 @@ define(function(require) {
 
                     var reader = new FileReader();
                     reader.onload = function(res) {
-                        result.importData(res.result);
+                        result.importData(res.srcElement.result);
                     };
                     reader.readAsText(files[0]);
                 },
@@ -41,12 +41,6 @@ define(function(require) {
                     });
                 },
                 importData: function(data) {
-                    if (!data || !data.id || !data.requests) {
-                        result.message = '导入失败，文件内容不正确。';
-                        $rootScope.$apply();
-                        return false;
-                    }
-
                     //若data为string，先尝试解析json
                     if (typeof data == 'string') {
                         try {
@@ -58,12 +52,20 @@ define(function(require) {
                         }
                     }
 
+                    if (!data || !data.id || !data.requests) {
+                        result.message = '导入失败，文件内容不正确。';
+                        $rootScope.$apply();
+                        return false;
+                    }
+
                     var col = new Collection(data);
                     pm.indexedDB.saveCollection(col, function(collection) {
                         for (var i in data.requests) {
-                            //转换pm的数据，字段类型统一为string
                             for (var j in data.requests[i].data) {
-                                data.requests[i].data[j].type = 'string';
+                                //转换pm的数据，字段类型统一为string
+                                if(data.requests[i].data[j].type == 'file'){
+                                    data.requests[i].data[j].type = 'string';
+                                }
                             }
                             var d = data.requests[i],
                                 req = new CollectionRequest(data.requests[i]);

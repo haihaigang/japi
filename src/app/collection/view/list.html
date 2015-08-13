@@ -23,9 +23,9 @@
             <tr ng-repeat="item in page.pageData">
                 <td>{{$index+1}}</td>
                 <td>{{item['name']}}</td>
-                <td class="ellipsis">{{item['description']}}</td>
+                <td class="ellipsis">{{item['desc']}}</td>
                 <td>{{item['version']}}</td>
-                <td><div class="ngCellOpt"><a ui-sref="requests({collectionId:item['id']})">查看接口</a><a href="javascript:;" ng-click="page.export(item['id'])">导出</a><a ui-sref="collections.preview({id:item['id']})" target="_blank">预览</a><a ui-sref=".edit({id:item['id']})">编辑</a><div j-delete j-click="page.remove(item['id'])" j-tip="确认删除吗？同时将删除对应的接口信息">删除</div></div></td>
+                <td><div class="ngCellOpt"><a ui-sref="requests({collectionId:item['id']})">查看接口</a><a href="javascript:;" ng-click="page.export(item['id'])">上传</a><a ui-sref="collections.preview({id:item['remoteId']?item['remoteId']:item['id']})" target="_blank">预览</a><a ui-sref=".edit({id:item['id']})">编辑</a><div j-delete j-click="page.remove(item['id'])" j-tip="确认删除吗？同时将删除对应的接口信息">删除</div></div></td>
             </tr>
             <tr ng-if="!page.pageData.length"><td colspan="6" align="center">暂无数据。</td></tr>
         </tbody>
