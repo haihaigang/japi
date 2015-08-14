@@ -45,7 +45,7 @@ define(function(require) {
                         }, function(rResponse) {
                             response.requests = rResponse;
 
-                            document.write((JSON.stringify(response)))
+                            // document.write((JSON.stringify(response)))
 
                             //TODO 怎么存储导出的数据
                             Ajax.post({

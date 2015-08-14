@@ -1,3 +1,22 @@
+接口指定是否分页，返回数据类型之名是否数组
+
+如果响应字段时object或array需要更详细字段
+
+约定json字符串
+{
+	"key":"type description",
+	"key":"type description",
+	"key":{
+		"key":"type description",
+		"key":"type description"
+	},
+	"key":[{
+		"key":"type description",
+		"key":"type description"
+	}]
+
+}
+
 1添加接口、记录最后一次选择的项目
 2接口排序，按照模块名称排序
 3添加接口响应字段时，增加快速选择
