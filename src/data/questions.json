@@ -1,0 +1,3357 @@
+[{
+        "_id": "53e4f530e4b0919b9556a028",
+        "answers": [{
+            "options": "Living Single",
+            "count": 17
+        }, {
+            "options": "Living sometimes single",
+            "count": 2
+        }, {
+            "count": 76,
+            "options": "Living with kids"
+        }, {
+            "options": "Living together",
+            "count": 47
+        }],
+        "answersNum": 142,
+        "created_at": "1407513904054",
+        "fractionCount": 437,
+        "questions_Num": 4,
+        "surveyID": "53e4f4f5e4b0919b9556a027",
+        "surveyType": "survey",
+        "title": "What is your current living situation?",
+        "updated_at": "1407513904054"
+    }, {
+        "_id": "53e4f5f8e4b0919b9556a02f",
+        "answers": [{
+            "options": "Less than 50 m²",
+            "count": 6
+        }, {
+            "options": "50 to 100 m²",
+            "count": 41
+        }, {
+            "options": "100 to 200 m²",
+            "count": 61
+        }, {
+            "count": 34,
+            "options": "More than 200 m²"
+        }],
+        "answersNum": 137,
+        "created_at": "1407514104920",
+        "fractionCount": 390,
+        "questions_Num": 4,
+        "surveyID": "53e4f4f5e4b0919b9556a027",
+        "surveyType": "survey",
+        "title": "What is the size of the home you currently live in?",
+        "updated_at": "1407514104920"
+    }
+
+    , {
+        "_id": "53e4f701e4b0919b9556a033",
+        "answers": [{
+            "count": 37,
+            "options": "5 to 10"
+        }, {
+            "options": "10 to 15",
+            "count": 39
+        }, {
+            "options": "15 to 20",
+            "count": 24
+        }, {
+            "options": "20 to 25",
+            "count": 16
+        }, {
+            "options": "More than 25",
+            "count": 21
+        }],
+        "answersNum": 137,
+        "created_at": "1407514369281",
+        "fractionCount": 356,
+        "questions_Num": 5,
+        "surveyID": "53e4f4f5e4b0919b9556a027",
+        "surveyType": "survey",
+        "title": "How many pairs of shoes do you own?",
+        "updated_at": "1407514369281"
+    }
+
+    , {
+        "_id": "53eb32ede4b08d558204effc",
+        "answers": [{
+            "options": "Everyday",
+            "count": 0
+        }, {
+            "options": "Once a week",
+            "count": 0
+        }, {
+            "options": "Once a month",
+            "count": 0
+        }, {
+            "options": "Every 6 months",
+            "count": 0
+        }, {
+            "count": 1,
+            "options": "Never"
+        }],
+        "answersNum": 1,
+        "created_at": "1407922925619",
+        "fractionCount": 5,
+        "questions_Num": 5,
+        "surveyID": "53eb3160e4b08d558204efe3",
+        "surveyType": "survey",
+        "title": "On average, how often do you shop online?",
+        "updated_at": "1407922925619"
+    }
+
+    , {
+        "_id": "53eb86a9e4b08d5582053b22",
+        "answers": [{
+            "options": "Everyday",
+            "count": 5
+        }, {
+            "options": "Once a week",
+            "count": 45
+        }, {
+            "count": 56,
+            "options": "Once a month"
+        }, {
+            "options": "Every 6 months",
+            "count": 27
+        }, {
+            "options": "Never",
+            "count": 9
+        }],
+        "answersNum": 130,
+        "created_at": "1407944361841",
+        "fractionCount": 390,
+        "questions_Num": 5,
+        "surveyID": "53eb863de4b08d5582053b20",
+        "surveyType": "survey",
+        "title": "On average, how often do you shop online?",
+        "updated_at": "1407944361841"
+    }
+
+    , {
+        "_id": "53eb86e0e4b08d5582053b23",
+        "answers": [{
+            "count": 39,
+            "options": "Electronics (TV, Computer, mobile device"
+        }, {
+            "options": "Kitchen appliance",
+            "count": 10
+        }, {
+            "options": "Home furnishings",
+            "count": 25
+        }, {
+            "options": "Clothes/Shoes",
+            "count": 42
+        }, {
+            "options": "Jewellery/watch",
+            "count": 14
+        }],
+        "answersNum": 130,
+        "created_at": "1407944416428",
+        "fractionCount": 372,
+        "questions_Num": 5,
+        "surveyID": "53eb863de4b08d5582053b20",
+        "surveyType": "survey",
+        "title": "If you were given €500 on the condition that you must buy something for yourself TODAY, what would you buy? ",
+        "updated_at": "1407944416428"
+    }
+
+    , {
+        "_id": "53eb8789e4b08d5582053b25",
+        "answers": [{
+            "options": "Price",
+            "count": 7
+        }, {
+            "options": "Quality & Design",
+            "count": 39
+        }, {
+            "options": "Function was not available at IKEA",
+            "count": 24
+        }, {
+            "options": "Product was not available at the time",
+            "count": 15
+        }, {
+            "options": "Services",
+            "count": 4
+        }, {
+            "count": 13,
+            "options": "Convenience"
+        }, {
+            "options": "Other",
+            "count": 29
+        }],
+        "answersNum": 130,
+        "created_at": "1407944585936",
+        "fractionCount": 518,
+        "questions_Num": 7,
+        "surveyID": "53eb863de4b08d5582053b20",
+        "surveyType": "survey",
+        "title": "For your most recent Home Furnishings purchase, what was the reason why you did not shop at IKEA?",
+        "updated_at": "1407944585936"
+    }
+
+    , {
+        "_id": "53f2808fe4b0fe86260a90a8",
+        "answers": [{
+            "options": "Not at All",
+            "count": 1
+        }, {
+            "options": "Rarely",
+            "count": 9
+        }, {
+            "options": "Sometimes",
+            "count": 39
+        }, {
+            "options": "Often",
+            "count": 48
+        }, {
+            "count": 20,
+            "options": "Very Often"
+        }],
+        "answersNum": 116,
+        "created_at": "1408401551561",
+        "fractionCount": 428,
+        "questions_Num": 5,
+        "surveyID": "53f27eeae4b0fe86260a8e7f",
+        "surveyType": "survey",
+        "title": "I use diagrams and charts to help express my ideas.",
+        "updated_at": "1408401551561"
+    }
+
+    , {
+        "_id": "53f2806ce4b0fe86260a90a7",
+        "answers": [{
+            "options": "Not at All",
+            "count": 0
+        }, {
+            "options": "Rarely",
+            "count": 3
+        }, {
+            "options": "Sometimes",
+            "count": 16
+        }, {
+            "count": 40,
+            "options": "Often"
+        }, {
+            "options": "Very Often",
+            "count": 57
+        }],
+        "answersNum": 116,
+        "created_at": "1408401516183",
+        "fractionCount": 499,
+        "questions_Num": 5,
+        "surveyID": "53f27eeae4b0fe86260a8e7f",
+        "surveyType": "survey",
+        "title": "When talking to people, I pay attention to their body language.",
+        "updated_at": "1408401516183"
+    }
+
+    , {
+        "_id": "53f28153e4b0fe86260a90ad",
+        "answers": [{
+            "options": "Not at All",
+            "count": 0
+        }, {
+            "options": "Rarely",
+            "count": 6
+        }, {
+            "options": "Sometimes",
+            "count": 28
+        }, {
+            "count": 49,
+            "options": "Often"
+        }, {
+            "options": "Very Often",
+            "count": 33
+        }],
+        "answersNum": 116,
+        "created_at": "1408401747014",
+        "fractionCount": 457,
+        "questions_Num": 5,
+        "surveyID": "53f27eeae4b0fe86260a8e7f",
+        "surveyType": "survey",
+        "title": "I consider cultural barriers when planning my communications.",
+        "updated_at": "1408401747014"
+    }
+
+    , {
+        "_id": "53fb2a8ee4b0395f24c5846b",
+        "fractionCount": 335,
+        "title": "What was your favorite dish at today's dinner?",
+        "updated_at": "1408969358453",
+        "answersNum": 106,
+        "surveyID": "53fb2a38e4b0395f24c58469",
+        "answers": [{
+            "options": "Salmon",
+            "count": 30
+        }, {
+            "options": "Prawn",
+            "count": 32
+        }, {
+            "options": "Chicken",
+            "count": 20
+        }, {
+            "options": "Duck",
+            "count": 8
+        }, {
+            "options": "Lamb",
+            "count": 16
+        }],
+        "created_at": "1408969358453",
+        "questions_Num": 5,
+        "surveyType": "voting"
+    }
+
+    , {
+        "_id": "53fd225ce4b006913c489f13",
+        "fractionCount": 274,
+        "title": "What does your home mean to you? ",
+        "updated_at": "1409098332162",
+        "answersNum": 119,
+        "surveyID": "53fd220ae4b006913c489ef4",
+        "answers": [{
+            "options": "A safe place – “nest” ",
+            "count": 53
+        }, {
+            "options": "A place for recharge – “zen” ",
+            "count": 54
+        }, {
+            "options": "A place for gatherings – “social” ",
+            "count": 10
+        }, {
+            "options": "A place for storing – “hub” ",
+            "count": 1
+        }, {
+            "options": "A place for the night – “hotel” ",
+            "count": 2
+        }, {
+            "options": "A place for creativity – “studio”",
+            "count": 2
+        }],
+        "created_at": "1409098332162",
+        "questions_Num": 6,
+        "surveyType": "voting"
+    }
+
+    , {
+        "_id": "53fd2319e4b006913c489fc1",
+        "fractionCount": 376,
+        "title": "Which room or living space in your home has a need for change to match your modern living? ",
+        "updated_at": "1409098521796",
+        "answersNum": 114,
+        "surveyID": "53fd22afe4b006913c489f6d",
+        "answers": [{
+            "options": "Living room",
+            "count": 26
+        }, {
+            "options": "Kitchen",
+            "count": 26
+        }, {
+            "options": "Dining ",
+            "count": 9
+        }, {
+            "options": "Bedroom ",
+            "count": 34
+        }, {
+            "options": "Bathroom",
+            "count": 19
+        }],
+        "created_at": "1409098521796",
+        "questions_Num": 5,
+        "surveyType": "voting"
+    }
+
+    , {
+        "_id": "53fd2391e4b006913c489fe7",
+        "answers": [{
+            "options": "Yes - completely ",
+            "count": 46
+        }, {
+            "options": "Yes - some parts (the parts that have a need",
+            "count": 63
+        }, {
+            "options": "So so – could be",
+            "count": 4
+        }, {
+            "options": "No – not at all",
+            "count": 1
+        }, {
+            "options": "No – since it’s not mine",
+            "count": 0
+        }],
+        "answersNum": 113,
+        "created_at": "1409098641316",
+        "fractionCount": 195,
+        "questions_Num": 5,
+        "surveyID": "53fd22afe4b006913c489f6d",
+        "surveyType": "voting",
+        "title": "Is it important to have an updated home?",
+        "updated_at": "1409098781582"
+    }
+
+    , {
+        "_id": "53e4da38e4b0919b955687b5",
+        "answers": [{
+            "options": "1-2",
+            "count": 0
+        }, {
+            "options": "3-4",
+            "count": 0
+        }, {
+            "count": 2,
+            "options": "5-6"
+        }, {
+            "options": "7 days a week",
+            "count": 1
+        }, {
+            "options": "Almost never",
+            "count": 1
+        }],
+        "answersNum": 4,
+        "created_at": "1407507000843",
+        "fractionCount": 15,
+        "questions_Num": 5,
+        "surveyID": "53e4d840e4b0919b955687b0",
+        "surveyType": "survey",
+        "title": "How many days a week do you cook dinner at home? ",
+        "updated_at": "1407507000843"
+    }
+
+    , {
+        "_id": "53e4da75e4b0919b955687b6",
+        "answers": [{
+            "options": "Laundry room",
+            "count": 0
+        }, {
+            "options": "Kitchen",
+            "count": 1
+        }, {
+            "options": "Bathroom",
+            "count": 2
+        }, {
+            "options": "Garage",
+            "count": 0
+        }, {
+            "options": "Balcony",
+            "count": 0
+        }, {
+            "count": 1,
+            "options": "Other"
+        }],
+        "answersNum": 4,
+        "created_at": "1407507061303",
+        "fractionCount": 14,
+        "questions_Num": 6,
+        "surveyID": "53e4d840e4b0919b955687b0",
+        "surveyType": "survey",
+        "title": "Where in your home do you do laundry?",
+        "updated_at": "1407507061303"
+    }
+
+    , {
+        "_id": "53e4d874e4b0919b955687b1",
+        "answers": [{
+            "options": "Living Single",
+            "count": 0
+        }, {
+            "options": "Living sometimes single",
+            "count": 0
+        }, {
+            "count": 2,
+            "options": "Living with kids "
+        }, {
+            "options": "Living together",
+            "count": 2
+        }],
+        "answersNum": 4,
+        "created_at": "1407506548920",
+        "fractionCount": 14,
+        "questions_Num": 4,
+        "surveyID": "53e4d840e4b0919b955687b0",
+        "surveyType": "survey",
+        "title": "What is your current living situation?",
+        "updated_at": "1407506548920"
+    }
+
+    , {
+        "_id": "53e4d90be4b0919b955687b2",
+        "answers": [{
+            "options": "Less than 50 m²",
+            "count": 0
+        }, {
+            "options": "50 to 100 m²",
+            "count": 2
+        }, {
+            "options": "100 to 200 m²",
+            "count": 1
+        }, {
+            "options": "More than 200 m²",
+            "count": 1
+        }],
+        "answersNum": 4,
+        "created_at": "1407506699769",
+        "fractionCount": 11,
+        "questions_Num": 4,
+        "surveyID": "53e4d840e4b0919b955687b0",
+        "surveyType": "survey",
+        "title": "What is the size of the home you currently live in?",
+        "updated_at": "1407514552737"
+    }
+
+    , {
+        "_id": "53e4d9f5e4b0919b955687b4",
+        "answers": [{
+            "options": "Bought a new home/apartment",
+            "count": 0
+        }, {
+            "options": "Got married/new partner",
+            "count": 0
+        }, {
+            "options": "Had a new baby",
+            "count": 0
+        }, {
+            "options": "Moved to a new city",
+            "count": 0
+        }, {
+            "options": "A family member moved in [Parents/Grandparents/Sibling",
+            "count": 0
+        }, {
+            "count": 4,
+            "options": "No big changes"
+        }],
+        "answersNum": 4,
+        "created_at": "1407506933365",
+        "fractionCount": 24,
+        "questions_Num": 6,
+        "surveyID": "53e4d840e4b0919b955687b0",
+        "surveyType": "survey",
+        "title": "What significant changes have happened in your life at home in the past 12 month?",
+        "updated_at": "1407511973151"
+    }
+
+    , {
+        "_id": "53e4daace4b0919b955687b7",
+        "answers": [{
+            "count": 3,
+            "options": "5 to 10"
+        }, {
+            "options": "10 to 15",
+            "count": 1
+        }, {
+            "options": "15 to 20",
+            "count": 0
+        }, {
+            "options": "20 to 25",
+            "count": 0
+        }, {
+            "options": "More than 25",
+            "count": 0
+        }],
+        "answersNum": 4,
+        "created_at": "1407507116386",
+        "fractionCount": 5,
+        "questions_Num": 5,
+        "surveyID": "53e4d840e4b0919b955687b0",
+        "surveyType": "survey",
+        "title": "How many pairs of shoes do you own?",
+        "updated_at": "1407507116386"
+    }
+
+    , {
+        "_id": "53e4dadde4b0919b955687b8",
+        "answers": [{
+            "options": "A shoe cabinet outside my home",
+            "count": 0
+        }, {
+            "count": 3,
+            "options": "A shoe cabinet inside my home"
+        }, {
+            "options": "Under my bed",
+            "count": 0
+        }, {
+            "options": "Bedroom closet or wardrobe",
+            "count": 1
+        }, {
+            "options": "Other",
+            "count": 0
+        }],
+        "answersNum": 4,
+        "created_at": "1407507165761",
+        "fractionCount": 10,
+        "questions_Num": 5,
+        "surveyID": "53e4d840e4b0919b955687b0",
+        "surveyType": "survey",
+        "title": "Where do you store your shoes?",
+        "updated_at": "1407507165761"
+    }
+
+    , {
+        "_id": "53e4db0ce4b0919b955687b9",
+        "answers": [{
+            "count": 1,
+            "options": "Read a book"
+        }, {
+            "options": "Use/play on ipad/iphone",
+            "count": 2
+        }, {
+            "options": "Watch TV",
+            "count": 0
+        }, {
+            "options": "Listen to music ",
+            "count": 0
+        }, {
+            "options": "Other",
+            "count": 1
+        }],
+        "answersNum": 4,
+        "created_at": "1407507212510",
+        "fractionCount": 10,
+        "questions_Num": 5,
+        "surveyID": "53e4d840e4b0919b955687b0",
+        "surveyType": "survey",
+        "title": "What activities do you do in the bed before turning off the lights to sleep?",
+        "updated_at": "1407507212510"
+    }
+
+    , {
+        "_id": "53e4db3ee4b0919b955687ba",
+        "answers": [{
+            "count": 3,
+            "options": "Sitting in a chair or sofa facing forward at the TV"
+        }, {
+            "options": "Lying down on a sofa or bed",
+            "count": 1
+        }, {
+            "options": "Sitting at the dining room table",
+            "count": 0
+        }, {
+            "options": "Sitting/lying on the floo",
+            "count": 0
+        }, {
+            "options": "I don’t watch much TV",
+            "count": 0
+        }],
+        "answersNum": 4,
+        "created_at": "1407507262971",
+        "fractionCount": 5,
+        "questions_Num": 5,
+        "surveyID": "53e4d840e4b0919b955687b0",
+        "surveyType": "survey",
+        "title": "When you are watching TV in your home, you are…",
+        "updated_at": "1407507262971"
+    }
+
+    , {
+        "_id": "53e4f699e4b0919b9556a031",
+        "answers": [{
+            "options": "1-2",
+            "count": 39
+        }, {
+            "options": "3-4",
+            "count": 34
+        }, {
+            "options": "5-6",
+            "count": 34
+        }, {
+            "options": "7 days a week",
+            "count": 11
+        }, {
+            "count": 19,
+            "options": "Almost never"
+        }],
+        "answersNum": 137,
+        "created_at": "1407514265619",
+        "fractionCount": 348,
+        "questions_Num": 5,
+        "surveyID": "53e4f4f5e4b0919b9556a027",
+        "surveyType": "survey",
+        "title": "How many days a week do you cook dinner at home? ",
+        "updated_at": "1407514265619"
+    }
+
+    , {
+        "_id": "53e4f6d2e4b0919b9556a032",
+        "answers": [{
+            "count": 49,
+            "options": "Laundry room"
+        }, {
+            "options": "Kitchen",
+            "count": 12
+        }, {
+            "options": "Bathroom",
+            "count": 30
+        }, {
+            "options": "Garage",
+            "count": 2
+        }, {
+            "options": "Balcony",
+            "count": 33
+        }, {
+            "options": "Other",
+            "count": 11
+        }],
+        "answersNum": 137,
+        "created_at": "1407514322473",
+        "fractionCount": 402,
+        "questions_Num": 6,
+        "surveyID": "53e4f4f5e4b0919b9556a027",
+        "surveyType": "survey",
+        "title": "Where in your home do you do laundry?",
+        "updated_at": "1407514322473"
+    }
+
+    , {
+        "_id": "53e4f667e4b0919b9556a030",
+        "answers": [{
+            "options": "Bought a new home/apartment",
+            "count": 31
+        }, {
+            "options": "Got married/new partner",
+            "count": 6
+        }, {
+            "options": "Had a new baby",
+            "count": 7
+        }, {
+            "options": "Moved to a new city",
+            "count": 19
+        }, {
+            "options": "A family member moved in [Parents/Grandparents/Sibling]",
+            "count": 6
+        }, {
+            "count": 69,
+            "options": "No big changes"
+        }],
+        "answersNum": 137,
+        "created_at": "1407514215086",
+        "fractionCount": 584,
+        "questions_Num": 6,
+        "surveyID": "53e4f4f5e4b0919b9556a027",
+        "surveyType": "survey",
+        "title": "What significant changes have happened in your life at home in the past 12 month?",
+        "updated_at": "1407514215086"
+    }
+
+    , {
+        "_id": "53e4f739e4b0919b9556a034",
+        "answers": [{
+            "options": "A shoe cabinet outside my home",
+            "count": 3
+        }, {
+            "options": "A shoe cabinet inside my home",
+            "count": 91
+        }, {
+            "options": "Under my bed",
+            "count": 5
+        }, {
+            "options": "Bedroom closet or wardrobe",
+            "count": 29
+        }, {
+            "count": 10,
+            "options": "Other"
+        }],
+        "answersNum": 137,
+        "created_at": "1407514425310",
+        "fractionCount": 366,
+        "questions_Num": 5,
+        "surveyID": "53e4f4f5e4b0919b9556a027",
+        "surveyType": "survey",
+        "title": "Where do you store your shoes?",
+        "updated_at": "1407514425310"
+    }
+
+    , {
+        "_id": "53e4f791e4b0919b9556a036",
+        "answers": [{
+            "options": "Read a book",
+            "count": 45
+        }, {
+            "count": 62,
+            "options": "Use/play on ipad/iphone"
+        }, {
+            "options": "Watch TV",
+            "count": 17
+        }, {
+            "options": "Listen to music",
+            "count": 2
+        }, {
+            "options": "Other",
+            "count": 14
+        }],
+        "answersNum": 137,
+        "created_at": "1407514513710",
+        "fractionCount": 298,
+        "questions_Num": 5,
+        "surveyID": "53e4f4f5e4b0919b9556a027",
+        "surveyType": "survey",
+        "title": "What activities do you do in the bed before turning off the lights to sleep?",
+        "updated_at": "1407514513710"
+    }
+
+    , {
+        "_id": "53eb324ce4b08d558204eff0",
+        "answers": [{
+            "options": "Buy only what's on your list?",
+            "count": 0
+        }, {
+            "count": 3,
+            "options": "Always buy more than what's on your list?"
+        }, {
+            "options": "You don't have a list, you buy what inspires you. ",
+            "count": 0
+        }, {
+            "options": "You don't usually shop for groceries. ",
+            "count": 0
+        }],
+        "answersNum": 3,
+        "created_at": "1407922764471",
+        "fractionCount": 6,
+        "questions_Num": 4,
+        "surveyID": "53eb3160e4b08d558204efe3",
+        "surveyType": "survey",
+        "title": "When you shop for groceries at the grocery store, do you...",
+        "updated_at": "1407922764471"
+    }
+
+    , {
+        "_id": "53eb332ce4b08d558204effd",
+        "answers": [{
+            "options": "Electronics (TV, Computer, mobile device",
+            "count": 0
+        }, {
+            "count": 1,
+            "options": "Kitchen appliance"
+        }, {
+            "options": "Home furnishings",
+            "count": 0
+        }, {
+            "options": "Clothes/Shoes",
+            "count": 0
+        }, {
+            "options": "Jewellery/watch ",
+            "count": 0
+        }],
+        "answersNum": 1,
+        "created_at": "1407922988778",
+        "fractionCount": 2,
+        "questions_Num": 5,
+        "surveyID": "53eb3160e4b08d558204efe3",
+        "surveyType": "survey",
+        "title": "If you were given €500 on the condition that you must buy something for yourself TODAY, what would you buy? ",
+        "updated_at": "1407922988778"
+    }
+
+    , {
+        "_id": "53eb336ce4b08d558204f003",
+        "answers": [{
+            "options": "Once a week",
+            "count": 0
+        }, {
+            "options": "Once a month",
+            "count": 0
+        }, {
+            "options": "Once every 4 months",
+            "count": 0
+        }, {
+            "count": 1,
+            "options": "Once or twice a year"
+        }, {
+            "options": "I haven't purchased anything at IKEA in a long time.",
+            "count": 0
+        }],
+        "answersNum": 1,
+        "created_at": "1407923052098",
+        "fractionCount": 4,
+        "questions_Num": 5,
+        "surveyID": "53eb3160e4b08d558204efe3",
+        "surveyType": "survey",
+        "title": "How often do you shop AND buy at IKEA? [excluding IKEA Food]",
+        "updated_at": "1407923052098"
+    }
+
+    , {
+        "_id": "53eb33f1e4b08d558204f03e",
+        "answers": [{
+            "options": "Price",
+            "count": 0
+        }, {
+            "count": 1,
+            "options": "Quality & Design"
+        }, {
+            "options": "Function was not available at IKEA",
+            "count": 0
+        }, {
+            "options": "Product was not available at the time",
+            "count": 0
+        }, {
+            "options": "Services",
+            "count": 0
+        }, {
+            "options": "Convenience",
+            "count": 0
+        }, {
+            "options": "Other",
+            "count": 0
+        }],
+        "answersNum": 1,
+        "created_at": "1407923185282",
+        "fractionCount": 2,
+        "questions_Num": 7,
+        "surveyID": "53eb3160e4b08d558204efe3",
+        "surveyType": "survey",
+        "title": "For your most recent Home Furnishings purchase, what was the reason why you did not shop at IKEA?",
+        "updated_at": "1407923185282"
+    }
+
+    , {
+        "_id": "53eb8674e4b08d5582053b21",
+        "answers": [{
+            "options": "Buy only what's on your list?",
+            "count": 29
+        }, {
+            "count": 79,
+            "options": "Always buy more than what's on your list?"
+        }, {
+            "options": "You don't have a list, you buy what inspires you.",
+            "count": 30
+        }, {
+            "options": "You don't usually shop for groceries.",
+            "count": 3
+        }],
+        "answersNum": 141,
+        "created_at": "1407944308336",
+        "fractionCount": 289,
+        "questions_Num": 4,
+        "surveyID": "53eb863de4b08d5582053b20",
+        "surveyType": "survey",
+        "title": "When you shop for groceries, do you...",
+        "updated_at": "1407944308336"
+    }
+
+    , {
+        "_id": "53eb871ae4b08d5582053b24",
+        "answers": [{
+            "options": "Once a week",
+            "count": 4
+        }, {
+            "count": 49,
+            "options": "Once a month"
+        }, {
+            "options": "Once every 4 months",
+            "count": 56
+        }, {
+            "options": "Once or twice a year",
+            "count": 18
+        }, {
+            "options": "I haven't purchased anything at IKEA in a long time.",
+            "count": 3
+        }],
+        "answersNum": 130,
+        "created_at": "1407944474891",
+        "fractionCount": 357,
+        "questions_Num": 5,
+        "surveyID": "53eb863de4b08d5582053b20",
+        "surveyType": "survey",
+        "title": "How often do you shop AND buy at IKEA? [excluding IKEA Food]",
+        "updated_at": "1407944474891"
+    }
+
+    , {
+        "_id": "53f27f63e4b0fe86260a9046",
+        "answers": [{
+            "options": "Not at All",
+            "count": 1
+        }, {
+            "options": "Rarely",
+            "count": 6
+        }, {
+            "options": "Sometimes",
+            "count": 30
+        }, {
+            "options": "Often",
+            "count": 62
+        }, {
+            "count": 28,
+            "options": "Very Often"
+        }],
+        "answersNum": 118,
+        "created_at": "1408401251346",
+        "fractionCount": 465,
+        "questions_Num": 5,
+        "surveyID": "53f27eeae4b0fe86260a8e7f",
+        "surveyType": "survey",
+        "title": "When I write a memo, email, or other document, I give all of the background information and detail I can to make sure that my message is understood.",
+        "updated_at": "1408401251346"
+    }
+
+    , {
+        "_id": "53f27f85e4b0fe86260a90a1",
+        "answers": [{
+            "options": "Not at All",
+            "count": 26
+        }, {
+            "options": "Rarely",
+            "count": 48
+        }, {
+            "options": "Sometimes",
+            "count": 32
+        }, {
+            "count": 8,
+            "options": "Often"
+        }, {
+            "options": "Very Often",
+            "count": 4
+        }],
+        "answersNum": 116,
+        "created_at": "1408401285302",
+        "fractionCount": 266,
+        "questions_Num": 5,
+        "surveyID": "53f27eeae4b0fe86260a8e7f",
+        "surveyType": "survey",
+        "title": "If I don't understand something, I tend to keep this to myself and figure it out later.",
+        "updated_at": "1408401285302"
+    }
+
+    , {
+        "_id": "53f27fa9e4b0fe86260a90a2",
+        "answers": [{
+            "options": "Not at All",
+            "count": 3
+        }, {
+            "count": 48,
+            "options": "Rarely"
+        }, {
+            "options": "Sometimes",
+            "count": 59
+        }, {
+            "options": "Often",
+            "count": 6
+        }, {
+            "options": "Very Often",
+            "count": 0
+        }],
+        "answersNum": 116,
+        "created_at": "1408401321074",
+        "fractionCount": 300,
+        "questions_Num": 5,
+        "surveyID": "53f27eeae4b0fe86260a8e7f",
+        "surveyType": "survey",
+        "title": "I'm sometimes surprised to find that people haven't understood what I've said.",
+        "updated_at": "1408401321074"
+    }
+
+    , {
+        "_id": "53f27fd3e4b0fe86260a90a3",
+        "answers": [{
+            "options": "Not at All",
+            "count": 5
+        }, {
+            "count": 37,
+            "options": "Rarely"
+        }, {
+            "options": "Sometimes",
+            "count": 40
+        }, {
+            "options": "Often",
+            "count": 29
+        }, {
+            "options": "Very Often",
+            "count": 5
+        }],
+        "answersNum": 116,
+        "created_at": "1408401363568",
+        "fractionCount": 340,
+        "questions_Num": 5,
+        "surveyID": "53f27eeae4b0fe86260a8e7f",
+        "surveyType": "survey",
+        "title": "I can tend to say what I think, without worrying about how the other person perceives it. I assume that we'll be able to work it out later.",
+        "updated_at": "1408401363568"
+    }
+
+    , {
+        "_id": "53f28024e4b0fe86260a90a5",
+        "answers": [{
+            "count": 24,
+            "options": "Not at All"
+        }, {
+            "options": "Rarely",
+            "count": 46
+        }, {
+            "options": "Sometimes",
+            "count": 33
+        }, {
+            "options": "Often",
+            "count": 10
+        }, {
+            "options": "Very Often",
+            "count": 3
+        }],
+        "answersNum": 116,
+        "created_at": "1408401444742",
+        "fractionCount": 270,
+        "questions_Num": 5,
+        "surveyID": "53f27eeae4b0fe86260a8e7f",
+        "surveyType": "survey",
+        "title": "I use email to communicate complex issues with people. It's quick and efficient.",
+        "updated_at": "1408401444742"
+    }
+
+    , {
+        "_id": "53f28048e4b0fe86260a90a6",
+        "answers": [{
+            "options": "Not at All",
+            "count": 2
+        }, {
+            "options": "Rarely",
+            "count": 14
+        }, {
+            "count": 21,
+            "options": "Sometimes"
+        }, {
+            "options": "Often",
+            "count": 52
+        }, {
+            "options": "Very Often",
+            "count": 29
+        }],
+        "answersNum": 116,
+        "created_at": "1408401480450",
+        "fractionCount": 446,
+        "questions_Num": 5,
+        "surveyID": "53f27eeae4b0fe86260a8e7f",
+        "surveyType": "survey",
+        "title": "When I finish writing a report, memo, or email, I scan it quickly for typos and so forth, and then send it off right away.",
+        "updated_at": "1408401480450"
+    }
+
+    , {
+        "_id": "53f27ff8e4b0fe86260a90a4",
+        "answers": [{
+            "options": "Not at All",
+            "count": 0
+        }, {
+            "options": "Rarely",
+            "count": 0
+        }, {
+            "options": "Sometimes",
+            "count": 10
+        }, {
+            "count": 61,
+            "options": "Often"
+        }, {
+            "options": "Very Often",
+            "count": 45
+        }],
+        "answersNum": 116,
+        "created_at": "1408401400280",
+        "fractionCount": 499,
+        "questions_Num": 5,
+        "surveyID": "53f27eeae4b0fe86260a8e7f",
+        "surveyType": "survey",
+        "title": "When people talk to me, I try to see their perspectives.",
+        "updated_at": "1408401400280"
+    }
+
+    , {
+        "_id": "53f280ede4b0fe86260a90aa",
+        "answers": [{
+            "options": "Not at All",
+            "count": 3
+        }, {
+            "options": "Rarely",
+            "count": 9
+        }, {
+            "options": "Sometimes",
+            "count": 35
+        }, {
+            "options": "Often",
+            "count": 56
+        }, {
+            "count": 13,
+            "options": "Very Often"
+        }],
+        "answersNum": 116,
+        "created_at": "1408401645816",
+        "fractionCount": 415,
+        "questions_Num": 5,
+        "surveyID": "53f27eeae4b0fe86260a8e7f",
+        "surveyType": "survey",
+        "title": "When someone's talking to me, I think about what I'm going to say next to make sure I get my point across correctly.",
+        "updated_at": "1408401645816"
+    }
+
+    , {
+        "_id": "53f2810ce4b0fe86260a90ab",
+        "answers": [{
+            "options": "Not at All",
+            "count": 1
+        }, {
+            "options": "Rarely",
+            "count": 2
+        }, {
+            "options": "Sometimes",
+            "count": 9
+        }, {
+            "options": "Often",
+            "count": 64
+        }, {
+            "count": 40,
+            "options": "Very Often"
+        }],
+        "answersNum": 116,
+        "created_at": "1408401676538",
+        "fractionCount": 488,
+        "questions_Num": 5,
+        "surveyID": "53f27eeae4b0fe86260a8e7f",
+        "surveyType": "survey",
+        "title": "Before I send a message, I think about the best way to communicate it (in person, over the phone, in a newsletter, via memo, and so on)",
+        "updated_at": "1408401676538"
+    }
+
+    , {
+        "_id": "53f2812ee4b0fe86260a90ac",
+        "answers": [{
+            "options": "Not at All",
+            "count": 0
+        }, {
+            "options": "Rarely",
+            "count": 2
+        }, {
+            "options": "Sometimes",
+            "count": 20
+        }, {
+            "options": "Often",
+            "count": 64
+        }, {
+            "count": 30,
+            "options": "Very Often"
+        }],
+        "answersNum": 116,
+        "created_at": "1408401710920",
+        "fractionCount": 470,
+        "questions_Num": 5,
+        "surveyID": "53f27eeae4b0fe86260a8e7f",
+        "surveyType": "survey",
+        "title": "I try to help people understand the underlying concepts behind the point I am discussing. This reduces misconceptions and increases understanding.",
+        "updated_at": "1408401710920"
+    }
+
+    , {
+        "_id": "53f27f2be4b0fe86260a8f74",
+        "answers": [{
+            "options": "Not at all",
+            "count": 0
+        }, {
+            "options": "Rarely",
+            "count": 6
+        }, {
+            "options": "Sometimes",
+            "count": 23
+        }, {
+            "options": "Often",
+            "count": 65
+        }, {
+            "count": 33,
+            "options": "Very Often"
+        }],
+        "answersNum": 127,
+        "created_at": "1408401195415",
+        "fractionCount": 506,
+        "questions_Num": 5,
+        "surveyID": "53f27eeae4b0fe86260a8e7f",
+        "surveyType": "survey",
+        "title": "I try to anticipate and predict possible causes of confusion, and I deal with them up front.",
+        "updated_at": "1408401195415"
+    }
+
+    , {
+        "_id": "53f280ade4b0fe86260a90a9",
+        "answers": [{
+            "options": "Not at All",
+            "count": 0
+        }, {
+            "options": "Rarely",
+            "count": 2
+        }, {
+            "options": "Sometimes",
+            "count": 17
+        }, {
+            "options": "Often",
+            "count": 59
+        }, {
+            "count": 38,
+            "options": "Very often"
+        }],
+        "answersNum": 116,
+        "created_at": "1408401581419",
+        "fractionCount": 481,
+        "questions_Num": 5,
+        "surveyID": "53f27eeae4b0fe86260a8e7f",
+        "surveyType": "survey",
+        "title": "Before I communicate, I think about what the person needs to know, and how best to convey it.",
+        "updated_at": "1408401581419"
+    }
+
+    , {
+        "_id": "53fd2294e4b006913c489f6c",
+        "fractionCount": 249,
+        "title": "Are your activities reflecting your furnishing?",
+        "updated_at": "1409098388754",
+        "answersNum": 113,
+        "surveyID": "53fd220ae4b006913c489ef4",
+        "answers": [{
+            "options": "Yes - completely ",
+            "count": 27
+        }, {
+            "options": "Yes - some parts (the parts that have a need)",
+            "count": 69
+        }, {
+            "options": "So so – could be better",
+            "count": 22
+        }, {
+            "options": "No – not at all",
+            "count": 1
+        }, {
+            "options": "No – since it’s not mine",
+            "count": 0
+        }],
+        "created_at": "1409098388754",
+        "questions_Num": 5,
+        "surveyType": "voting"
+    }
+
+    , {
+        "_id": "555edf6fe4b0373a14726c33",
+        "answers": [{
+            "options": "East of Asia",
+            "count": 0
+        }, {
+            "options": "South of Asia",
+            "count": 0
+        }, {
+            "options": "South East of Asia",
+            "count": 0
+        }, {
+            "options": "European",
+            "count": 0
+        }, {
+            "options": "Australian",
+            "count": 0
+        }, {
+            "options": "American/Canadian",
+            "count": 0
+        }, {
+            "options": "Others",
+            "count": 0
+        }],
+        "created_at": "1432280943962",
+        "fractionCount": 0,
+        "imageUrl": [],
+        "isNeedComment": false,
+        "isSingle": true,
+        "questions_Num": 7,
+        "surveyID": "555edf07e4b0373a14726c2d",
+        "surveyType": "survey",
+        "title": "10. What's your nationality?",
+        "updated_at": "1432281086703"
+    }
+
+    , {
+        "_id": "555edfdce4b0373a14726c36",
+        "answers": [{
+            "options": "60 +",
+            "count": 0
+        }, {
+            "options": "50 to 59 years",
+            "count": 0
+        }, {
+            "options": "40 to 49 years",
+            "count": 0
+        }, {
+            "options": "30 to 39 years",
+            "count": 0
+        }, {
+            "options": "20 to 29 years",
+            "count": 0
+        }],
+        "created_at": "1432281052320",
+        "fractionCount": 0,
+        "imageUrl": [],
+        "isNeedComment": false,
+        "isSingle": true,
+        "questions_Num": 5,
+        "surveyID": "555edf07e4b0373a14726c2d",
+        "surveyType": "survey",
+        "title": "9. What's your age?",
+        "updated_at": "1432281094407"
+    }
+
+    , {
+        "_id": "555ee0c2e4b0373a14726e27",
+        "answers": [{
+            "options": "Excellent",
+            "count": 14
+        }, {
+            "options": "Very good",
+            "count": 20
+        }, {
+            "count": 26,
+            "options": "Good"
+        }, {
+            "options": "Could be better",
+            "count": 26
+        }, {
+            "options": "Not so good",
+            "count": 4
+        }, {
+            "options": "Poor",
+            "count": 6
+        }],
+        "answersNum": 97,
+        "created_at": "1432281282293",
+        "fractionCount": 529,
+        "imageUrl": [],
+        "isNeedComment": false,
+        "isSingle": true,
+        "questions_Num": 6,
+        "surveyID": "555ee061e4b0373a14726e16",
+        "surveyType": "survey",
+        "title": "1. How would you rate your overall physical fitness?",
+        "updated_at": "1432281282293"
+    }
+
+    , {
+        "_id": "555ee106e4b0373a14726e2a",
+        "answers": [{
+            "options": "Extremely important",
+            "count": 23
+        }, {
+            "count": 40,
+            "options": "Very important"
+        }, {
+            "options": "Moderately important",
+            "count": 21
+        }, {
+            "options": "Slightly important",
+            "count": 4
+        }, {
+            "options": "Not important at all",
+            "count": 8
+        }],
+        "answersNum": 97,
+        "created_at": "1432281350130",
+        "fractionCount": 368,
+        "imageUrl": [],
+        "isNeedComment": false,
+        "isSingle": true,
+        "questions_Num": 5,
+        "surveyID": "555ee061e4b0373a14726e16",
+        "surveyType": "survey",
+        "title": "2. How important is exercise to you?",
+        "updated_at": "1432281350130"
+    }
+
+    , {
+        "_id": "555ee165e4b0373a14726e46",
+        "answers": [{
+            "options": "Everyday",
+            "count": 9
+        }, {
+            "options": "5-6 times/per week",
+            "count": 8
+        }, {
+            "options": "3-4 times/per week",
+            "count": 28
+        }, {
+            "count": 24,
+            "options": "1-2 times/per week"
+        }, {
+            "options": "I don’t exercise regularly",
+            "count": 27
+        }],
+        "answersNum": 97,
+        "created_at": "1432281445812",
+        "fractionCount": 594,
+        "imageUrl": [],
+        "isNeedComment": false,
+        "isSingle": true,
+        "questions_Num": 5,
+        "surveyID": "555ee061e4b0373a14726e16",
+        "surveyType": "survey",
+        "title": "3. How often do you exercise in a week?",
+        "updated_at": "1432281445812"
+    }
+
+    , {
+        "_id": "555ee1b0e4b0373a14726e49",
+        "answers": [{
+            "options": "1 hour or more",
+            "count": 34
+        }, {
+            "count": 27,
+            "options": "40-50 minutes"
+        }, {
+            "options": "30-40 minutes",
+            "count": 13
+        }, {
+            "options": "20-30 minutes ",
+            "count": 13
+        }, {
+            "options": "Less than 20 minutes",
+            "count": 9
+        }],
+        "answersNum": 97,
+        "created_at": "1432281520822",
+        "fractionCount": 391,
+        "imageUrl": [],
+        "isNeedComment": false,
+        "isSingle": true,
+        "questions_Num": 5,
+        "surveyID": "555ee061e4b0373a14726e16",
+        "surveyType": "survey",
+        "title": "4. If you exercise, how much time do you spend?",
+        "updated_at": "1432281520822"
+    }
+
+    , {
+        "_id": "555ee237e4b0373a14726e4c",
+        "answers": [{
+            "options": "General health and fitness",
+            "count": 71
+        }, {
+            "options": "Weight loss",
+            "count": 28
+        }, {
+            "options": "Stress relief",
+            "count": 32
+        }, {
+            "options": "Enjoyment",
+            "count": 30
+        }, {
+            "options": "Social activity",
+            "count": 8
+        }, {
+            "options": "Others",
+            "count": 9
+        }],
+        "answersNum": 80,
+        "created_at": "1432281655691",
+        "fractionCount": 389,
+        "imageUrl": [],
+        "isNeedComment": false,
+        "isSingle": false,
+        "questions_Num": 6,
+        "surveyID": "555ee061e4b0373a14726e16",
+        "surveyType": "survey",
+        "title": "5. If you exercise regularly, what are the main reasons? why? (Multiple choices)",
+        "updated_at": "1432281655691"
+    }
+
+    , {
+        "_id": "555ee291e4b0373a14726e4f",
+        "answers": [{
+            "options": "Need to take care of children/family",
+            "count": 31
+        }, {
+            "options": "Heavy workload",
+            "count": 37
+        }, {
+            "options": "Physical limitation / injury",
+            "count": 8
+        }, {
+            "options": "Not interested",
+            "count": 5
+        }, {
+            "options": "Others",
+            "count": 26
+        }],
+        "answersNum": 80,
+        "created_at": "1432281745854",
+        "fractionCount": 286,
+        "imageUrl": [],
+        "isNeedComment": false,
+        "isSingle": false,
+        "questions_Num": 5,
+        "surveyID": "555ee061e4b0373a14726e16",
+        "surveyType": "survey",
+        "title": "6. If you don’t exercise regularly, what are the main reasons? why? (Multiple choices)",
+        "updated_at": "1432281745854"
+    }
+
+    , {
+        "_id": "555ee308e4b0373a14726e52",
+        "answers": [{
+            "options": "Walking",
+            "count": 54
+        }, {
+            "options": "Jogging/running",
+            "count": 38
+        }, {
+            "options": "Bicycling",
+            "count": 17
+        }, {
+            "options": "Weight lifting",
+            "count": 20
+        }, {
+            "options": "Hiking",
+            "count": 6
+        }, {
+            "options": "Swimming",
+            "count": 24
+        }, {
+            "options": "Yoga",
+            "count": 12
+        }, {
+            "options": "Tai Chi",
+            "count": 2
+        }, {
+            "options": "Competitive sports - football, basketball, badminton, tennis etc",
+            "count": 16
+        }, {
+            "options": "Others",
+            "count": 8
+        }],
+        "answersNum": 80,
+        "created_at": "1432281864437",
+        "fractionCount": 761,
+        "imageUrl": [],
+        "isNeedComment": false,
+        "isSingle": false,
+        "questions_Num": 10,
+        "surveyID": "555ee061e4b0373a14726e16",
+        "surveyType": "survey",
+        "title": "7. What physical activities are you involved in regularly? (Multiple choices)",
+        "updated_at": "1432281864437"
+    }
+
+    , {
+        "_id": "555ee393e4b0373a14726e5b",
+        "answers": [{
+            "options": "60 +",
+            "count": 1
+        }, {
+            "count": 6,
+            "options": "50 to 59 years"
+        }, {
+            "options": "40 to 49 years",
+            "count": 30
+        }, {
+            "options": "30 to 39 years",
+            "count": 37
+        }, {
+            "options": "20 to 29 years",
+            "count": 5
+        }],
+        "answersNum": 80,
+        "created_at": "1432282003569",
+        "fractionCount": 278,
+        "imageUrl": [],
+        "isNeedComment": false,
+        "isSingle": true,
+        "questions_Num": 5,
+        "surveyID": "555ee061e4b0373a14726e16",
+        "surveyType": "survey",
+        "title": "9. What is your age?",
+        "updated_at": "1432282003569"
+    }
+
+    , {
+        "_id": "555ee40ce4b0373a14726e5e",
+        "answers": [{
+            "options": "East of Asia",
+            "count": 23
+        }, {
+            "count": 7,
+            "options": "South of Asia"
+        }, {
+            "options": "South East of Asia",
+            "count": 7
+        }, {
+            "options": "European",
+            "count": 31
+        }, {
+            "options": "Australian",
+            "count": 9
+        }, {
+            "options": "American / Canadian",
+            "count": 2
+        }, {
+            "options": "Others",
+            "count": 0
+        }],
+        "answersNum": 80,
+        "created_at": "1432282124178",
+        "fractionCount": 241,
+        "imageUrl": [],
+        "isNeedComment": false,
+        "isSingle": true,
+        "questions_Num": 7,
+        "surveyID": "555ee061e4b0373a14726e16",
+        "surveyType": "survey",
+        "title": "10. What is your nationality?",
+        "updated_at": "1432282124178"
+    }
+
+    , {
+        "_id": "555ee47be4b0373a14726e6c",
+        "answers": [{
+            "count": 5,
+            "options": "Swimming"
+        }, {
+            "options": "Yoga",
+            "count": 14
+        }, {
+            "options": "3km running",
+            "count": 11
+        }, {
+            "options": "5km running",
+            "count": 10
+        }],
+        "answersNum": 40,
+        "created_at": "1432282235449",
+        "fractionCount": 106,
+        "imageUrl": [],
+        "isNeedComment": false,
+        "isSingle": true,
+        "questions_Num": 4,
+        "surveyID": "555ee43de4b0373a14726e65",
+        "surveyType": "survey",
+        "title": "Please register for the exercise you will take on the morning of June 3rd . (Please bring your own relevant sports clothing.)",
+        "updated_at": "1432282235449"
+    }
+
+    , {
+        "_id": "555ee33be4b0373a14726e55",
+        "answers": [{
+            "options": "Male",
+            "count": 41
+        }, {
+            "count": 38,
+            "options": "Female"
+        }],
+        "answersNum": 80,
+        "created_at": "1432281915191",
+        "fractionCount": 119,
+        "imageUrl": [],
+        "isNeedComment": false,
+        "isSingle": true,
+        "questions_Num": 2,
+        "surveyID": "555ee061e4b0373a14726e16",
+        "surveyType": "survey",
+        "title": "8. What is your gender?",
+        "updated_at": "1432281932953"
+    }
+
+    , {
+        "_id": "55668f72e4b0a312b1d56ffe",
+        "answers": [{
+            "options": "Swimming",
+            "count": 16
+        }, {
+            "options": "Yoga",
+            "count": 43
+        }, {
+            "count": 29,
+            "options": "5km running"
+        }, {
+            "options": "10km running",
+            "count": 4
+        }],
+        "answersNum": 92,
+        "created_at": "1432784754818",
+        "fractionCount": 205,
+        "imageUrl": [],
+        "isNeedComment": false,
+        "isSingle": true,
+        "questions_Num": 4,
+        "surveyID": "55668ee2e4b0a312b1d56fe0",
+        "surveyType": "survey",
+        "title": "Please register for the exercise you will take on the morning of June 3rd. (Please bring your own sports clothing.)",
+        "updated_at": "1432784754818"
+    }
+
+    , {
+        "_id": "556e6077e4b0a312b1d6c2ca",
+        "fractionCount": 0,
+        "title": "Which group's idea do you like best?",
+        "updated_at": "1433297015476",
+        "answersNum": 0,
+        "imageUrl": [],
+        "surveyID": "556e6049e4b0a312b1d6c2c5",
+        "isNeedComment": false,
+        "answers": [{
+            "options": "11",
+            "count": 0
+        }, {
+            "options": "22",
+            "count": 0
+        }, {
+            "options": "33",
+            "count": 0
+        }],
+        "created_at": "1433297015476",
+        "questions_Num": 3,
+        "isSingle": true,
+        "surveyType": "voting"
+    }
+
+    , {
+        "_id": "556e669645ce98f9ddf21d5c",
+        "fractionCount": 1,
+        "title": "question 1",
+        "updated_at": "1433298582644",
+        "answersNum": 1,
+        "imageUrl": [],
+        "surveyID": "556e667645ce98f9ddf21d57",
+        "isNeedComment": false,
+        "answers": [{
+            "options": "1",
+            "count": 1
+        }, {
+            "options": "2",
+            "count": 0
+        }, {
+            "options": "3",
+            "count": 0
+        }],
+        "created_at": "1433298582644",
+        "questions_Num": 3,
+        "isSingle": true,
+        "surveyType": "voting"
+    }
+
+    , {
+        "_id": "556e66a345ce98f9ddf21d60",
+        "fractionCount": 2,
+        "title": "question2",
+        "updated_at": "1433298595823",
+        "answersNum": 1,
+        "imageUrl": [],
+        "surveyID": "556e667645ce98f9ddf21d57",
+        "isNeedComment": false,
+        "answers": [{
+            "options": "1",
+            "count": 0
+        }, {
+            "options": "2",
+            "count": 1
+        }, {
+            "options": "3",
+            "count": 0
+        }, {
+            "options": "4",
+            "count": 0
+        }],
+        "created_at": "1433298595823",
+        "questions_Num": 4,
+        "isSingle": true,
+        "surveyType": "voting"
+    }
+
+    , {
+        "_id": "556e684345ce98f9ddf21d87",
+        "fractionCount": 2,
+        "title": "question1",
+        "updated_at": "1433299011053",
+        "answersNum": 1,
+        "imageUrl": [],
+        "surveyID": "556e682e45ce98f9ddf21d80",
+        "isNeedComment": false,
+        "answers": [{
+            "options": "1",
+            "count": 0
+        }, {
+            "options": "2",
+            "count": 1
+        }, {
+            "options": "3",
+            "count": 0
+        }],
+        "created_at": "1433299011053",
+        "questions_Num": 3,
+        "isSingle": true,
+        "surveyType": "voting"
+    }
+
+    , {
+        "_id": "556e684e45ce98f9ddf21d8a",
+        "fractionCount": 3,
+        "title": "questin2",
+        "updated_at": "1433299022977",
+        "answersNum": 1,
+        "imageUrl": [],
+        "surveyID": "556e682e45ce98f9ddf21d80",
+        "isNeedComment": false,
+        "answers": [{
+            "options": "1",
+            "count": 0
+        }, {
+            "options": "2",
+            "count": 0
+        }, {
+            "options": "3",
+            "count": 1
+        }, {
+            "options": "4",
+            "count": 0
+        }],
+        "created_at": "1433299022977",
+        "questions_Num": 4,
+        "isSingle": true,
+        "surveyType": "voting"
+    }
+
+    , {
+        "_id": "556e685c45ce98f9ddf21d8d",
+        "fractionCount": 4,
+        "title": "questin3",
+        "updated_at": "1433299036542",
+        "answersNum": 1,
+        "imageUrl": [],
+        "surveyID": "556e682e45ce98f9ddf21d80",
+        "isNeedComment": false,
+        "answers": [{
+            "options": "1",
+            "count": 0
+        }, {
+            "options": "2",
+            "count": 0
+        }, {
+            "options": "3",
+            "count": 0
+        }, {
+            "options": "4",
+            "count": 1
+        }, {
+            "options": "5",
+            "count": 0
+        }],
+        "created_at": "1433299036542",
+        "questions_Num": 5,
+        "isSingle": true,
+        "surveyType": "voting"
+    }
+
+    , {
+        "_id": "556e686b45ce98f9ddf21d90",
+        "fractionCount": 2,
+        "title": "question4",
+        "updated_at": "1433299051320",
+        "answersNum": 1,
+        "imageUrl": [],
+        "surveyID": "556e682e45ce98f9ddf21d80",
+        "isNeedComment": false,
+        "answers": [{
+            "options": "1",
+            "count": 0
+        }, {
+            "options": "23",
+            "count": 1
+        }, {
+            "options": "456",
+            "count": 0
+        }],
+        "created_at": "1433299051320",
+        "questions_Num": 3,
+        "isSingle": true,
+        "surveyType": "voting"
+    }
+
+    , {
+        "_id": "556e6de1e4b0a312b1d6c6bc",
+        "fractionCount": 682,
+        "title": "Which group's idea do you like best?",
+        "updated_at": "1433300449711",
+        "answersNum": 204,
+        "imageUrl": [],
+        "surveyID": "556e60fae4b0a312b1d6c481",
+        "isNeedComment": false,
+        "answers": [{
+            "options": "shared economy the IKEA way",
+            "count": 51
+        }, {
+            "options": "free delivery:supplier to customer",
+            "count": 23
+        }, {
+            "options": "logistics of people-IKEA university",
+            "count": 24
+        }, {
+            "options": "design packaging for logistics",
+            "count": 45
+        }, {
+            "options": "reaching the many through the many",
+            "count": 33
+        }, {
+            "options": "pipeline visibility",
+            "count": 28
+        }],
+        "created_at": "1433300449711",
+        "questions_Num": 6,
+        "isSingle": true,
+        "surveyType": "voting"
+    }
+
+    , {
+        "_id": "556e6fede4b0a312b1d6c958",
+        "fractionCount": 442,
+        "title": "Which group's idea do you like best?",
+        "updated_at": "1433300973223",
+        "answersNum": 127,
+        "imageUrl": [],
+        "surveyID": "556e6f4be4b0a312b1d6c90d",
+        "isNeedComment": false,
+        "answers": [{
+            "options": "shared economy the IKEA way",
+            "count": 19
+        }, {
+            "options": "free delivery: supplier to customer",
+            "count": 22
+        }, {
+            "options": "logistics of people -IKEA university",
+            "count": 23
+        }, {
+            "options": "design packaging for logistics",
+            "count": 23
+        }, {
+            "options": "reaching the many through the many",
+            "count": 22
+        }, {
+            "options": "pipeline visibility",
+            "count": 18
+        }],
+        "created_at": "1433300973223",
+        "questions_Num": 6,
+        "isSingle": true,
+        "surveyType": "voting"
+    }
+
+    , {
+        "_id": "55d0d278e4b0fee4ecbf63bc",
+        "answers": [{
+            "options": "1",
+            "count": 0
+        }, {
+            "count": 2,
+            "options": "2"
+        }, {
+            "options": "3",
+            "count": 0
+        }],
+        "answersNum": 2,
+        "created_at": "1439748728980",
+        "fractionCount": 4,
+        "imageUrl": [],
+        "isNeedComment": false,
+        "isSingle": true,
+        "questions_Num": 3,
+        "surveyID": "55d0d268e4b0fee4ecbf63b7",
+        "surveyType": "survey",
+        "title": "ques1",
+        "updated_at": "1439748728980"
+    }
+
+    , {
+        "_id": "55d0d287e4b0fee4ecbf63bf",
+        "answers": [{
+            "options": "a",
+            "count": 0
+        }, {
+            "count": 2,
+            "options": "s"
+        }, {
+            "options": "d",
+            "count": 0
+        }, {
+            "options": "f",
+            "count": 0
+        }],
+        "answersNum": 2,
+        "created_at": "1439748743051",
+        "fractionCount": 4,
+        "imageUrl": [],
+        "isNeedComment": false,
+        "isSingle": true,
+        "questions_Num": 4,
+        "surveyID": "55d0d268e4b0fee4ecbf63b7",
+        "surveyType": "survey",
+        "title": "qyes2",
+        "updated_at": "1439748743051"
+    }
+
+    , {
+        "_id": "55d0d293e4b0fee4ecbf63c2",
+        "answers": [{
+            "options": "r",
+            "count": 0
+        }, {
+            "count": 2,
+            "options": "f"
+        }, {
+            "options": "g",
+            "count": 0
+        }, {
+            "options": "v",
+            "count": 0
+        }],
+        "answersNum": 2,
+        "created_at": "1439748755482",
+        "fractionCount": 4,
+        "imageUrl": [],
+        "isNeedComment": false,
+        "isSingle": true,
+        "questions_Num": 4,
+        "surveyID": "55d0d268e4b0fee4ecbf63b7",
+        "surveyType": "survey",
+        "title": "ques3",
+        "updated_at": "1439748755482"
+    }
+
+    , {
+        "_id": "55d0d2f3e4b0fee4ecbf63ef",
+        "answers": [{
+            "options": "3",
+            "count": 0
+        }, {
+            "count": 2,
+            "options": "4"
+        }, {
+            "options": "2",
+            "count": 0
+        }, {
+            "options": "5",
+            "count": 0
+        }],
+        "answersNum": 2,
+        "created_at": "1439748851091",
+        "fractionCount": 4,
+        "imageUrl": [],
+        "isNeedComment": false,
+        "isSingle": true,
+        "questions_Num": 4,
+        "surveyID": "55d0d2e3e4b0fee4ecbf63ea",
+        "surveyType": "survey",
+        "title": "qewerw1",
+        "updated_at": "1439748851091"
+    }
+
+    , {
+        "_id": "55d0d4d3e4b0fee4ecbf6435",
+        "answers": [{
+            "options": "121",
+            "count": 0
+        }, {
+            "count": 1,
+            "options": "23"
+        }, {
+            "options": "442",
+            "count": 0
+        }],
+        "answersNum": 1,
+        "created_at": "1439749331167",
+        "fractionCount": 2,
+        "imageUrl": [],
+        "isNeedComment": false,
+        "isSingle": true,
+        "questions_Num": 3,
+        "surveyID": "55d0d4c3e4b0fee4ecbf642e",
+        "surveyType": "survey",
+        "title": "qwwe1",
+        "updated_at": "1439749331167"
+    }
+
+    , {
+        "_id": "55d0d4dee4b0fee4ecbf6439",
+        "answers": [{
+            "options": "21",
+            "count": 0
+        }, {
+            "count": 1,
+            "options": "432142"
+        }, {
+            "options": "134",
+            "count": 0
+        }],
+        "answersNum": 1,
+        "created_at": "1439749342074",
+        "fractionCount": 2,
+        "imageUrl": [],
+        "isNeedComment": false,
+        "isSingle": true,
+        "questions_Num": 3,
+        "surveyID": "55d0d4c3e4b0fee4ecbf642e",
+        "surveyType": "survey",
+        "title": "qweqwe2",
+        "updated_at": "1439749342074"
+    }
+
+    , {
+        "_id": "55d0d4ebe4b0fee4ecbf643c",
+        "answers": [{
+            "options": "qewe",
+            "count": 0
+        }, {
+            "options": "eqwe",
+            "count": 0
+        }, {
+            "count": 1,
+            "options": "wqewqr"
+        }, {
+            "options": "eqwerr",
+            "count": 0
+        }],
+        "answersNum": 1,
+        "created_at": "1439749355639",
+        "fractionCount": 3,
+        "imageUrl": [],
+        "isNeedComment": false,
+        "isSingle": true,
+        "questions_Num": 4,
+        "surveyID": "55d0d4c3e4b0fee4ecbf642e",
+        "surveyType": "survey",
+        "title": "12312wqeqwe",
+        "updated_at": "1439749355639"
+    }
+
+    , {
+        "_id": "55d0d523e4b0fee4ecbf6457",
+        "answers": [{
+            "options": "qwe",
+            "count": 0
+        }, {
+            "count": 1,
+            "options": "ewqe"
+        }, {
+            "options": "ewqeqw",
+            "count": 0
+        }],
+        "answersNum": 1,
+        "created_at": "1439749411643",
+        "fractionCount": 2,
+        "imageUrl": [],
+        "isNeedComment": false,
+        "isSingle": true,
+        "questions_Num": 3,
+        "surveyID": "55d0d514e4b0fee4ecbf6452",
+        "surveyType": "survey",
+        "title": "wqere1",
+        "updated_at": "1439749411643"
+    }
+
+    , {
+        "_id": "55d0d52ee4b0fee4ecbf645a",
+        "answers": [{
+            "options": "eqw",
+            "count": 0
+        }, {
+            "count": 1,
+            "options": "ewqr"
+        }, {
+            "options": "r",
+            "count": 0
+        }, {
+            "options": "trete",
+            "count": 0
+        }],
+        "answersNum": 1,
+        "created_at": "1439749422457",
+        "fractionCount": 2,
+        "imageUrl": [],
+        "isNeedComment": false,
+        "isSingle": true,
+        "questions_Num": 4,
+        "surveyID": "55d0d514e4b0fee4ecbf6452",
+        "surveyType": "survey",
+        "title": "wqeeqwrerr",
+        "updated_at": "1439749422457"
+    }
+
+    , {
+        "_id": "55d0d53ae4b0fee4ecbf645d",
+        "answers": [{
+            "options": "aqsg",
+            "count": 0
+        }, {
+            "count": 1,
+            "options": "gsdgs"
+        }, {
+            "options": "dgsd",
+            "count": 0
+        }, {
+            "options": "gdgew",
+            "count": 0
+        }],
+        "answersNum": 1,
+        "created_at": "1439749434113",
+        "fractionCount": 2,
+        "imageUrl": [],
+        "isNeedComment": false,
+        "isSingle": true,
+        "questions_Num": 4,
+        "surveyID": "55d0d514e4b0fee4ecbf6452",
+        "surveyType": "survey",
+        "title": "rewwesdsxcsx",
+        "updated_at": "1439749434113"
+    }
+
+    , {
+        "_id": "55d0d545e4b0fee4ecbf6460",
+        "answers": [{
+            "options": "swfd",
+            "count": 0
+        }, {
+            "count": 1,
+            "options": "hyfd"
+        }, {
+            "options": "hsdgs",
+            "count": 0
+        }, {
+            "options": "fdshdfh",
+            "count": 0
+        }],
+        "answersNum": 1,
+        "created_at": "1439749445864",
+        "fractionCount": 2,
+        "imageUrl": [],
+        "isNeedComment": false,
+        "isSingle": true,
+        "questions_Num": 4,
+        "surveyID": "55d0d514e4b0fee4ecbf6452",
+        "surveyType": "survey",
+        "title": "eyrtyrt",
+        "updated_at": "1439749445864"
+    }
+
+    , {
+        "_id": "55d0d574e4b0fee4ecbf6473",
+        "answers": [{
+            "options": "asd",
+            "count": 0
+        }, {
+            "options": "asfsaf",
+            "count": 0
+        }, {
+            "count": 1,
+            "options": "fsdfa"
+        }, {
+            "options": "asfsdf",
+            "count": 0
+        }],
+        "answersNum": 1,
+        "created_at": "1439749492382",
+        "fractionCount": 3,
+        "imageUrl": [],
+        "isNeedComment": false,
+        "isSingle": true,
+        "questions_Num": 4,
+        "surveyID": "55d0d562e4b0fee4ecbf646e",
+        "surveyType": "survey",
+        "title": "dasdasd",
+        "updated_at": "1439749492382"
+    }
+
+    , {
+        "_id": "55d0d581e4b0fee4ecbf6476",
+        "answers": [{
+            "options": "dsfgdf",
+            "count": 0
+        }, {
+            "options": "gdfsh",
+            "count": 0
+        }, {
+            "count": 1,
+            "options": "fdhfd"
+        }, {
+            "options": "hhdfh",
+            "count": 0
+        }],
+        "answersNum": 1,
+        "created_at": "1439749505160",
+        "fractionCount": 3,
+        "imageUrl": [],
+        "isNeedComment": false,
+        "isSingle": true,
+        "questions_Num": 4,
+        "surveyID": "55d0d562e4b0fee4ecbf646e",
+        "surveyType": "survey",
+        "title": "asfsdf",
+        "updated_at": "1439749505160"
+    }
+
+    , {
+        "_id": "55d0d58ce4b0fee4ecbf6479",
+        "answers": [{
+            "options": "sdgasd",
+            "count": 0
+        }, {
+            "count": 1,
+            "options": "dsafas"
+        }, {
+            "options": "aedfdf",
+            "count": 0
+        }, {
+            "options": "fdgfdsg",
+            "count": 0
+        }],
+        "answersNum": 1,
+        "created_at": "1439749516563",
+        "fractionCount": 2,
+        "imageUrl": [],
+        "isNeedComment": false,
+        "isSingle": true,
+        "questions_Num": 4,
+        "surveyID": "55d0d562e4b0fee4ecbf646e",
+        "surveyType": "survey",
+        "title": "safsadf",
+        "updated_at": "1439749516563"
+    }
+
+    , {
+        "_id": "55d0d599e4b0fee4ecbf647c",
+        "answers": [{
+            "options": "jhghj",
+            "count": 0
+        }, {
+            "options": "ghjdf",
+            "count": 0
+        }, {
+            "count": 1,
+            "options": "jhk"
+        }, {
+            "options": "kjhl",
+            "count": 0
+        }],
+        "answersNum": 1,
+        "created_at": "1439749529499",
+        "fractionCount": 3,
+        "imageUrl": [],
+        "isNeedComment": false,
+        "isSingle": true,
+        "questions_Num": 4,
+        "surveyID": "55d0d562e4b0fee4ecbf646e",
+        "surveyType": "survey",
+        "title": "dsfgfdsgdf",
+        "updated_at": "1439749529499"
+    }
+
+    , {
+        "_id": "55d0d5a6e4b0fee4ecbf647f",
+        "answers": [{
+            "options": "dsfhfg",
+            "count": 0
+        }, {
+            "options": "jhfdg",
+            "count": 0
+        }, {
+            "count": 1,
+            "options": "sdsz"
+        }, {
+            "options": "fhgfh",
+            "count": 0
+        }, {
+            "options": "hgkhjk",
+            "count": 0
+        }],
+        "answersNum": 1,
+        "created_at": "1439749542469",
+        "fractionCount": 3,
+        "imageUrl": [],
+        "isNeedComment": false,
+        "isSingle": true,
+        "questions_Num": 5,
+        "surveyID": "55d0d562e4b0fee4ecbf646e",
+        "surveyType": "survey",
+        "title": "xfcgdfxg",
+        "updated_at": "1439749542469"
+    }
+
+    , {
+        "_id": "55d0d8cae4b078e5e8be4b24",
+        "answers": [{
+            "options": "1",
+            "count": 0
+        }, {
+            "count": 1,
+            "options": "2"
+        }, {
+            "options": "3",
+            "count": 0
+        }, {
+            "options": "4",
+            "count": 0
+        }],
+        "answersNum": 1,
+        "created_at": "1439750346503",
+        "fractionCount": 2,
+        "imageUrl": [],
+        "isNeedComment": false,
+        "isSingle": true,
+        "questions_Num": 4,
+        "surveyID": "55d0d8b4e4b078e5e8be4b12",
+        "surveyType": "survey",
+        "title": "1",
+        "updated_at": "1439750346503"
+    }
+
+    , {
+        "_id": "55d0d8dbe4b078e5e8be4b2a",
+        "answers": [{
+            "options": "4",
+            "count": 0
+        }, {
+            "options": "5",
+            "count": 0
+        }, {
+            "count": 1,
+            "options": "6"
+        }, {
+            "options": "7",
+            "count": 0
+        }],
+        "answersNum": 1,
+        "created_at": "1439750363798",
+        "fractionCount": 3,
+        "imageUrl": [],
+        "isNeedComment": false,
+        "isSingle": true,
+        "questions_Num": 4,
+        "surveyID": "55d0d8b4e4b078e5e8be4b12",
+        "surveyType": "survey",
+        "title": "3",
+        "updated_at": "1439750363798"
+    }
+
+    , {
+        "_id": "55d0d8e6e4b078e5e8be4b2d",
+        "answers": [{
+            "options": "e",
+            "count": 0
+        }, {
+            "count": 1,
+            "options": "t"
+        }, {
+            "options": "t4e",
+            "count": 0
+        }, {
+            "options": "y",
+            "count": 0
+        }],
+        "answersNum": 1,
+        "created_at": "1439750374422",
+        "fractionCount": 2,
+        "imageUrl": [],
+        "isNeedComment": false,
+        "isSingle": true,
+        "questions_Num": 4,
+        "surveyID": "55d0d8b4e4b078e5e8be4b12",
+        "surveyType": "survey",
+        "title": "8",
+        "updated_at": "1439750374422"
+    }
+
+    , {
+        "_id": "55d0d8eee4b078e5e8be4b30",
+        "answers": [{
+            "options": "qw",
+            "count": 0
+        }, {
+            "count": 1,
+            "options": "rt"
+        }, {
+            "options": "ty",
+            "count": 0
+        }],
+        "answersNum": 1,
+        "created_at": "1439750382792",
+        "fractionCount": 2,
+        "imageUrl": [],
+        "isNeedComment": false,
+        "isSingle": true,
+        "questions_Num": 3,
+        "surveyID": "55d0d8b4e4b078e5e8be4b12",
+        "surveyType": "survey",
+        "title": "we",
+        "updated_at": "1439750382792"
+    }
+
+    , {
+        "_id": "55d0d8f8e4b078e5e8be4b33",
+        "answers": [{
+            "options": "qw",
+            "count": 0
+        }, {
+            "count": 1,
+            "options": "ert"
+        }, {
+            "options": "rey",
+            "count": 0
+        }, {
+            "options": "yt",
+            "count": 0
+        }],
+        "answersNum": 1,
+        "created_at": "1439750392178",
+        "fractionCount": 2,
+        "imageUrl": [],
+        "isNeedComment": false,
+        "isSingle": true,
+        "questions_Num": 4,
+        "surveyID": "55d0d8b4e4b078e5e8be4b12",
+        "surveyType": "survey",
+        "title": "rewt",
+        "updated_at": "1439750392178"
+    }
+
+    , {
+        "_id": "55d0d915e4b078e5e8be4b3c",
+        "answers": [{
+            "options": "ertreyt",
+            "count": 0
+        }, {
+            "count": 1,
+            "options": "rytr"
+        }, {
+            "options": "y",
+            "count": 0
+        }, {
+            "options": "uytuytu",
+            "count": 0
+        }],
+        "answersNum": 1,
+        "created_at": "1439750421159",
+        "fractionCount": 2,
+        "imageUrl": [],
+        "isNeedComment": false,
+        "isSingle": true,
+        "questions_Num": 4,
+        "surveyID": "55d0d8b4e4b078e5e8be4b12",
+        "surveyType": "survey",
+        "title": "try",
+        "updated_at": "1439750421159"
+    }
+
+    , {
+        "_id": "55d0d8d2e4b078e5e8be4b27",
+        "answers": [{
+            "options": "2",
+            "count": 0
+        }, {
+            "count": 1,
+            "options": "34"
+        }, {
+            "options": "5",
+            "count": 0
+        }],
+        "answersNum": 1,
+        "created_at": "1439750354636",
+        "fractionCount": 2,
+        "imageUrl": [],
+        "isNeedComment": false,
+        "isSingle": true,
+        "questions_Num": 3,
+        "surveyID": "55d0d8b4e4b078e5e8be4b12",
+        "surveyType": "survey",
+        "title": "2",
+        "updated_at": "1439750354636"
+    }
+
+    , {
+        "_id": "55d0d901e4b078e5e8be4b36",
+        "answers": [{
+            "options": "wae",
+            "count": 0
+        }, {
+            "options": "qwetrewt",
+            "count": 0
+        }, {
+            "count": 1,
+            "options": "rytryut"
+        }, {
+            "options": "uytuytu",
+            "count": 0
+        }],
+        "answersNum": 1,
+        "created_at": "1439750401788",
+        "fractionCount": 3,
+        "imageUrl": [],
+        "isNeedComment": false,
+        "isSingle": true,
+        "questions_Num": 4,
+        "surveyID": "55d0d8b4e4b078e5e8be4b12",
+        "surveyType": "survey",
+        "title": "tryru",
+        "updated_at": "1439750401788"
+    }
+
+    , {
+        "_id": "55d0d90ce4b078e5e8be4b39",
+        "answers": [{
+            "options": "wrter",
+            "count": 0
+        }, {
+            "count": 1,
+            "options": "ytryuytu"
+        }, {
+            "options": "ytu",
+            "count": 0
+        }],
+        "answersNum": 1,
+        "created_at": "1439750412398",
+        "fractionCount": 2,
+        "imageUrl": [],
+        "isNeedComment": false,
+        "isSingle": true,
+        "questions_Num": 3,
+        "surveyID": "55d0d8b4e4b078e5e8be4b12",
+        "surveyType": "survey",
+        "title": "erytr5uyyu",
+        "updated_at": "1439750412398"
+    }
+
+    , {
+        "_id": "55d0d91fe4b078e5e8be4b3f",
+        "answers": [{
+            "options": "ery",
+            "count": 0
+        }, {
+            "count": 1,
+            "options": "trytr"
+        }, {
+            "options": "ytry",
+            "count": 0
+        }, {
+            "options": "wetytry",
+            "count": 0
+        }],
+        "answersNum": 1,
+        "created_at": "1439750431358",
+        "fractionCount": 2,
+        "imageUrl": [],
+        "isNeedComment": false,
+        "isSingle": true,
+        "questions_Num": 4,
+        "surveyID": "55d0d8b4e4b078e5e8be4b12",
+        "surveyType": "survey",
+        "title": "reyuuytuytu",
+        "updated_at": "1439750431358"
+    }
+
+    , {
+        "_id": "55d0d998e4b078e5e8be4b5f",
+        "answers": [{
+            "options": "1",
+            "count": 0
+        }, {
+            "count": 1,
+            "options": "23"
+        }, {
+            "options": "4345",
+            "count": 0
+        }, {
+            "options": "545",
+            "count": 0
+        }],
+        "answersNum": 1,
+        "created_at": "1439750552832",
+        "fractionCount": 2,
+        "imageUrl": [],
+        "isNeedComment": false,
+        "isSingle": true,
+        "questions_Num": 4,
+        "surveyID": "55d0d984e4b078e5e8be4b57",
+        "surveyType": "survey",
+        "title": "ewrewt",
+        "updated_at": "1439750552832"
+    }
+
+    , {
+        "_id": "55d0d9a2e4b078e5e8be4b62",
+        "answers": [{
+            "options": "ret",
+            "count": 0
+        }, {
+            "count": 1,
+            "options": "ewrtre"
+        }, {
+            "options": "ytytry",
+            "count": 0
+        }, {
+            "options": "re",
+            "count": 0
+        }],
+        "answersNum": 1,
+        "created_at": "1439750562103",
+        "fractionCount": 2,
+        "imageUrl": [],
+        "isNeedComment": false,
+        "isSingle": true,
+        "questions_Num": 4,
+        "surveyID": "55d0d984e4b078e5e8be4b57",
+        "surveyType": "survey",
+        "title": "tretr",
+        "updated_at": "1439750562103"
+    }
+
+    , {
+        "_id": "55d0d98fe4b078e5e8be4b5c",
+        "answers": [{
+            "options": "ewqr",
+            "count": 0
+        }, {
+            "count": 1,
+            "options": "ewtrre"
+        }, {
+            "options": "rewr",
+            "count": 0
+        }, {
+            "options": "qewqrew",
+            "count": 0
+        }],
+        "answersNum": 1,
+        "created_at": "1439750543947",
+        "fractionCount": 2,
+        "imageUrl": [],
+        "isNeedComment": false,
+        "isSingle": true,
+        "questions_Num": 4,
+        "surveyID": "55d0d984e4b078e5e8be4b57",
+        "surveyType": "survey",
+        "title": "ewqe",
+        "updated_at": "1439750543947"
+    }
+
+    , {
+        "_id": "55d0d9ace4b078e5e8be4b65",
+        "answers": [{
+            "options": "yrety",
+            "count": 0
+        }, {
+            "options": "yttuyiu",
+            "count": 0
+        }, {
+            "count": 1,
+            "options": "oiuoi"
+        }, {
+            "options": "oiuppip",
+            "count": 0
+        }],
+        "answersNum": 1,
+        "created_at": "1439750572042",
+        "fractionCount": 3,
+        "imageUrl": [],
+        "isNeedComment": false,
+        "isSingle": true,
+        "questions_Num": 4,
+        "surveyID": "55d0d984e4b078e5e8be4b57",
+        "surveyType": "survey",
+        "title": "retry",
+        "updated_at": "1439750572042"
+    }
+
+    , {
+        "_id": "55d0d9b6e4b078e5e8be4b68",
+        "answers": [{
+            "options": "[[oip[po",
+            "count": 0
+        }, {
+            "count": 1,
+            "options": "]ipo"
+        }, {
+            "options": "[]po",
+            "count": 0
+        }, {
+            "options": "iop[oi",
+            "count": 0
+        }],
+        "answersNum": 1,
+        "created_at": "1439750582279",
+        "fractionCount": 2,
+        "imageUrl": [],
+        "isNeedComment": false,
+        "isSingle": true,
+        "questions_Num": 4,
+        "surveyID": "55d0d984e4b078e5e8be4b57",
+        "surveyType": "survey",
+        "title": "pio",
+        "updated_at": "1439750582279"
+    }
+
+    , {
+        "_id": "55d0da73e4b0e110f6d37bb8",
+        "answers": [{
+            "count": 1,
+            "options": "wre"
+        }, {
+            "options": "tret",
+            "count": 0
+        }, {
+            "options": "w",
+            "count": 0
+        }, {
+            "options": "trt",
+            "count": 0
+        }],
+        "answersNum": 1,
+        "created_at": "1439750771046",
+        "fractionCount": 1,
+        "imageUrl": [],
+        "isNeedComment": false,
+        "isSingle": true,
+        "questions_Num": 4,
+        "surveyID": "55d0da55e4b0e110f6d37ba5",
+        "surveyType": "survey",
+        "title": "ert",
+        "updated_at": "1439750771046"
+    }
+
+    , {
+        "_id": "55d0da89e4b0e110f6d37bbe",
+        "answers": [{
+            "options": "oiup",
+            "count": 0
+        }, {
+            "options": "ioupyui",
+            "count": 0
+        }, {
+            "count": 1,
+            "options": "tyr"
+        }, {
+            "options": "ree",
+            "count": 0
+        }],
+        "answersNum": 1,
+        "created_at": "1439750793295",
+        "fractionCount": 3,
+        "imageUrl": [],
+        "isNeedComment": false,
+        "isSingle": true,
+        "questions_Num": 4,
+        "surveyID": "55d0da55e4b0e110f6d37ba5",
+        "surveyType": "survey",
+        "title": "iouop",
+        "updated_at": "1439750793295"
+    }
+
+    , {
+        "_id": "55d0da92e4b0e110f6d37bc1",
+        "answers": [{
+            "options": "ert",
+            "count": 0
+        }, {
+            "options": "uyti",
+            "count": 0
+        }, {
+            "count": 1,
+            "options": "uyiyu"
+        }, {
+            "options": "ouoyu",
+            "count": 0
+        }],
+        "answersNum": 1,
+        "created_at": "1439750802782",
+        "fractionCount": 3,
+        "imageUrl": [],
+        "isNeedComment": false,
+        "isSingle": true,
+        "questions_Num": 4,
+        "surveyID": "55d0da55e4b0e110f6d37ba5",
+        "surveyType": "survey",
+        "title": "utiui",
+        "updated_at": "1439750802782"
+    }
+
+    , {
+        "_id": "55d0da6ae4b0e110f6d37bb5",
+        "answers": [{
+            "options": "we",
+            "count": 0
+        }, {
+            "count": 1,
+            "options": "rewtre"
+        }, {
+            "options": "ytruytu",
+            "count": 0
+        }, {
+            "options": "yiyui",
+            "count": 0
+        }],
+        "answersNum": 1,
+        "created_at": "1439750762714",
+        "fractionCount": 2,
+        "imageUrl": [],
+        "isNeedComment": false,
+        "isSingle": true,
+        "questions_Num": 4,
+        "surveyID": "55d0da55e4b0e110f6d37ba5",
+        "surveyType": "survey",
+        "title": "dsafgf",
+        "updated_at": "1439750762714"
+    }
+
+    , {
+        "_id": "55d0da7ee4b0e110f6d37bbb",
+        "answers": [{
+            "options": "uyt",
+            "count": 0
+        }, {
+            "options": "uyuiuo",
+            "count": 0
+        }, {
+            "count": 1,
+            "options": "poip"
+        }, {
+            "options": "poiuty",
+            "count": 0
+        }],
+        "answersNum": 1,
+        "created_at": "1439750782869",
+        "fractionCount": 3,
+        "imageUrl": [],
+        "isNeedComment": false,
+        "isSingle": true,
+        "questions_Num": 4,
+        "surveyID": "55d0da55e4b0e110f6d37ba5",
+        "surveyType": "survey",
+        "title": "etyu",
+        "updated_at": "1439750782869"
+    }
+
+    , {
+        "_id": "55d1725be4b0badec8ea8acf",
+        "fractionCount": 0,
+        "title": "What activities do you do in the bed before turning off the lights to sleep?",
+        "updated_at": "1439789659867",
+        "imageUrl": [],
+        "surveyID": "55d170d2e4b0badec8ea89e4",
+        "isNeedComment": false,
+        "answers": [{
+            "options": "Read a book",
+            "count": 0
+        }, {
+            "options": "Use/play on ipad/iphone",
+            "count": 0
+        }, {
+            "options": "Watch TV",
+            "count": 0
+        }, {
+            "options": "Listen to music ",
+            "count": 0
+        }, {
+            "options": "Other ",
+            "count": 0
+        }],
+        "created_at": "1439789659867",
+        "questions_Num": 5,
+        "isSingle": true,
+        "surveyType": "survey"
+    }
+
+    , {
+        "_id": "55d1729fe4b0badec8ea8ad2",
+        "fractionCount": 0,
+        "title": "Where do you store your shoes?",
+        "updated_at": "1439789727341",
+        "imageUrl": [],
+        "surveyID": "55d170d2e4b0badec8ea89e4",
+        "isNeedComment": false,
+        "answers": [{
+            "options": "A shoe cabinet outside my home ",
+            "count": 0
+        }, {
+            "options": "A shoe cabinet inside my home",
+            "count": 0
+        }, {
+            "options": "Under my bed",
+            "count": 0
+        }, {
+            "options": "Bedroom closet or wardrobe",
+            "count": 0
+        }, {
+            "options": "Other",
+            "count": 0
+        }],
+        "created_at": "1439789727341",
+        "questions_Num": 5,
+        "isSingle": true,
+        "surveyType": "survey"
+    }
+
+    , {
+        "_id": "55d17331e4b0badec8ea8c27",
+        "answers": [{
+            "count": 5,
+            "options": "Living Single"
+        }, {
+            "options": "Living sometimes single",
+            "count": 0
+        }, {
+            "options": "Living with kids ",
+            "count": 0
+        }, {
+            "options": "Living together",
+            "count": 1
+        }],
+        "answersNum": 6,
+        "created_at": "1439789873808",
+        "fractionCount": 9,
+        "imageUrl": [],
+        "isNeedComment": false,
+        "isSingle": true,
+        "questions_Num": 4,
+        "surveyID": "55d17307e4b0badec8ea8bf5",
+        "surveyType": "survey",
+        "title": "What is your current living situation?",
+        "updated_at": "1439789873808"
+    }
+
+    , {
+        "_id": "55d17367e4b0badec8ea8c33",
+        "answers": [{
+            "options": "Less than 50 m²",
+            "count": 2
+        }, {
+            "count": 2,
+            "options": "50 to 100 m²"
+        }, {
+            "options": "100 to 200 m²",
+            "count": 2
+        }, {
+            "options": "More than 200 m²",
+            "count": 0
+        }],
+        "answersNum": 6,
+        "created_at": "1439789927893",
+        "fractionCount": 12,
+        "imageUrl": [],
+        "isNeedComment": false,
+        "isSingle": true,
+        "questions_Num": 4,
+        "surveyID": "55d17307e4b0badec8ea8bf5",
+        "surveyType": "survey",
+        "title": "What is the size of the home you currently live in?",
+        "updated_at": "1439789927893"
+    }
+
+    , {
+        "_id": "55d173f4e4b0badec8ea8c39",
+        "answers": [{
+            "options": "1-2",
+            "count": 3
+        }, {
+            "options": "3-4",
+            "count": 1
+        }, {
+            "options": "5-6",
+            "count": 1
+        }, {
+            "options": "7 days a week",
+            "count": 0
+        }, {
+            "count": 1,
+            "options": "Almost never"
+        }],
+        "answersNum": 6,
+        "created_at": "1439790068458",
+        "fractionCount": 13,
+        "imageUrl": [],
+        "isNeedComment": false,
+        "isSingle": true,
+        "questions_Num": 5,
+        "surveyID": "55d17307e4b0badec8ea8bf5",
+        "surveyType": "survey",
+        "title": "How many days a week do you cook dinner at home? \r\n",
+        "updated_at": "1439790068458"
+    }
+
+    , {
+        "_id": "55d17460e4b0badec8ea8c3f",
+        "answers": [{
+            "count": 2,
+            "options": "Laundry room"
+        }, {
+            "options": "Kitchen",
+            "count": 0
+        }, {
+            "options": "Bathroom",
+            "count": 3
+        }, {
+            "options": "Garage",
+            "count": 1
+        }, {
+            "options": "Balcony",
+            "count": 0
+        }, {
+            "options": "Other",
+            "count": 0
+        }],
+        "answersNum": 6,
+        "created_at": "1439790176539",
+        "fractionCount": 15,
+        "imageUrl": [],
+        "isNeedComment": false,
+        "isSingle": true,
+        "questions_Num": 6,
+        "surveyID": "55d17307e4b0badec8ea8bf5",
+        "surveyType": "survey",
+        "title": "Where in your home do you do laundry? ",
+        "updated_at": "1439790176539"
+    }
+
+    , {
+        "_id": "55d1750fe4b0badec8ea8c5b",
+        "answers": [{
+            "options": "5 to 10",
+            "count": 1
+        }, {
+            "count": 4,
+            "options": "10 to 15"
+        }, {
+            "options": "15 to 20",
+            "count": 0
+        }, {
+            "options": "20 to 25",
+            "count": 1
+        }, {
+            "options": "More than 25",
+            "count": 0
+        }],
+        "answersNum": 6,
+        "created_at": "1439790351843",
+        "fractionCount": 13,
+        "imageUrl": [],
+        "isNeedComment": false,
+        "isSingle": true,
+        "questions_Num": 5,
+        "surveyID": "55d17307e4b0badec8ea8bf5",
+        "surveyType": "survey",
+        "title": "How many pairs of shoes do you own?",
+        "updated_at": "1439790351843"
+    }
+
+    , {
+        "_id": "55d1755ee4b0badec8ea8c5e",
+        "answers": [{
+            "count": 1,
+            "options": "A shoe cabinet outside my home "
+        }, {
+            "options": "A shoe cabinet inside my home",
+            "count": 4
+        }, {
+            "options": "Under my bed",
+            "count": 0
+        }, {
+            "options": "Bedroom closet or wardrobe",
+            "count": 1
+        }, {
+            "options": "Other",
+            "count": 0
+        }],
+        "answersNum": 6,
+        "created_at": "1439790430342",
+        "fractionCount": 13,
+        "imageUrl": [],
+        "isNeedComment": false,
+        "isSingle": true,
+        "questions_Num": 5,
+        "surveyID": "55d17307e4b0badec8ea8bf5",
+        "surveyType": "survey",
+        "title": "Where do you store your shoes?",
+        "updated_at": "1439790430342"
+    }
+
+    , {
+        "_id": "55d175c1e4b0badec8ea8c64",
+        "answers": [{
+            "count": 2,
+            "options": "Sitting in a chair or sofa facing forward at the TV"
+        }, {
+            "options": "Lying down on a sofa or bed",
+            "count": 3
+        }, {
+            "options": "Sitting at the dining room table",
+            "count": 0
+        }, {
+            "options": "Sitting/lying on the floor",
+            "count": 0
+        }, {
+            "options": "I don’t watch much TV",
+            "count": 1
+        }],
+        "answersNum": 6,
+        "created_at": "1439790529130",
+        "fractionCount": 13,
+        "imageUrl": [],
+        "isNeedComment": false,
+        "isSingle": true,
+        "questions_Num": 5,
+        "surveyID": "55d17307e4b0badec8ea8bf5",
+        "surveyType": "survey",
+        "title": "When you are watching TV in your home, you are…",
+        "updated_at": "1439790529130"
+    }
+
+    , {
+        "_id": "55d173c2e4b0badec8ea8c36",
+        "answers": [{
+            "options": "Bought a new home/apartment",
+            "count": 1
+        }, {
+            "options": "Got married/new partner",
+            "count": 0
+        }, {
+            "options": "Had a new baby",
+            "count": 0
+        }, {
+            "options": "Moved to a new city",
+            "count": 2
+        }, {
+            "options": "A family member moved in [Parents/Grandparents/Sibling]",
+            "count": 0
+        }, {
+            "options": "No big changes",
+            "count": 4
+        }],
+        "answersNum": 6,
+        "created_at": "1439790018657",
+        "fractionCount": 33,
+        "imageUrl": [],
+        "isNeedComment": false,
+        "isSingle": false,
+        "questions_Num": 6,
+        "surveyID": "55d17307e4b0badec8ea8bf5",
+        "surveyType": "survey",
+        "title": "What significant changes have a happened in your life at home in the past 12 month? (Multiple Choices)",
+        "updated_at": "1439794584229"
+    }
+
+    , {
+        "_id": "55d17589e4b0badec8ea8c61",
+        "answers": [{
+            "options": "Read a book",
+            "count": 3
+        }, {
+            "options": "Use/play on ipad/iphone",
+            "count": 5
+        }, {
+            "options": "Watch TV",
+            "count": 1
+        }, {
+            "options": "Listen to music ",
+            "count": 3
+        }, {
+            "options": "Other",
+            "count": 0
+        }],
+        "answersNum": 6,
+        "created_at": "1439790473129",
+        "fractionCount": 28,
+        "imageUrl": [],
+        "isNeedComment": false,
+        "isSingle": false,
+        "questions_Num": 5,
+        "surveyID": "55d17307e4b0badec8ea8bf5",
+        "surveyType": "survey",
+        "title": "What activities do you do in the bed before turning off the lights to sleep? (Multiple choices)",
+        "updated_at": "1439794547930"
+    }
+]

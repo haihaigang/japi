@@ -6,7 +6,7 @@ define(function(require) {
     require('./service');
 
     angular.module("headerModule", ["headerService"])
-        .controller('HeaderController', ['$scope', '$location', 'Auth', function($scope, $location, Auth) {
+        .controller('HeaderController', ['$scope', '$location', 'Auth', 'Storage', function($scope, $location, Auth, Storage) {
             $scope.menus = [{
                 name: '项目',
                 link: 'collections'
@@ -15,8 +15,14 @@ define(function(require) {
                 link: 'requests'
             }, {
                 name: '关于',
-                link: 'about'
+                link: 'about',
+                subMenus: [{
+                    name: '预览',
+                    link: 'collections.preview({id:48})',
+                }]
             }];
+
+            //添加预览快捷入口
         }]);
 
 })

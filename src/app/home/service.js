@@ -3,6 +3,7 @@
  */
 define(function(require) {
     require('angular');
+    require('requester');
     require('../base/service-ajax');
 
     angular.module('homeService', ['ajaxService'])

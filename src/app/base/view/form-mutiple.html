@@ -1,13 +1,13 @@
 <div style="display: none;">
     <button type="button" class="btn btn-primary">（首选项）Primary</button>
 </div>
-<div class="form-group" ng-repeat="item in data">
-    <div class="row1">
+<div class="form-group" ng-repeat="item in data" style="border-left: 2px dotted #ccc;">
+    <div class="row1 clearfix">
         <div class="col-md-2">
-            <input type="text" class="form-control" placeholder="Key" ng-model="item.key" ng-focus="add($index)">
+            <input type="text" class="form-control" placeholder="Key" ng-model="item.key" ng-focus="add(data, $index)">
         </div>
         <div class="col-md-3">
-            <input type="text" class="form-control" placeholder="描述" ng-model="item.desc" ng-focus="add($index)">
+            <input type="text" class="form-control" placeholder="描述" ng-model="item.desc" ng-focus="add(data, $index)">
         </div>
         <div class="col-md-2">
             <select class="form-control" ng-model="item.type">
@@ -17,6 +17,7 @@
                 <option value="enum">Enum</option>
                 <option value="object">Object</option>
                 <option value="array">Array</option>
+                <option value="file">File</option>
                 <option value="other">Other</option>
             </select>
         </div>
@@ -29,13 +30,13 @@
             <input type="text" class="form-control" placeholder="约束" ng-model="item.remark">
         </div>
         <div class="col-md-2">
-            <div class="btn btn-default" ng-if="!$last" ng-click="remove($index)">
+            <div class="btn btn-primary" ng-if="!$last" ng-click="remove(data, $index)">
                 <span class="glyphicon glyphicon-remove"></span>
             </div>
-            <div class="btn btn-default" ng-if="$last" ng-click="add($index)">
+            <div class="btn btn-primary" ng-if="$last" ng-click="add(data, $index)">
                 <span class="glyphicon glyphicon-plus"></span>
             </div>
-            <div class="btn btn-default" ng-click="toggle($index)">
+            <div class="btn btn-primary" ng-click="toggle(data, $index)" ng-class="{active:item.showDetail}">
                 <span class="glyphicon glyphicon-th"></span>
             </div>
         </div>

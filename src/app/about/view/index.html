@@ -1,16 +1,15 @@
-<form class="form-inline">
+<div class="alert alert-success" ng-show="page.status == 'success'">{{page.message}}</div>
+<div class="alert alert-danger" ng-show="page.status == 'error'">{{page.message}}</div>
+<form class="form">
     <div class="form-group">
-        <label class="sr-only" for="import-pm">导入 (PM数据)</label>
+        <label for="import-pm">导入 (PM数据)</label>
         <div class="input-group">
             <div class="input-group-addon"><span class="glyphicon glyphicon-file"></span></div>
             <input type="file" class="form-control" id="import-pm" placeholder="Amount">
         </div>
     </div>
-    <div class="form-group">{{page.message}}</div>
-</form>
-<form class="form-inline">
     <div class="form-group">
-        <label class="sr-only" for="import-url">导入（从服务器）</label>
+        <label for="import-url">导入（从服务器）</label>
         <div class="input-group">
             <div class="input-group-addon"><span class="glyphicon glyphicon-paperclip"></span></div>
             <input type="text" class="form-control" id="import-url" placeholder="网址">

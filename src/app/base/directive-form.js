@@ -497,27 +497,37 @@ define(function(require) {
             },
             link: function($scope, element, attrs) {
 
-                $scope.remove = function(idx){
-                    if($scope.data.length <=1) return;
-                    $scope.data.splice(idx,1);
+                $scope.remove = function(data, idx){
+                    if(data.length <=1) return;
+                    data.splice(idx,1);
                 }
 
-                $scope.add = function(idx){
+                $scope.add = function(data, idx){
+                    console.log(data);
                     //仅在最后一条可以添加新纪录
-                    if(idx < $scope.data.length-1) return;
-                    $scope.data.push({
-                        name: "",
+                    if(idx < data.length-1) return;
+                    data.push({
+                        key: "",
                         value: ""
                     })
                 }
 
-                $scope.toggle = function(idx){
-                    for(var i in $scope.data){
+                $scope.toggle = function(data, idx){
+                    for(var i in data){
                         if(i == idx){
-                            $scope.data[i].showDetail = !$scope.data[i].showDetail;
+                            // $scope.data[i].showDetail = !$scope.data[i].showDetail;
+                            data[i].showDetail = !data[i].showDetail;
+                            if(!data[i].children || data[i].children.length == 0){
+                                data[i].children = [{
+                                    key: "",
+                                    value: ""
+                                }];
+                            }
                         }
                     }
                 }
+
+                $scope.addChild = function(){}
             }
         }
     }]);

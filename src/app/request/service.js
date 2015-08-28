@@ -3,10 +3,11 @@
  */
 define(function(require) {
     require('angular');
+    require('requester');
     require('../base/service-ajax');
 
     angular.module('requestService', ['ajaxService'])
-        .factory('Request', ['$rootScope', '$location', 'Ajax', 'CONFIG','Storage', function($rootScope, $location, Ajax, CONFIG,Storage) {
+        .factory('Request', ['$rootScope', '$location', 'Ajax', 'CONFIG','Storage', 'errorService', function($rootScope, $location, Ajax, CONFIG,Storage, errorService) {
             var result = {
                 title: '接口管理',
                 groups: null, //表单数据
@@ -98,6 +99,49 @@ define(function(require) {
                         result.conditionItems = d;
                         $rootScope.$apply();
                     })
+                },
+                export: function() {
+                    var id = Storage.get('collectionId');
+                    if(!id){
+                        errorService.showToast('不能上传，未选择项目');
+                        return;
+                    }
+                    pm.indexedDB.getCollection(id, function(response) {
+                        pm.indexedDB.getAllRequestsInCollection({
+                            collectionId: id
+                        }, function(rResponse) {
+                            rResponse.sort(Ajax.order);
+                            response.requests = rResponse;
+
+                            // document.write((JSON.stringify(response)))
+
+                            //保存数据到服务端
+                            Ajax.post({
+                                url: CONFIG.HOST_API + CONFIG.API_COLLECTION_SYNC,
+                                data: 'id=' + response.remoteId + '&data=' + encodeURIComponent(JSON.stringify(response)),
+                                headers: {
+                                    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+                                }
+                            }, function(aResponse) {
+                                if (aResponse.code != 0) {
+                                    errorService.showAlert(aResponse.message);
+                                }
+                                errorService.showToast('上传成功！');
+                                response.remoteId = aResponse.body;
+                                delete response.requests;
+                                pm.indexedDB.saveCollection(response, function(cResponse) {});
+                            })
+                        })
+                    })
+                },
+                qucikSave: function(id, key, value){
+                    console.log(value);
+                    pm.indexedDB.getCollectionRequest(id, function(response) {
+                        response[key] = value;
+                        pm.indexedDB.saveCollectionRequest(response, function(rResponse) {
+                            console.log('update request '+id+' success');
+                        });
+                    });
                 }
             };
 

@@ -14,7 +14,6 @@ define(function(require) {
         .directive('jSearch', ['$log', function($log) {
             return {
                 restrict: 'AEC',
-                // template:'<div class="panel panel-info"><div class="panel-heading"><input class="btn btn-default" type="file" name="{{file.parameter}}" multiple/></div><div class="panel-body"><div ng-repeat="file in fileList"  style="text-align:center;" class="bg-primary"><span>{{file.filename}}</span><button ng-click="erase(this)" type="button" class="close" aria-hidden="true">&times;</button><div class="progress"><div min-width="10%" class="progress-bar" role="progressbar" aria-valuenow="{{file.value}}" aria-valuemin="0" aria-valuemax="100" style="width: {{file.value}}%;">{{file.size}}/{{file.total}}</div></div></div><button class="btn btn-success" type="button" ng-click="startUpload(event)">Upload</button></div></div>',
                 templateUrl: 'app/base/view/form-uploader.html',
                 link: function($scope, element, attrs) {
 
@@ -44,5 +43,47 @@ define(function(require) {
                     }
                 }
             };
-        }]);
+        }])
+        /**
+         * 列表中快速编辑，点击直接可编辑
+         * <div j-quick j-value="" j-save="do(some)"></div>
+         */
+        .directive('jQuick', ['$log', 'errorService', function($log, errorService) {
+            return {
+                restrict: 'A',
+                transclude: true,
+                scope: {
+                    jValue: '=jValue',
+                    jSave: '&jSave' //当传递的函数有参数的时候，在指令中调用也不需添加参数
+                },
+                template: '<span ng-click="changeStatus()" ng-show="!editable">{{jValue}}</span><input type="text" value="{{jValue}}" ng-model="jValue" ng-blur="onBlur()" ng-keyup="onKeyup($event)" ng-show="editable">',
+                link: function($scope, element, attrs) {
+                    var oldValue = $scope.jValue.length;
+                    $scope.editable = false;
+                    $scope.changeStatus = function(){
+                        $scope.editable = !$scope.editable;
+                    }
+                    $scope.onBlur = function() {
+                        $scope.editable = false;
+                        // preSave();
+                    }
+                    $scope.onKeyup = function(e){
+                        if(e.keyCode != 13){
+                            return;
+                        }
+                        $scope.editable = !$scope.editable;
+                        preSave();
+                    }
+
+                    //调用保存方法，只在内容有变动时修改
+                    function preSave(){
+                        if($scope.jValue.length != oldValue){
+                            oldValue = $scope.jValue.length;
+                            $scope.jSave();
+                            return;
+                        }
+                    }
+                }
+            };
+        }]);;
 })

@@ -3,16 +3,19 @@
  */
 define(function(require) {
     require('angular');
+    require('requester');
     require('../base/service-ajax');
 
     angular.module('aboutService', ['ajaxService'])
         .factory('About', ['$rootScope', '$location', 'Ajax', 'CONFIG', function($rootScope, $location, Ajax, CONFIG) {
             var result = {
+                status: false, //错误标志，success、error
                 message: null, //导入提示信息
                 importFromPmFile: function(files) {
                     //有的文件类型读取为空
                     if (!files || !files.length || files.length == 0) {
                         result.message = '导入失败，文件不正确（未选择文件或文件格式不正确）。';
+                        result.status = 'error';
                         $rootScope.$apply();
                         return false;
                     }
@@ -27,8 +30,9 @@ define(function(require) {
                     var url = $('#import-url').val();
                     if (!url || !/^http(s)?:\/\/.*$/.test(url)) {
                         result.message = '导入失败，输入的url不是有效的。';
+                        result.status = 'error';
                         $rootScope.$apply();
-                        return;
+                        return false;
                     }
 
                     Ajax.get({
@@ -37,7 +41,13 @@ define(function(require) {
                             'Access-Control-Allow-Origin': '*'
                         }
                     }, function(response) {
-                        result.importData(response);
+                        if (response.code != 0) {
+                            result.message = '获取接口数据错误' + response.message;
+                            result.status = 'error';
+                            $rootScope.$apply();
+                            return false;
+                        }
+                        result.importData(response.body);
                     });
                 },
                 importData: function(data) {
@@ -46,14 +56,16 @@ define(function(require) {
                         try {
                             data = JSON.parse(data);
                         } catch (e) {
-                            result.message = '尝试解析json错误，请检查内容';
+                            result.message = '尝试解析json错误 ' + e.message;
+                            result.status = 'error';
                             $rootScope.$apply();
-                            return;
+                            return false;
                         }
                     }
 
                     if (!data || !data.id || !data.requests) {
                         result.message = '导入失败，文件内容不正确。';
+                        result.status = 'error';
                         $rootScope.$apply();
                         return false;
                     }
@@ -63,8 +75,8 @@ define(function(require) {
                         for (var i in data.requests) {
                             for (var j in data.requests[i].data) {
                                 //转换pm的数据，字段类型统一为string
-                                if(data.requests[i].data[j].type == 'file'){
-                                    data.requests[i].data[j].type = 'string';
+                                if (data.requests[i].data[j].type == 'file') {
+                                    // data.requests[i].data[j].type = 'string';
                                 }
                             }
                             var d = data.requests[i],
@@ -74,7 +86,8 @@ define(function(require) {
                         }
                     });
                     result.message = '导入成功，共计' + data.requests.length + '个接口';
-                    $rootScope.$apply();
+                    result.status = 'success';
+                    // $rootScope.$apply();
                 }
             };
 

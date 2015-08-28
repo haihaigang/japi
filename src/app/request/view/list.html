@@ -14,7 +14,9 @@
         <h3>接口列表</h3>
     </div>
     <div class="list-buttons pull-right">
-        <a type="button" class="btn btn-default" ui-sref=".add">新增</a>
+        <a type="button" class="btn btn-primary" ui-sref=".add">新增</a>
+        <a type="button" class="btn btn-success" ng-click="page.export()">上传</a>
+        <a type="button" class="btn btn-default" ui-sref=".add">预览</a>
     </div>
 </div>
 <div class="main-list table-responsive">
@@ -32,9 +34,9 @@
         <tbody>
             <tr ng-repeat="item in page.pageData">
                 <td>{{$index+1}}</td>
-                <td class="ellipsis">{{item['name']}}</td>
-                <td class="ellipsis">{{item['url']}}</td>
-                <td class="ellipsis">{{item['desc']}}</td>
+                <td class="ellipsis" j-quick j-value="item['name']" j-save="page.qucikSave(item['id'],'name',item['name'])"></td>
+                <td class="ellipsis"j-quick j-value="item['url']" j-save="page.qucikSave(item['id'],'url',item['url'])"></td>
+                <td class="ellipsis"j-quick j-value="item['desc']" j-save="page.qucikSave(item['id'],'desc',item['desc'])"></td>
                 <td>{{item['project']}}</td>
                 <td><div class="ngCellOpt"><a ui-sref="requests.edit({id:item['id']})">编辑</a><div j-delete j-click="page.remove(item['id'])">删除</div></div></td>
             </tr>

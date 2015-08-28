@@ -45,21 +45,26 @@ th:nth-child(3) {
 }
 
 .quick-nav {
+}
+
+.quick-nav-content {
+    margin-bottom: 20px;
     padding: 7px;
-    border-radius: 0px 0 5px 5px;
     background-color: rgb(0, 140, 186);
 }
 
-.quick-nav.fixed {
+.quick-nav-content.fixed {
     position: fixed;
     top: 0px;
     right: 0;
     left: 0;
+    z-index: 9;
 }
 
 .quick-nav a {
     display: inline-block;
-    width: 25px;
+    /*width: 25px;*/
+    padding: 0 7px;
     text-align: center;
     color: #fff;
     text-decoration: none;
@@ -69,66 +74,100 @@ th:nth-child(3) {
 .quick-nav a:focus {
     background-color: #006687;
 }
+.requests{
+    position: relative;
+}
+.request-nav{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -15px;
+    width: 5px;
+    background-color: #ccc;
+}
+.request{
+    overflow: hidden;
+    -webkit-transition: height 1s ease;
+    transition: height 1s ease;
+}
+.request.closed{
+    height: 56px;
+}
+
 </style>
 <div class="quick-nav">
-    <a href="javascript:;" ng-repeat="item in page.data.requests" title="{{item.name}}" data-i="{{$index}}">{{$index+1}}</a>
+    <div class="quick-nav-content">
+        <a href="javascript:;" ng-repeat="item in page.data.requests" title="{{item.name}}" data-i="{{item.originId}}">{{item.module}}</a>
+    </div>
 </div>
 <div ng-show="page.data">
     <h2>{{page.data.name}}</h2>
     <p><b>版本：</b>{{page.data.version}}</p>
-    <p><b>描述：</b>{{page.data.description}}</p>
+    <p><b>描述：</b>{{page.data.desc}}</p>
     <div><b>约定：</b><pre>{{page.data.content}}</pre></div>
 </div>
-<div ng-repeat="item in page.data.requests" style="margin-bottom: 40px;">
-    <h3 id="r{{$index}}">{{$index+1}}：{{item['name']}}</h3>
-    <p><strong>URL：</strong>{{item['url']}}</p>
-    <p><strong>方式：</strong>{{item['method']}}</p>
-    <p><strong>说明</strong>：{{item['description']}}</p>
-    <div><strong>请求参数：</strong>
-        <table width="100%" cellpadding="3" cellspacing="1">
-            <tr>
-                <th>关键字</th>
-                <th>描述</th>
-                <th>类型</th>
-                <th>是否必填</th>
-            </tr>
-            <tr ng-repeat="sitem in item.data">
-                <td>{{sitem.key}}</td>
-                <td>{{sitem.desc}}</td>
-                <td>{{sitem.type}}</td>
-                <td>{{sitem.checked}}</td>
-            </tr>
-            <tr ng-if="!item.data.length">
-                <td colspan="4" align="center">暂无数据。</td>
-            </tr>
-        </table>
+<div class="second-nav" style="display:none;">
+    <div ng-repeat="item in page.data.requests">
+        <h3>{{item.module}}</h3>
+        <p ng-repeat="sitem in item.sub"><a href="javascript:;" data-i="{{sitem.originId}}">{{sitem.originId + 1}}{{sitem.name}}</a></p>
     </div>
-    <div><strong>响应参数：</strong>
-        <table width="100%" cellpadding="3" cellspacing="1">
-            <tr>
-                <th>关键字</th>
-                <th>描述</th>
-                <th>类型</th>
-                <th>约束</th>
-                <th>详情</th>
-            </tr>
-            <tbody ng-repeat="sitem in item.responses">
-                <tr>
-                    <td>{{sitem.key}}</td>
-                    <td>{{sitem.desc}}</td>
-                    <td>{{sitem.type}}</td>
-                    <td>{{sitem.checked}}</td>
-                    <td><a href="" class="check" ng-show="{{sitem.detail.length}}">隐藏</a><span ng-show="{{!sitem.detail}}">无</span></td>
-                </tr>
-                <tr ng-show="sitem.detail.length">
-                    <td colspan="5">
-                        <pre class="detail">{{sitem.detail}}</pre></td>
-                </tr>
-            </tbody>
-            <tr ng-if="!item.responses.length">
-                <td colspan="5" align="center">暂无数据。</td>
-            </tr>
-        </table>
+</div>
+<div class="requests" ng-repeat="pitem in page.data.requests">
+    <div class="request-nav" style="background-color:{{pitem.moduleColor}}"></div>
+    <h2 class="request-module"><a href="javascript:;">{{pitem.module}}[{{pitem.sub.length}}]</a></h2>
+    <div class="request-content">
+        <div class="request" ng-repeat="item in pitem.sub">
+            <h3 class="r-name" id="r{{item.originId}}">{{item.originId+1}}：{{item['name']}}</h3>
+            <p><strong>URL：</strong>{{item['url']}}</p>
+            <p><strong>方式：</strong>{{item['method']}}</p>
+            <p><strong>说明</strong>：{{item['desc']}}</p>
+            <div><strong>请求参数：</strong>
+                <table width="100%" cellpadding="3" cellspacing="1">
+                    <tr>
+                        <th>关键字</th>
+                        <th>描述</th>
+                        <th>类型</th>
+                        <th>是否必填</th>
+                    </tr>
+                    <tr ng-repeat="sitem in item.data">
+                        <td>{{sitem.key}}</td>
+                        <td>{{sitem.desc}}</td>
+                        <td>{{sitem.type}}</td>
+                        <td>{{sitem.checked}}</td>
+                    </tr>
+                    <tr ng-if="!item.data.length">
+                        <td colspan="4" align="center">暂无数据。</td>
+                    </tr>
+                </table>
+            </div>
+            <div><strong>响应参数：</strong>
+                <table width="100%" cellpadding="3" cellspacing="1">
+                    <tr>
+                        <th>关键字</th>
+                        <th>描述</th>
+                        <th>类型</th>
+                        <th>约束</th>
+                        <th>详情</th>
+                    </tr>
+                    <tbody ng-repeat="sitem in item.responses">
+                        <tr>
+                            <td>{{sitem.key}}</td>
+                            <td>{{sitem.desc}}</td>
+                            <td>{{sitem.type}}</td>
+                            <td>{{sitem.checked}}</td>
+                            <td><a href="" class="check" ng-show="{{sitem.detail.length}}">隐藏</a><span ng-show="{{!sitem.detail}}">无</span></td>
+                        </tr>
+                        <tr ng-show="sitem.detail.length">
+                            <td colspan="5">
+                                <pre class="detail">{{sitem.detail}}</pre></td>
+                        </tr>
+                    </tbody>
+                    <tr ng-if="!item.responses.length">
+                        <td colspan="5" align="center">暂无数据。</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
     </div>
 </div>
 <script>
@@ -146,14 +185,35 @@ $(function() {
         var idx = $(this).attr('data-i'),
             tar = $('#r' + idx).offset();
 
-        window.scrollTo(0, tar.top - 58);
-    });
+        scrollTo(tar.top);
+    }).on('click', '.main-nav a', function(e) {
+        e.preventDefault();
+        var idx = $(this).attr('data-i'),
+            tar = $('#r' + idx).offset();
+
+        scrollTo(tar.top);
+    }).on('click', '.second-nav a', function(e) {
+        e.preventDefault();
+        var idx = $(this).attr('data-i'),
+            tar = $('#r' + idx).offset();
+
+        scrollTo(tar.top);
+    }).on('click','.request-module a',function(e){
+        $(this).parent().next().toggle();
+    }).on('click','.r-name',function(e){
+        $(this).parent().toggleClass('closed');
+    })
     $(window).scroll(function(e) {
         if ($(this).scrollTop() > 100) {
-            $('.quick-nav').addClass('fixed');
+            $('.quick-nav').css('height',$('.quick-nav-content').outerHeight());
+            $('.quick-nav-content').addClass('fixed');
         } else {
-            $('.quick-nav').removeClass('fixed');
+            $('.quick-nav-content').removeClass('fixed');
         }
     })
+
+    function scrollTo(y){
+        window.scrollTo(0, y - 94);
+    }
 });
 </script>
