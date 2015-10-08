@@ -19,6 +19,7 @@ define(function(require) {
                 subMenus: [{
                     name: '预览',
                     link: 'collections.preview({id:48})',
+                    target: '_blank'
                 }]
             }];
 

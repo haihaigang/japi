@@ -1,14 +1,5 @@
 <div j-breadcrumb j-data="breadcrumbs"></div>
 <h1 class="page-header">{{page.title}}</h1>
-<form name="sform" class="form-inline main-search" novalidate ng-submit="page.search()">
-    <div class="form-group" ng-repeat="item in page.conditionItems" ng-switch="item.type">
-        <input ng-switch-when="text" type="text" class="form-control" placeholder="{{item.title}}" ng-model="item.value">
-        <select ng-switch-when="select" class="form-control" ng-model="item.value" ng-options="eo.id as eo.name for eo in item.data">
-            <option value="">{{item.title}}</option>
-        </select>
-    </div>
-    <button type="submit" class="btn btn-primary">搜索</button>
-</form>
 <div class="clearfix main-header">
     <div class="pull-left">
         <h3>接口列表</h3>
@@ -34,11 +25,11 @@
         <tbody>
             <tr ng-repeat="item in page.pageData">
                 <td>{{$index+1}}</td>
-                <td class="ellipsis" j-quick j-value="item['name']" j-save="page.qucikSave(item['id'],'name',item['name'])"></td>
-                <td class="ellipsis"j-quick j-value="item['url']" j-save="page.qucikSave(item['id'],'url',item['url'])"></td>
-                <td class="ellipsis"j-quick j-value="item['desc']" j-save="page.qucikSave(item['id'],'desc',item['desc'])"></td>
+                <td class="ellipsis" j-quick j-value="item['name']" j-save="page.quickSave(item['id'],'name',item['name'])"></td>
+                <td class="ellipsis"j-quick j-value="item['url']" j-save="page.quickSave(item['id'],'url',item['url'])"></td>
+                <td class="ellipsis"j-quick j-value="item['desc']" j-save="page.quickSave(item['id'],'desc',item['desc'])"></td>
                 <td>{{item['project']}}</td>
-                <td><div class="ngCellOpt"><a ui-sref="requests.edit({id:item['id']})">编辑</a><div j-delete j-click="page.remove(item['id'])">删除</div></div></td>
+                <td><div class="ngCellOpt"><a ui-sref="requests.edit({id:item['id']})">编辑</a><a href="javascript:;" ng-click="page.copy(item['id'])">复制</a><div j-delete j-click="page.remove(item['id'])">删除</div></div></td>
             </tr>
             <tr ng-if="!page.pageData.length"><td colspan="6" align="center">暂无数据。</td></tr>
         </tbody>

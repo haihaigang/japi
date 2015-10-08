@@ -6,6 +6,8 @@ define(function(require) {
     require('requester');
     require('../base/service-ajax');
 
+    var pm = require('../model/pm');
+
     angular.module('requestService', ['ajaxService'])
         .factory('Request', ['$rootScope', '$location', 'Ajax', 'CONFIG','Storage', 'errorService', function($rootScope, $location, Ajax, CONFIG,Storage, errorService) {
             var result = {
@@ -50,6 +52,7 @@ define(function(require) {
                     if (!data) {
                         data = Ajax.formatCondition(result.conditionItems);
                     }
+                    data.collectionId = Storage.get('collectionId');
                     pm.indexedDB.getAllRequestsInCollection(data, function(response) {
                         pm.indexedDB.getCollections(function(cResponse) {
                             for (var i in response) {
@@ -59,10 +62,6 @@ define(function(require) {
                                     }
                                 }
                             }
-                            //排序
-                            // response.sort(function(a,b){
-                            //     return a.url.charCodeAt(0) - b.url.charCodeAt(0);
-                            // })
                             response.sort(function(a,b){return Ajax.order(a,b);});
                             result.pageData = response;
                             $rootScope.$apply();
@@ -127,19 +126,35 @@ define(function(require) {
                                     errorService.showAlert(aResponse.message);
                                 }
                                 errorService.showToast('上传成功！');
-                                response.remoteId = aResponse.body;
+                                response.remoteId = aResponse.body.id;
                                 delete response.requests;
                                 pm.indexedDB.saveCollection(response, function(cResponse) {});
                             })
                         })
                     })
                 },
-                qucikSave: function(id, key, value){
-                    console.log(value);
+                /**
+                 * 快速保存，更新某接口的某个字段的值
+                 */
+                quickSave: function(id, key, value){
                     pm.indexedDB.getCollectionRequest(id, function(response) {
                         response[key] = value;
                         pm.indexedDB.saveCollectionRequest(response, function(rResponse) {
                             console.log('update request '+id+' success');
+                        });
+                    });
+                },
+                /**
+                 * 复制接口
+                 */
+                copy: function(id){
+                    pm.indexedDB.getCollectionRequest(id, function(response) {
+                        delete response.id;
+                        response.name = '[copy]' + response.name;
+                        pm.indexedDB.saveCollectionRequest(response, function(rResponse) {
+                            console.log('copy request '+id+' success');
+                            result.pageData.push(rResponse);
+                            $rootScope.$apply();
                         });
                     });
                 }

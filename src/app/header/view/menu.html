@@ -14,7 +14,7 @@
                 <a ui-sref="{{menu.link}}">{{menu.name}}</a>
                 <ul class="dropdown-menu" ng-hide={{!menu.subMenus}}>
                     <li ng-repeat="sm in menu.subMenus">
-                        <a ui-sref="{{sm.link}}">{{sm.name}}</a>
+                        <a ui-sref="{{sm.link}}" target="{{sm.target}}">{{sm.name}}</a>
                     </li>
                 </ul>
             </li>

@@ -133,7 +133,7 @@ define(function(require) {
                     }
                 }
 
-                return data || s;
+                return  s;
             }
 
             /**
@@ -155,6 +155,40 @@ define(function(require) {
 
                     return aTotal - bTotal;
                 }
+            }
+
+            /**
+             * 自动增加版本号
+             * @param  {[type]} v [v0.0.1]
+             * @return {[type]}   [description]
+             */
+            ajax.autoIncrement = function(v){
+                if(typeof v != 'string') return v;
+ 
+                if(v.indexOf('v') == 0) v = v.substring(1,v.length);
+
+                var vers = v.split('.'),
+                    n = vers.length,
+                    absV = 0,
+                    result = '';
+
+                for(var i = 0; i < n; i++){
+                    absV += parseInt(vers[i]) * Math.pow(10, n - 1 - i);
+                }
+                absV++;
+                absV = absV.toString();
+
+                if(absV.length == 1){
+                    absV = '00' + absV;
+                }else if(absV.length == 2){
+                    absV = '0' + absV;
+                }
+
+                for(var j = 0; j < absV.length; j++){
+                    result += '.' + absV[j];
+                }
+
+                return result.replace('.','v');
             }
             return ajax;
         }])

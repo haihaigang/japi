@@ -120,6 +120,7 @@ th:nth-child(3) {
             <h3 class="r-name" id="r{{item.originId}}">{{item.originId+1}}：{{item['name']}}</h3>
             <p><strong>URL：</strong>{{item['url']}}</p>
             <p><strong>方式：</strong>{{item['method']}}</p>
+            <p><strong>类型：</strong>{{item['type'] == 'page' ? '分页' : '普通'}}</p>
             <p><strong>说明</strong>：{{item['desc']}}</p>
             <div><strong>请求参数：</strong>
                 <table width="100%" cellpadding="3" cellspacing="1">
@@ -200,8 +201,6 @@ $(function() {
         scrollTo(tar.top);
     }).on('click','.request-module a',function(e){
         $(this).parent().next().toggle();
-    }).on('click','.r-name',function(e){
-        $(this).parent().toggleClass('closed');
     })
     $(window).scroll(function(e) {
         if ($(this).scrollTop() > 100) {

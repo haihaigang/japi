@@ -1,10 +1,7 @@
 define(function(require) {
-    require('jquery');
-    require('requester');
-    require('datetimepicker');
-    require('angular');
-    require('angular-ui-router');
-    require('ng-grid');
+    require('jquery'),
+    require('angular'),
+    require('angular-ui-router'),
     require('./base/directive-dialog');
     require('./base/directive-form');
     require('./base/controller');
@@ -14,6 +11,8 @@ define(function(require) {
     require('./request/controller');
     require('./about/controller');
 
+    var pm = require('./model/pm');
+
     //声明一个基础模块，
     angular.module('baseModule',[]);
 
@@ -22,7 +21,6 @@ define(function(require) {
 
     var routerApp = angular.module('routerApp', [
         'ui.router',
-        'ngGrid',
         'baseModule',
         'dialogDirective',
         'formDirective',

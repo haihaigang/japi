@@ -36,5 +36,5 @@ define(function(require) {
             USER: 'user',
             GUEST: '*'
         })
-        .constant('VERSION','v0.1')
+        .constant('VERSION','v0.0.1')
 })

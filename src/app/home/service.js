@@ -6,6 +6,8 @@ define(function(require) {
     require('requester');
     require('../base/service-ajax');
 
+    var pm = require('../model/pm');
+
     angular.module('homeService', ['ajaxService'])
         .factory('Home', ['$rootScope', '$location', 'Ajax', 'CONFIG', function($rootScope, $location, Ajax, CONFIG) {
             var result = {

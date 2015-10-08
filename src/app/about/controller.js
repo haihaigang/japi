@@ -33,6 +33,7 @@ define(function(require) {
             '$scope', '$state', '$stateParams', 'About',
             function($scope, $state, $stateParams, About) {
                 $scope.page = About;
+                $scope.breadcrumbs = $scope.page.init($state);
 
                 $('input[type="file"]').on('change', function() {
                     About.importFromPmFile(this.files);

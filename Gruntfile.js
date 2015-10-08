@@ -38,7 +38,6 @@ module.exports = function(grunt) {
                         "angular": "angular-1.3.0.14/angular.js",
                         "angular-animate": "angular-1.3.0.14/angular-animate.js",
                         "angular-ui-router": "angular-ui-router.js",
-                        "ng-grid": "ng-grid-2.0.12/ng-grid.js"
                     }
                 },
                 files: [{
@@ -98,7 +97,7 @@ module.exports = function(grunt) {
                     ext: '.min.js' //指定扩展名
                 }]
             },
-            buildall: { //按照原来的目录结构压缩所有JS文件
+            deploy: { //按照原来的目录结构压缩所有JS文件
                 options: {
                     mangle: true,
                     compress: {
@@ -108,9 +107,9 @@ module.exports = function(grunt) {
                 },
                 files: [{
                     expand: true,
-                    cwd: 'src', //js目录
+                    cwd: 'dest/app', //js目录
                     src: '**/*.js', //所有js文件
-                    dest: 'dest', //输出到此目录下
+                    dest: 'dest/app', //输出到此目录下
                     ext: '.min.js' //指定扩展名
                 }]
             }
@@ -142,4 +141,6 @@ module.exports = function(grunt) {
     grunt.registerTask('default', ['concat', 'uglify']);
 
     grunt.registerTask('wiwiy', ['copy:deploy', 'transport:deploy', 'concat:deploy', 'clean:deploy']);
+
+    grunt.registerTask('abc', ['uglify:deploy']);
 };

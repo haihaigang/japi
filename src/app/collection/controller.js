@@ -55,6 +55,16 @@ define(function(require) {
                         }
                     }
                 })
+                .state('collections.model', {
+                    url: '/model',
+                    views: {
+                        'main@collections': {
+                            templateUrl: 'app/collection/view/model2.html',
+                            controller: 'CollectionModelController'
+                        }
+                    }
+                })
+
         }])
         //列表
         .controller('CollectionListController', [
@@ -82,4 +92,17 @@ define(function(require) {
                 $scope.page.preview($stateParams.id);
             }
         ])
+        //模型
+        .controller('CollectionModelController', [
+            '$scope', '$state', '$stateParams', '$location', 'Collection',
+            function($scope, $state, $stateParams, $location, Collection) {
+                $scope.page = Collection;
+                $scope.page.getAllRequests();
+
+                $scope.tog = function(item){
+                    item.show = !item.show;
+                }
+            }
+        ])
+
 })

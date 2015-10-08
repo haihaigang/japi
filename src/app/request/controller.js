@@ -54,7 +54,6 @@ define(function(require) {
                 $scope.page = Request;
                 $scope.page.search($stateParams);
                 $scope.breadcrumbs = $scope.page.init($state);
-                $scope.page.getCondition($stateParams);
             }
         ])
         //添加编辑

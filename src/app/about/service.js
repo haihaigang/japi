@@ -6,9 +6,14 @@ define(function(require) {
     require('requester');
     require('../base/service-ajax');
 
+    var pm = require('../model/pm'),
+        Collection = require('../model/collection'),
+        CollectionRequest = require('../model/collection-request');
+
     angular.module('aboutService', ['ajaxService'])
         .factory('About', ['$rootScope', '$location', 'Ajax', 'CONFIG', function($rootScope, $location, Ajax, CONFIG) {
             var result = {
+                title: '关于',
                 status: false, //错误标志，success、error
                 message: null, //导入提示信息
                 importFromPmFile: function(files) {
@@ -31,7 +36,7 @@ define(function(require) {
                     if (!url || !/^http(s)?:\/\/.*$/.test(url)) {
                         result.message = '导入失败，输入的url不是有效的。';
                         result.status = 'error';
-                        $rootScope.$apply();
+                        // $rootScope.$apply();
                         return false;
                     }
 

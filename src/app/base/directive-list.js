@@ -58,6 +58,8 @@ define(function(require) {
                 },
                 template: '<span ng-click="changeStatus()" ng-show="!editable">{{jValue}}</span><input type="text" value="{{jValue}}" ng-model="jValue" ng-blur="onBlur()" ng-keyup="onKeyup($event)" ng-show="editable">',
                 link: function($scope, element, attrs) {
+                    if(!$scope.jValue) return;
+                    
                     var oldValue = $scope.jValue.length;
                     $scope.editable = false;
                     $scope.changeStatus = function(){
