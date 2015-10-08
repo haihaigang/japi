@@ -1,0 +1,66 @@
+<style type="text/css">
+.mymodule{
+	position: relative;
+}
+.mytitle{
+	position: absolute;
+	z-index: 9;
+	top: 50%;
+	left: 50%;
+	width: 150px;
+	height: 150px;
+	line-height: 130px;
+	margin-top: -75px;
+	margin-left: -75px;
+	font-size: 30px;
+	padding: 10px;
+	text-align: center;
+	color: #fff;
+	display: inline-block;
+	border-radius: 50%;
+}
+.mypanel {
+	float: left;
+	position: absolute;
+	margin-bottom: 0;
+    /*width: 200px;*/
+    /*transform: rotate(90deg);*/
+}
+.circle{
+	border: 1px solid #000;
+	border-radius: 50%;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+}
+.circle.c1{
+	width: 200px;
+	height: 200px;
+	margin-left: -100px;
+	margin-top: -100px;
+}
+.circle.c2{
+	width: 300px;
+	height: 300px;
+	margin-left: -150px;
+	margin-top: -150px;
+}
+.circle.c3{
+	width: 400px;
+	height: 400px;
+	margin-left: -200px;
+	margin-top: -200px;
+}
+</style>
+<div class="mymodule clearfix" ng-repeat="pitem in page.models" style="height: {{page.cheight}}px;">
+	<div class="mytitle" style="background-color:{{pitem.moduleColor}}">{{pitem.module}}</div>
+    <div class="panel panel-default mypanel" ng-repeat="item in pitem.sub" ng-style="item.pos">
+        <div class="panel-heading" ng-click="tog(item)">
+            <h3 class="panel-title">{{$index}}</h3>
+            <!-- <h3 class="panel-title">{{item.url}}</h3> -->
+        </div>
+        <div class="list-group" ng-show="item.show">
+            <a class="list-group-item" ng-repeat="sitem in item.responses" ng-if="sitem.key"><span class="badge" ng-if="sitem.type=='object' || sitem.type=='array'">0</span>{{sitem.key}}</a>
+        </div>
+    </div>
+</div>
