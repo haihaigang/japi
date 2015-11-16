@@ -7,7 +7,7 @@ define(function(require) {
 
     angular.module('baseModule')
         //统一错误提示
-        .factory('errorService', function() {
+        .factory('ErrorService', function() {
             return {
                 dialogOptions: null,
                 isLoading: false,

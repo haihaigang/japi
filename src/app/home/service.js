@@ -15,14 +15,14 @@ define(function(require) {
                 collections: null,
                 collectionRequests: null,
                 getCollections: function(callback) {
-                    pm.indexedDB.getCollections(function(response) {
+                    pm.DB.getCollections(function(response) {
                         var ret = [];
                         for (var i in response) {
                             if(i >= result.max){
                                 break;
                             }
                             ret[i] = response[i];
-                            // pm.indexedDB.getAllRequestsInCollection(ret[i],function(requests){
+                            // pm.DB.getAllRequestsInCollection(ret[i],function(requests){
                             //     ret[i].count = requests.length;
                             // })
                         }
@@ -30,7 +30,7 @@ define(function(require) {
                     });
                 },
                 getCollectionRequest: function(callback) {
-                    pm.indexedDB.getAllRequestsInCollection({}, function(response) {
+                    pm.DB.getAllRequestsInCollection({}, function(response) {
                         var ret = [];
                         for (var i in response) {
                             if(i >= result.max){

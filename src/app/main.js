@@ -57,7 +57,7 @@ define(function(require) {
         $rootScope.$on('$stateChangeStart', function(evt, next, current) {
             var roles = next.data && next.data.roles;
             if (next.name != 'login' && next.name != 'error' && !Auth.isAuthorized(roles)) {
-                //$location.url('login');
+                // $location.url('login');
             }
             if(!'indexedDB' in window){
                 $location.path('lower');
@@ -127,6 +127,22 @@ define(function(require) {
                 },
                 data: {
                     roles: [ROLES.GUEST]
+                }
+            })
+            .state('home_', {
+                url: '',
+                views: {
+                    '': {
+                        templateUrl: 'app/main.html'
+                    },
+                    'menu@home': {
+                        templateUrl: 'app/header/view/menu.html',
+                        controller: 'HeaderController'
+                    },
+                    'main@home': {
+                        templateUrl: 'app/home/view/index.html',
+                        controller: 'HomeController'
+                    }
                 }
             })
             .state('home', {

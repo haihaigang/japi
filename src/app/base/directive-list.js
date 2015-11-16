@@ -24,7 +24,7 @@ define(function(require) {
          * 列表中删除按钮指令，添加删除确认框
          * <div j-delete j-click="do(some)"></div>
          */
-        .directive('jDelete', ['$log', 'errorService', function($log, errorService) {
+        .directive('jDelete', ['$log', 'ErrorService', function($log, ErrorService) {
             return {
                 restrict: 'A',
                 replace: true,
@@ -36,7 +36,7 @@ define(function(require) {
                 template: '<a href="javascript:;" ng-click="doClick()" ng-transclude></a>',
                 link: function($scope, element, attrs) {
                     $scope.doClick = function() {
-                        errorService.showConfirm({
+                        ErrorService.showConfirm({
                             message: attrs.jTip || '确认删除吗？',
                             yesCallback: $scope.jClick
                         });
@@ -48,7 +48,7 @@ define(function(require) {
          * 列表中快速编辑，点击直接可编辑
          * <div j-quick j-value="" j-save="do(some)"></div>
          */
-        .directive('jQuick', ['$log', 'errorService', function($log, errorService) {
+        .directive('jQuick', ['$log', 'ErrorService', function($log, ErrorService) {
             return {
                 restrict: 'A',
                 transclude: true,

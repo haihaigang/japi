@@ -15,7 +15,7 @@ define(function(require) {
      * 全局警告指令
      * <div alert-bar error-message="someMessage"></div>
      */
-    module.directive('alertBar', ['$parse', '$timeout', 'errorService', function($parse, $timeout, errorService) {
+    module.directive('alertBar', ['$parse', '$timeout', 'ErrorService', function($parse, $timeout, ErrorService) {
         return {
             restrict: 'A',
             template: '<div class="alert alert-info alert-dismissible alert-bar" ng-show="errorMessage">' +

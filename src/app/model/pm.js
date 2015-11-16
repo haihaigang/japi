@@ -45,9 +45,9 @@ define(function(require, exports, module) {
 
     pm.debug = true;
 
-    pm.indexedDB = {};
-    pm.indexedDB.db = null;
-    pm.indexedDB.modes = {
+    pm.DB = {};
+    pm.DB.db = null;
+    pm.DB.modes = {
         readwrite: "readwrite",
         readonly: "readonly"
     };
@@ -64,33 +64,11 @@ define(function(require, exports, module) {
     var IDBKeyRange = window.IDBKeyRange || window.webkitIDBKeyRange;
     var IDBCursor = window.IDBCursor || window.webkitIDBCursor;
 
-    /*
-     Components
-
-     history - History of sent requests. Can be toggled on and off
-     collections - Groups of requests. Can be saved to a file. Saved requests can have a name and description to document
-     the request properly.
-     settings - Settings Postman behavior
-     layout - Manages quite a bit of the interface
-     currentRequest - Everything to do with the current request loaded in Postman. Also manages sending, receiving requests
-     and processing additional parameters
-     urlCache - Needed for the autocomplete functionality
-     helpers - Basic and OAuth helper management. More helpers will be added later.
-     keymap - Keyboard shortcuts
-     envManager - Environments to customize requests using variables.
-     filesystem - Loading and saving files from the local filesystem.
-     indexedDB - Backend database. Right now Postman uses indexedDB.
-
-     I am not exactly happy with the code I have written. Most of this has resulted from rapid UI
-     prototyping. I hope to rewrite this using either Ember or Backbone one day! Till then I'll be
-     cleaning this up bit by bit.
-     */
-
     pm.init = function() {
-        pm.indexedDB.open();
+        pm.DB.open();
     };
 
-    pm.indexedDB = {
+    pm.DB = {
         TABLE_HEADER_PRESETS: "header_presets",
 
         onerror: function(event, callback) {
@@ -101,8 +79,8 @@ define(function(require, exports, module) {
             var request = myIndexedDB.open("postman", "POSTman request history");
             request.onsuccess = function(e) {
                 var v = "0.6";
-                pm.indexedDB.db = e.target.result;
-                var db = pm.indexedDB.db;
+                pm.DB.db = e.target.result;
+                var db = pm.DB.db;
 
                 //We can only create Object stores in a setVersion transaction
                 if (v !== db.version) {
@@ -186,7 +164,7 @@ define(function(require, exports, module) {
 
             };
 
-            request.onfailure = pm.indexedDB.onerror;
+            request.onfailure = pm.DB.onerror;
         },
 
         open_latest: function() {
@@ -195,7 +173,7 @@ define(function(require, exports, module) {
             request.onupgradeneeded = function(e) {
 
                 var db = e.target.result;
-                pm.indexedDB.db = db;
+                pm.DB.db = db;
                 if (!db.objectStoreNames.contains("requests")) {
                     var requestStore = db.createObjectStore("requests", {
                         keyPath: "id"
@@ -229,26 +207,26 @@ define(function(require, exports, module) {
 
             request.onsuccess = function(e) {
                 console.log('db.start:' + (new Date().getTime() - tick))
-                pm.indexedDB.db = e.target.result;
+                pm.DB.db = e.target.result;
                 // pm.history.getAllRequests();
                 // pm.envManager.getAllEnvironments();
                 // pm.headerPresets.init();
             };
 
-            request.onerror = pm.indexedDB.onerror;
+            request.onerror = pm.DB.onerror;
         },
 
         open: function() {
             var m = navigator.userAgent.match(/Chrom(e|ium)\/([0-9]+)\./);
             if (m && parseInt(m[2]) < 23) {
-                pm.indexedDB.open_v21();
+                pm.DB.open_v21();
             } else {
-                pm.indexedDB.open_latest();
+                pm.DB.open_latest();
             }
         },
 
         saveCollection: function(collection, callback) {
-            var db = pm.indexedDB.db;
+            var db = pm.DB.db;
             var trans = db.transaction(["collections"], "readwrite");
             var store = trans.objectStore("collections");
 
@@ -272,7 +250,7 @@ define(function(require, exports, module) {
         },
 
         saveCollectionRequest: function(req, callback) {
-            var db = pm.indexedDB.db;
+            var db = pm.DB.db;
             var trans = db.transaction(["collection_requests"], "readwrite");
             var store = trans.objectStore("collection_requests");
 
@@ -295,7 +273,7 @@ define(function(require, exports, module) {
         },
 
         getCollection: function(id, callback) {
-            var db = pm.indexedDB.db;
+            var db = pm.DB.db;
             var trans = db.transaction(["collections"], "readwrite");
             var store = trans.objectStore("collections");
 
@@ -309,13 +287,13 @@ define(function(require, exports, module) {
                     var result = e.target.result;
                     callback && callback(new Collection(result));
                 };
-                cursorRequest.onerror = pm.indexedDB.onerror;
+                cursorRequest.onerror = pm.DB.onerror;
             }
         },
 
         getCollections: function(callback) {
             console.log('getCollections:' + (new Date().getTime() - tick))
-            var db = pm.indexedDB.db;
+            var db = pm.DB.db;
 
             if (db == null) {
                 return;
@@ -350,7 +328,7 @@ define(function(require, exports, module) {
         },
 
         getAllRequestsInCollection: function(collection, callback) {
-            var db = pm.indexedDB.db;
+            var db = pm.DB.db;
             if (db == null) {
                 return;
             }
@@ -383,11 +361,11 @@ define(function(require, exports, module) {
                 //This wil call onsuccess again and again until no more request is left
                 result['continue']();
             };
-            cursorRequest.onerror = pm.indexedDB.onerror;
+            cursorRequest.onerror = pm.DB.onerror;
         },
 
         addRequest: function(historyRequest, callback) {
-            var db = pm.indexedDB.db;
+            var db = pm.DB.db;
             var trans = db.transaction(["requests"], "readwrite");
             var store = trans.objectStore("requests");
             var request = store.put(historyRequest);
@@ -402,7 +380,7 @@ define(function(require, exports, module) {
         },
 
         getRequest: function(id, callback) {
-            var db = pm.indexedDB.db;
+            var db = pm.DB.db;
             var trans = db.transaction(["requests"], "readwrite");
             var store = trans.objectStore("requests");
 
@@ -417,11 +395,11 @@ define(function(require, exports, module) {
 
                 callback && callback(result);
             };
-            cursorRequest.onerror = pm.indexedDB.onerror;
+            cursorRequest.onerror = pm.DB.onerror;
         },
 
         getCollectionRequest: function(id, callback) {
-            var db = pm.indexedDB.db;
+            var db = pm.DB.db;
             var trans = db.transaction(["collection_requests"], "readwrite");
             var store = trans.objectStore("collection_requests");
 
@@ -440,13 +418,13 @@ define(function(require, exports, module) {
                     callback && callback(new CollectionRequest(result));
                     return result;
                 };
-                cursorRequest.onerror = pm.indexedDB.onerror;
+                cursorRequest.onerror = pm.DB.onerror;
             }
         },
 
 
         getAllRequestItems: function(callback) {
-            var db = pm.indexedDB.db;
+            var db = pm.DB.db;
             if (db == null) {
                 return;
             }
@@ -475,12 +453,12 @@ define(function(require, exports, module) {
                 result['continue']();
             };
 
-            cursorRequest.onerror = pm.indexedDB.onerror;
+            cursorRequest.onerror = pm.DB.onerror;
         },
 
         deleteRequest: function(id, callback) {
             try {
-                var db = pm.indexedDB.db;
+                var db = pm.DB.db;
                 var trans = db.transaction(["requests"], "readwrite");
                 var store = trans.objectStore(["requests"]);
 
@@ -499,7 +477,7 @@ define(function(require, exports, module) {
         },
 
         deleteHistory: function(callback) {
-            var db = pm.indexedDB.db;
+            var db = pm.DB.db;
             var clearTransaction = db.transaction(["requests"], "readwrite");
             var clearRequest = clearTransaction.objectStore(["requests"]).clear();
             clearRequest.onsuccess = function(event) {
@@ -508,7 +486,7 @@ define(function(require, exports, module) {
         },
 
         deleteCollectionRequest: function(id, callback) {
-            var db = pm.indexedDB.db;
+            var db = pm.DB.db;
             var trans = db.transaction(["collection_requests"], "readwrite");
             var store = trans.objectStore(["collection_requests"]);
 
@@ -524,7 +502,7 @@ define(function(require, exports, module) {
         },
 
         deleteAllCollectionRequests: function(id) {
-            var db = pm.indexedDB.db;
+            var db = pm.DB.db;
             var trans = db.transaction(["collection_requests"], "readwrite");
 
             //Get everything in the store
@@ -542,44 +520,27 @@ define(function(require, exports, module) {
                 }
 
                 var request = result.value;
-                pm.indexedDB.deleteCollectionRequest(request.id);
+                pm.DB.deleteCollectionRequest(request.id);
                 result['continue']();
             };
-            cursorRequest.onerror = pm.indexedDB.onerror;
+            cursorRequest.onerror = pm.DB.onerror;
         },
 
         deleteCollection: function(id, callback) {
-            var db = pm.indexedDB.db;
+            var db = pm.DB.db;
             var trans = db.transaction(["collections"], "readwrite");
             var store = trans.objectStore(["collections"]);
 
             var request = store['delete'](id);
 
             request.onsuccess = function() {
-                pm.indexedDB.deleteAllCollectionRequests(id);
+                pm.DB.deleteAllCollectionRequests(id);
                 callback && callback(id);
             };
 
             request.onerror = function(e) {
                 console.log(e);
             };
-        }
-    };
-
-    pm.urlCache = {
-        urls: [],
-        addUrl: function(url) {
-            if ($.inArray(url, this.urls) == -1) {
-                pm.urlCache.urls.push(url);
-                this.refreshAutoComplete();
-            }
-        },
-
-        refreshAutoComplete: function() {
-            $("#url").autocomplete({
-                source: pm.urlCache.urls,
-                delay: 50
-            });
         }
     };
 

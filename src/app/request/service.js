@@ -8,8 +8,8 @@ define(function(require) {
 
     var pm = require('../model/pm');
 
-    angular.module('requestService', ['ajaxService'])
-        .factory('Request', ['$rootScope', '$location', 'Ajax', 'CONFIG','Storage', 'errorService', function($rootScope, $location, Ajax, CONFIG,Storage, errorService) {
+    angular.module('requestService', ['apiService'])
+        .factory('Request', ['$rootScope', '$location', 'Ajax', 'CONFIG', 'Storage', 'ErrorService', 'pm', function($rootScope, $location, Ajax, CONFIG, Storage, ErrorService, pm) {
             var result = {
                 title: '接口管理',
                 groups: null, //表单数据
@@ -17,9 +17,9 @@ define(function(require) {
                 condition: null, //当前搜索条件
                 conditionItems: null, //搜索条件项
                 query: function(id) {
-                    pm.indexedDB.getCollectionRequest(id, function(response) {
+                    pm.DB.getCollectionRequest(id, function(response) {
                         var data = response.toForm();
-                        pm.indexedDB.getCollections(function(cResponse) {
+                        pm.DB.getCollections(function(cResponse) {
                             var fdata = [],
                                 flag = false;
                             for (var i in data.data) {
@@ -35,7 +35,7 @@ define(function(require) {
                                 if (flag) break;
                             }
                             result.groups = data;
-                            $rootScope.$apply();
+                            // $rootScope.$apply();
                         })
                     });
                 },
@@ -43,9 +43,9 @@ define(function(require) {
                     var data = Ajax.formatData(result.groups);
                     //保存最后一次提交接口的项目编号，以便下次快速添加
                     Storage.set('collectionId', data.collectionId);
-                    pm.indexedDB.saveCollectionRequest(data, function(response) {
-                        $location.path('requests/'+data.collectionId);
-                        $rootScope.$apply();
+                    pm.DB.saveCollectionRequest(data, function(response) {
+                        $location.path('requests/' + data.collectionId);
+                        // $rootScope.$apply();
                     });
                 },
                 search: function(data) {
@@ -53,8 +53,8 @@ define(function(require) {
                         data = Ajax.formatCondition(result.conditionItems);
                     }
                     data.collectionId = Storage.get('collectionId');
-                    pm.indexedDB.getAllRequestsInCollection(data, function(response) {
-                        pm.indexedDB.getCollections(function(cResponse) {
+                    pm.DB.getAllRequestsInCollection(data, function(response) {
+                        pm.DB.getCollections(function(cResponse) {
                             for (var i in response) {
                                 for (var j in cResponse) {
                                     if (response[i].collectionId == cResponse[j].id) {
@@ -62,14 +62,16 @@ define(function(require) {
                                     }
                                 }
                             }
-                            response.sort(function(a,b){return Ajax.order(a,b);});
+                            response.sort(function(a, b) {
+                                return Ajax.order(a, b);
+                            });
                             result.pageData = response;
-                            $rootScope.$apply();
+                            // $rootScope.$apply();
                         })
                     });
                 },
                 remove: function(id) {
-                    pm.indexedDB.deleteCollectionRequest(id, function(response) {
+                    pm.DB.deleteCollectionRequest(id, function(response) {
                         result.search(result.condition);
                     });
                 },
@@ -86,7 +88,7 @@ define(function(require) {
                             type: 'text',
                             title: '项目名称'
                         };
-                    pm.indexedDB.getCollections(function(response) {
+                    pm.DB.getCollections(function(response) {
                         for (var i in response) {
                             if (response[i].id == stateParams.collectionId) {
                                 d1.value = response[i].id;
@@ -101,12 +103,12 @@ define(function(require) {
                 },
                 export: function() {
                     var id = Storage.get('collectionId');
-                    if(!id){
-                        errorService.showToast('不能上传，未选择项目');
+                    if (!id) {
+                        ErrorService.showToast('不能上传，未选择项目');
                         return;
                     }
-                    pm.indexedDB.getCollection(id, function(response) {
-                        pm.indexedDB.getAllRequestsInCollection({
+                    pm.DB.getCollection(id, function(response) {
+                        pm.DB.getAllRequestsInCollection({
                             collectionId: id
                         }, function(rResponse) {
                             rResponse.sort(Ajax.order);
@@ -123,12 +125,12 @@ define(function(require) {
                                 }
                             }, function(aResponse) {
                                 if (aResponse.code != 0) {
-                                    errorService.showAlert(aResponse.message);
+                                    ErrorService.showAlert(aResponse.message);
                                 }
-                                errorService.showToast('上传成功！');
+                                ErrorService.showToast('上传成功！');
                                 response.remoteId = aResponse.body.id;
                                 delete response.requests;
-                                pm.indexedDB.saveCollection(response, function(cResponse) {});
+                                pm.DB.saveCollection(response, function(cResponse) {});
                             })
                         })
                     })
@@ -136,23 +138,23 @@ define(function(require) {
                 /**
                  * 快速保存，更新某接口的某个字段的值
                  */
-                quickSave: function(id, key, value){
-                    pm.indexedDB.getCollectionRequest(id, function(response) {
+                quickSave: function(id, key, value) {
+                    pm.DB.getCollectionRequest(id, function(response) {
                         response[key] = value;
-                        pm.indexedDB.saveCollectionRequest(response, function(rResponse) {
-                            console.log('update request '+id+' success');
+                        pm.DB.saveCollectionRequest(response, function(rResponse) {
+                            console.log('update request ' + id + ' success');
                         });
                     });
                 },
                 /**
                  * 复制接口
                  */
-                copy: function(id){
-                    pm.indexedDB.getCollectionRequest(id, function(response) {
+                copy: function(id) {
+                    pm.DB.getCollectionRequest(id, function(response) {
                         delete response.id;
                         response.name = '[copy]' + response.name;
-                        pm.indexedDB.saveCollectionRequest(response, function(rResponse) {
-                            console.log('copy request '+id+' success');
+                        pm.DB.saveCollectionRequest(response, function(rResponse) {
+                            console.log('copy request ' + id + ' success');
                             result.pageData.push(rResponse);
                             $rootScope.$apply();
                         });

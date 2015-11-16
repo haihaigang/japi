@@ -4,12 +4,13 @@
 define(function(require) {
     require('angular');
     require('requester');
+    require('../base/service-api');
     require('../base/service-ajax');
 
-    var pm = require('../model/pm');
+    // var pm = require('../model/pm');
 
-    angular.module('collectionService', ['ajaxService'])
-        .factory('Collection', ['$rootScope', '$location', 'Ajax', 'CONFIG', 'errorService', 'Storage', function($rootScope, $location, Ajax, CONFIG, errorService, Storage) {
+    angular.module('collectionService', ['apiService'])
+        .factory('Collection', ['$rootScope', '$location', 'Ajax', 'CONFIG', 'ErrorService', 'Storage', 'pm', function($rootScope, $location, Ajax, CONFIG, ErrorService, Storage, pm) {
             var result = {
                 title: '项目管理',
                 groups: null, //表单数据
@@ -18,35 +19,37 @@ define(function(require) {
                 data: null, //某项目数据（含接口）
                 navs: null,
                 query: function(id) {
-                    pm.indexedDB.getCollection(id, function(response) {
+                    pm.DB.getCollection(id, function(response) {
                         result.groups = response.toForm();
-                        $rootScope.$apply(); //为什么这里不能添加$apply，必须加上，以便立即更新视图
+                        //$rootScope.$apply(); //为什么这里不能添加$apply，必须加上，以便立即更新视图
                     });
                 },
                 save: function(callback) {
                     var data = Ajax.formatData(result.groups);
                     data.remoteId = 48;
-                    pm.indexedDB.saveCollection(data, function(response) {
+                    pm.DB.saveCollection(data, function(response) {
                         $location.path('collections');
-                        $rootScope.$apply();
+
+                        //$rootScope.$apply();
                     });
                 },
                 search: function(data) {
                     result.condition = data;
-                    pm.indexedDB.getCollections(function(response) {
+                    pm.DB.getCollections(function(response) {
                         console.log(response);
                         result.pageData = response;
-                        $rootScope.$apply();
+                        console.log($rootScope)
+                        // $rootScope.$apply();
                     });
                 },
                 remove: function(id) {
-                    pm.indexedDB.deleteCollection(id, function(response) {
+                    pm.DB.deleteCollection(id, function(response) {
                         result.search(result.condition);
                     });
                 },
                 export: function(id) {
-                    pm.indexedDB.getCollection(id, function(response) {
-                        pm.indexedDB.getAllRequestsInCollection({
+                    pm.DB.getCollection(id, function(response) {
+                        pm.DB.getAllRequestsInCollection({
                             collectionId: id
                         }, function(rResponse) {
                             rResponse.sort(Ajax.order);
@@ -63,20 +66,20 @@ define(function(require) {
                                 }
                             }, function(aResponse) {
                                 if (aResponse.code != 0) {
-                                    errorService.showAlert(aResponse.message);
+                                    ErrorService.showAlert(aResponse.message);
                                 }
-                                errorService.showToast('上传成功！');
+                                ErrorService.showToast('上传成功！');
                                 response.remoteId = aResponse.body.id;
                                 delete response.requests;
-                                pm.indexedDB.saveCollection(response, function(cResponse) {});
+                                pm.DB.saveCollection(response, function(cResponse) {});
                             })
                         })
                     })
                 },
                 //导出PM用的数据
                 exportToPM: function(id) {
-                    pm.indexedDB.getCollection(id, function(response) {
-                        pm.indexedDB.getAllRequestsInCollection({
+                    pm.DB.getCollection(id, function(response) {
+                        pm.DB.getAllRequestsInCollection({
                             collectionId: id
                         }, function(rResponse) {
                             rResponse.sort(Ajax.order);
@@ -123,15 +126,15 @@ define(function(require) {
                             }
                         }, function(response) {
                             if (response.code != 0) {
-                                errorService.showAlert(response.message);
+                                ErrorService.showAlert(response.message);
                             }
                             result.processData(response.body);
                             result.data = response.body;
                             Storage.set('jdata', response.body);
                         })
                     } else {
-                        pm.indexedDB.getCollection(id, function(response) {
-                            pm.indexedDB.getAllRequestsInCollection({
+                        pm.DB.getCollection(id, function(response) {
+                            pm.DB.getAllRequestsInCollection({
                                 collectionId: id
                             }, function(rResponse) {
                                 response.requests = rResponse;
@@ -229,7 +232,7 @@ define(function(require) {
                             y: -1
                         }];
                     data.collectionId = Storage.get('collectionId');
-                    pm.indexedDB.getAllRequestsInCollection(data, function(response) {
+                    pm.DB.getAllRequestsInCollection(data, function(response) {
                         // response.sort(Ajax.order);
                         // for(var i = 0; i < response.length; i++){
                         //     for(var j = 0; j < response[i].responses.length; j++){
@@ -282,7 +285,7 @@ define(function(require) {
                         groups = [],
                         gLen = Math.floor(result.cwidth / (dist + pad));
                     data.collectionId = Storage.get('collectionId');
-                    pm.indexedDB.getAllRequestsInCollection(data, function(response) {
+                    pm.DB.getAllRequestsInCollection(data, function(response) {
                         var processData = result.processData({
                             requests: response
                         });

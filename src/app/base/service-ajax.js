@@ -5,7 +5,7 @@ define(function(require) {
     require('angular');
 
     angular.module('ajaxService', [])
-        .factory('Ajax', ['$http', '$rootScope', 'errorService', function($http, $rootScope, errorService) {
+        .factory('Ajax', ['$http', '$rootScope', 'ErrorService', function($http, $rootScope, ErrorService) {
             var ajax = {
                 breadcrumbs: []
             };
@@ -18,7 +18,7 @@ define(function(require) {
             angular.forEach(['get', 'delete', 'head', 'jsonp'], function(name) {
                 ajax[name] = function(options, callback, callbackError) {
                     if (!options.isSilent) {
-                        errorService.showLoading();
+                        ErrorService.showLoading();
                     }
 
                     extendHeaders(options);
@@ -32,14 +32,14 @@ define(function(require) {
                         })
                         .then(function(response) {
                             var data = response.data;
-                            errorService.hideLoading();
+                            ErrorService.hideLoading();
                             // if (data.code != 0) {
                             //     $rootScope.errorMsg = data.message || '获取数据失败';
                             //     return;
                             // }
                             callback && callback(data);
                         }, function(response) {
-                            errorService.hideLoading();
+                            ErrorService.hideLoading();
                             callbackError && callbackError(response);
                         });
                 }
@@ -48,7 +48,7 @@ define(function(require) {
             angular.forEach(['post', 'put'], function(name) {
                 ajax[name] = function(options, callback, callbackError) {
                     if (!options.isSilent) {
-                        errorService.showLoading();
+                        ErrorService.showLoading();
                     }
 
                     extendHeaders(options);
@@ -61,7 +61,7 @@ define(function(require) {
                             cache: false
                         })
                         .then(function(response) {
-                            errorService.hideLoading();
+                            ErrorService.hideLoading();
                             var data = response.data;
                             if (data.code != 0) {
                                 $rootScope.errorMsg = data.message || '获取数据失败';
@@ -69,7 +69,7 @@ define(function(require) {
                             }
                             callback && callback(data);
                         }, function(response) {
-                            errorService.hideLoading();
+                            ErrorService.hideLoading();
                             callbackError && callbackError(response);
                         })
                 }
@@ -199,10 +199,10 @@ define(function(require) {
     }])
 
     // register the interceptor as a service, intercepts ALL angular ajax http calls
-    .factory('httpInterceptor', function($q, $location, errorService, $rootScope) {
+    .factory('httpInterceptor', function($q, $location, ErrorService, $rootScope) {
         var myInterceptor = {
             request: function(config) {
-                errorService.clearAlert();
+                ErrorService.clearAlert();
                 return config;
             },
             requestError: function(rejection) {
@@ -210,7 +210,7 @@ define(function(require) {
             },
             response: function(response) {
                 if (response.headers('content-type') == 'application/json' && response.data.code != 0) {
-                    errorService.showAlert(response.data.message || 'Server response incorrect');
+                    ErrorService.showAlert(response.data.message || 'Server response incorrect');
                 }
 
                 // return $q.reject(response);
@@ -220,9 +220,9 @@ define(function(require) {
                 if (response.status === 401) {
                     $rootScope.$broadcast('event:loginRequired');
                 } else if (response.status >= 400 && response.status < 500) {
-                    errorService.showAlert('Server was unable to find what you were looking for... Sorry!!');
+                    ErrorService.showAlert('Server was unable to find what you were looking for... Sorry!!');
                 } else {
-                    errorService.showAlert('Server unavaiable... Sorry!!');
+                    ErrorService.showAlert('Server unavaiable... Sorry!!');
                 }
                 return $q.reject(response);
             }

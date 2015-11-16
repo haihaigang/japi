@@ -76,7 +76,7 @@ define(function(require) {
                     }
 
                     var col = new Collection(data);
-                    pm.indexedDB.saveCollection(col, function(collection) {
+                    pm.DB.saveCollection(col, function(collection) {
                         for (var i in data.requests) {
                             for (var j in data.requests[i].data) {
                                 //转换pm的数据，字段类型统一为string
@@ -87,7 +87,7 @@ define(function(require) {
                             var d = data.requests[i],
                                 req = new CollectionRequest(data.requests[i]);
 
-                            pm.indexedDB.saveCollectionRequest(req);
+                            pm.DB.saveCollectionRequest(req);
                         }
                     });
                     result.message = '导入成功，共计' + data.requests.length + '个接口';

@@ -8,22 +8,23 @@ define(function(require) {
     angular.module('baseModule')
         //接口地址等配置信息
         .constant('CONFIG', {
-            HOST_API: 'http://'+location.host+'/',
+            HOST_API: location.protocol +'//'+location.host+'/',
+            HOST_API: 'http://121.43.115.115:8088/',
             HOST_IMAGE: '',
             DEF_URL_IMG: 'image/d300x300-1.png', //默认图片地址
 
             API_ACCOUNT_LOGIN: 'data/account/login.json',
 
             API_COLLECTION_SYNC: 'webapi.php?api=399',
-            API_COLLECTION_LIST: 'data/collection/list.json',
-            API_COLLECTION_ADD: 'data/collection/add.json',
-            API_COLLECTION_EDIT: 'data/collection/edit.json',
-            API_COLLECTION_SAVE: 'data/collection/save.json',
+            API_COLLECTION_LIST: 'webapi.php?api=301',
+            API_COLLECTION_QUERY: 'webapi.php?api=302',
+            API_COLLECTION_SAVE: 'webapi.php?api=303',
+            API_COLLECTION_REMOVE: 'webapi.php?api=304',
 
-            API_REQUEST_LIST: 'data/request/list.json',
-            API_REQUEST_ADD: 'data/request/add.json',
-            API_REQUEST_EDIT: 'data/request/edit.json',
-            API_REQUEST_SAVE: 'data/request/save.json',
+            API_REQUEST_LIST: 'webapi.php?api=305',
+            API_REQUEST_QUERY: 'webapi.php?api=306',
+            API_REQUEST_SAVE: 'webapi.php?api=307',
+            API_REQUEST_REMOVE: 'webapi.php?api=308',
 
             API_GLOBAL_UPLOAD: 'data/upload.json',
             API_GLOBAL_REGION: 'data/region.json',

@@ -6,8 +6,8 @@ define(function(require) {
 
     angular.module('mainModule', [])
         // * 全局控制器
-        .controller('MainController', ['$scope', 'errorService', function($scope, errorService) {
-            $scope.errorService = errorService;
+        .controller('MainController', ['$scope', 'ErrorService', function($scope, ErrorService) {
+            $scope.ErrorService = ErrorService;
 
             $scope.filterOptions = {
                 filterText: '',
