@@ -1,0 +1,254 @@
+<style type="text/css">
+th {
+    border: 1px solid #ccc;
+    height: 35px;
+    padding: 5px 10px 5px 10px;
+}
+
+td {
+    border: 1px solid #ccc;
+    height: 35px;
+    padding: 5px 10px 5px 10px;
+}
+
+table {
+    border: 1px solid #ccc;
+    margin: 10px auto;
+}
+
+th:first-child {
+    width: 15%
+}
+
+th:nth-child(2) {
+    width: 44%
+}
+
+th:nth-child(3) {
+    width: 15%
+}
+
+.detail {
+    padding: 0;
+    background: white;
+    border: 0;
+}
+
+[ng\:cloak],
+[ng-cloak],
+[data-ng-cloak],
+[x-ng-cloak],
+.ng-cloak,
+.x-ng-cloak,
+.ng-hide:not(.ng-animate) {
+    display: none !important;
+}
+
+.quick-nav {
+}
+
+.quick-nav-content {
+    margin-bottom: 20px;
+    padding: 7px;
+    background-color: rgb(0, 140, 186);
+}
+
+.quick-nav-content.fixed {
+    position: fixed;
+    top: 0px;
+    right: 0;
+    left: 0;
+    z-index: 9;
+}
+
+.quick-nav a {
+    display: inline-block;
+    /*width: 25px;*/
+    padding: 0 7px;
+    text-align: center;
+    color: #fff;
+    text-decoration: none;
+}
+
+.quick-nav a:hover,
+.quick-nav a:focus {
+    background-color: #006687;
+}
+.requests{
+    position: relative;
+}
+.request-nav{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -15px;
+    width: 5px;
+    background-color: #ccc;
+}
+.request{
+    overflow: hidden;
+    -webkit-transition: height 1s ease;
+    transition: height 1s ease;
+}
+.request.closed{
+    height: 56px;
+}
+.level2 table{
+    background-color: #eee;
+}
+.level3 table{
+    background-color: #ddd;
+}
+
+.second-nav-btn{
+    position: fixed;
+    top: 50%;
+    right: 210px;
+    padding: 10px;
+    font-size: 24px;
+}
+
+</style>
+<div class="quick-nav">
+    <div class="quick-nav-content">
+        <a href="javascript:;" ng-repeat="item in page.data.requests" title="{{item.name}}" data-i="{{item.originId}}">{{item.module}}</a>
+    </div>
+</div>
+<div ng-show="page.data">
+    <h2>{{page.data.name}}</h2>
+    <p><b>版本：</b>{{page.data.version}}</p>
+    <p><b>描述：</b>{{page.data.desc}}</p>
+    <div><b>约定：</b><pre>{{page.data.content}}</pre></div>
+</div>
+<div class="second-nav">
+    <div ng-repeat="item in page.data.requests">
+        <h3>{{item.module}}</h3>
+        <p ng-repeat="sitem in item.sub"><a href="javascript:;" data-i="{{sitem.originId}}">{{sitem.originId + 1}}{{sitem.name}}</a></p>
+    </div>
+</div>
+<!-- <div class="second-nav-btn glyphicon glyphicon-chevron-left"></div> -->
+<div class="requests" ng-repeat="pitem in page.data.requests">
+    <div class="request-nav" style="background-color:{{pitem.moduleColor}}"></div>
+    <h2 class="request-module"><a href="javascript:;">{{pitem.module}}[{{pitem.sub.length}}]</a></h2>
+    <div class="request-content">
+        <div class="request" ng-repeat="item in pitem.sub">
+            <h3 class="r-name" id="r{{item.originId}}">{{item.originId+1}}：{{item['name']}}</h3>
+            <p><strong>URL：</strong><a href="api/{{item['url']}}.json" title="查看预览接口" target="_blank">{{item['url']}}</a></p>
+            <p><strong>方式：</strong>{{item['method']}}</p>
+            <p><strong>类型：</strong>{{item['type'] == 'page' ? '分页' : '普通'}}</p>
+            <p><strong>说明</strong>：{{item['desc']}}</p>
+            <div><strong>请求参数：</strong>
+                <table width="100%" cellpadding="3" cellspacing="1">
+                    <tr>
+                        <th>关键字</th>
+                        <th>描述</th>
+                        <th>类型</th>
+                        <th>是否必填</th>
+                    </tr>
+                    <tr ng-repeat="sitem in item.data">
+                        <td>{{sitem.key}}</td>
+                        <td>{{sitem.desc}}</td>
+                        <td>{{sitem.type}}</td>
+                        <td>{{sitem.checked}}</td>
+                    </tr>
+                    <tr ng-if="!item.data.length">
+                        <td colspan="4" align="center">暂无数据。</td>
+                    </tr>
+                </table>
+            </div>
+            <p><strong>响应类型：</strong>{{item['responseType']}}</p>
+            <div><strong>响应参数：</strong>
+                <table width="100%" cellpadding="3" cellspacing="1">
+                    <tr>
+                        <th>关键字</th>
+                        <th>描述</th>
+                        <th>类型</th>
+                        <th>详情</th>
+                    </tr>
+                    <tbody ng-repeat="sitem in item.responses">
+                        <tr>
+                            <td>{{sitem.key}}</td>
+                            <td>{{sitem.desc}}</td>
+                            <td>{{sitem.type}}</td>
+                            <td><a href="" class="checked" ng-show="{{sitem.children.length}}">隐藏</a><span ng-show="{{!sitem.children.length}}">无</span></td>
+                        </tr>
+                        <tr ng-show="sitem.children.length">
+                            <td colspan="4" class="level2">
+                                <table width="100%" cellpadding="3" cellspacing="1">
+                                    <tbody ng-repeat="ssitem in sitem.children">
+                                        <tr>
+                                            <td>{{ssitem.key}}</td>
+                                            <td>{{ssitem.desc}}</td>
+                                            <td>{{ssitem.type}}</td>
+                                            <td><a href="" class="checked" ng-show="{{ssitem.children.length}}">隐藏</a><span ng-show="{{!ssitem.children.length}}">无</span></td>
+                                        </tr>
+                                        <tr ng-show="ssitem.children.length">
+                                            <td colspan="4" class="level3">
+                                                <table width="100%" cellpadding="3" cellspacing="1">
+                                                    <tr ng-repeat="sssitem in ssitem.children">
+                                                        <td>{{sssitem.key}}</td>
+                                                        <td>{{sssitem.desc}}</td>
+                                                        <td>{{sssitem.type}}</td>
+                                                        <td><a href="" class="checked" ng-show="{{sssitem.children.length}}">隐藏</a><span ng-show="{{!sssitem.children.length}}">无</span></td>
+                                                    </tr>
+                                                </table>        
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>        
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tr ng-if="!item.responses.length">
+                        <td colspan="4" align="center">暂无数据。</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+$(function() {
+    $("body").on('click', '.checked', function() {
+        if ($(this).parent().parent().next().is(":visible")) {
+            $(this).parent().parent().next().hide();
+            $(this).text("查看");
+        } else {
+            $(this).parent().parent().next().show();
+            $(this).text("隐藏");
+        }
+    }).on('click', '.quick-nav a', function(e) {
+        e.preventDefault();
+        var idx = $(this).attr('data-i'),
+            tar = $('#r' + idx).offset();
+
+        scrollTo(tar.top);
+    }).on('click', '.main-nav a', function(e) {
+        e.preventDefault();
+        var idx = $(this).attr('data-i'),
+            tar = $('#r' + idx).offset();
+
+        scrollTo(tar.top);
+    }).on('click', '.second-nav a', function(e) {
+        e.preventDefault();
+        var idx = $(this).attr('data-i'),
+            tar = $('#r' + idx).offset();
+
+        scrollTo(tar.top);
+    }).on('click','.request-module a',function(e){
+        $(this).parent().next().toggle();
+    })
+    $(window).scroll(function(e) {
+        if ($(this).scrollTop() > 100) {
+            $('.quick-nav').css('height',$('.quick-nav-content').outerHeight());
+            $('.quick-nav-content').addClass('fixed');
+        } else {
+            $('.quick-nav-content').removeClass('fixed');
+        }
+    })
+
+    function scrollTo(y){
+        window.scrollTo(0, y - 94);
+    }
+});
+</script>

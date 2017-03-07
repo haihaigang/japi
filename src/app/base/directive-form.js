@@ -209,7 +209,7 @@ define(function(require) {
                 }
 
                 //当最大数量小于等于1的时候，默认不显示添加按钮
-                if(attrs.jMax != -1 && attrs.jMax <= 1){
+                if (attrs.jMax != -1 && attrs.jMax <= 1) {
                     $scope.showAdd = false;
                 }
 
@@ -225,9 +225,9 @@ define(function(require) {
                     $scope.startUpload(files, idx);
                 });
 
-                element.on('mouseover', '.form-image-item', function(){
+                element.on('mouseover', '.form-image-item', function() {
                     $(this).find('.remove').show();
-                }).on('mouseout','.form-image-item',function(){
+                }).on('mouseout', '.form-image-item', function() {
                     $(this).find('.remove').hide();
                 })
 
@@ -241,14 +241,14 @@ define(function(require) {
                         url: CONFIG.def_url_img
                     });
 
-                    if(attrs.jMax != -1 && $scope.items.length >= attrs.jMax){
+                    if (attrs.jMax != -1 && $scope.items.length >= attrs.jMax) {
                         $scope.showAdd = false;
                     }
                 }
 
                 $scope.remove = function(idx) {
-                    if($scope.items.length <= 1){
-                    // return;
+                    if ($scope.items.length <= 1) {
+                        // return;
                     }
                     $scope.items.splice(idx, 1);
                     $scope.showAdd = true;
@@ -489,7 +489,7 @@ define(function(require) {
     module.directive('jMutiple', ['$log', '$http', 'CONFIG', function($log, $http, CONFIG) {
         return {
             restrict: 'A',
-            templateUrl: 'app/base/view/form-mutiple.html',
+            templateUrl: 'app/base/view/form-mutiple2.html',
             //replace: true,
             scope: {
                 options: '=',
@@ -497,27 +497,27 @@ define(function(require) {
             },
             link: function($scope, element, attrs) {
 
-                $scope.remove = function(data, idx){
-                    if(data.length <=1) return;
-                    data.splice(idx,1);
+                $scope.remove = function(data, idx) {
+                    if (data.length <= 1) return;
+                    data.splice(idx, 1);
                 }
 
-                $scope.add = function(data, idx){
+                $scope.add = function(data, idx) {
                     console.log(data);
                     //仅在最后一条可以添加新纪录
-                    if(idx < data.length-1) return;
+                    if (idx < data.length - 1) return;
                     data.push({
                         key: "",
                         value: ""
                     })
                 }
 
-                $scope.toggle = function(data, idx){
-                    for(var i in data){
-                        if(i == idx){
+                $scope.toggle = function(data, idx) {
+                    for (var i in data) {
+                        if (i == idx) {
                             // $scope.data[i].showDetail = !$scope.data[i].showDetail;
                             data[i].showDetail = !data[i].showDetail;
-                            if(!data[i].children || data[i].children.length == 0){
+                            if (!data[i].children || data[i].children.length == 0) {
                                 data[i].children = [{
                                     key: "",
                                     value: ""
@@ -527,7 +527,29 @@ define(function(require) {
                     }
                 }
 
-                $scope.addChild = function(){}
+                // 交换数组元素
+                var swapItems = function(arr, index1, index2) {
+                    arr[index1] = arr.splice(index2, 1, arr[index1])[0];
+                    return arr;
+                };
+
+                // 上移
+                $scope.up = function(data, idx) {
+                    if (idx == 0) {
+                        return;
+                    }
+                    swapItems(data, idx, idx - 1);
+                };
+
+                // 下移
+                $scope.down = function(data, idx) {
+                    if (idx == data.length - 1) {
+                        return;
+                    }
+                    swapItems(data, idx, idx + 1);
+                };
+
+                $scope.addChild = function() {}
             }
         }
     }]);

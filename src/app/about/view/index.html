@@ -1,20 +1,68 @@
 <div j-breadcrumb j-data="breadcrumbs"></div>
-<div class="alert alert-success" ng-show="page.status == 'success'">{{page.message}}</div>
-<div class="alert alert-danger" ng-show="page.status == 'error'">{{page.message}}</div>
-<form class="form">
-    <div class="form-group">
-        <label for="import-pm">导入 (PM数据)</label>
-        <div class="input-group">
-            <div class="input-group-addon"><span class="glyphicon glyphicon-file"></span></div>
-            <input type="file" class="form-control" id="import-pm" placeholder="Amount">
-        </div>
+<div class="about-tips">
+    <div class="alert alert-success" ng-class="{'alert-success': page.status == 'success','alert-danger': page.status == 'error'}" ng-show="page.message">{{page.message}}</div>
+</div>
+<!-- Nav tabs -->
+<ul class="nav nav-tabs about-tabs" role="tablist" id="myTab">
+    <li role="presentation" class="active"><a href="#home" role="tab" data-toggle="tab">导入 (PM数据)</a></li>
+    <li role="presentation"><a href="#profile" role="tab" data-toggle="tab">导入（从服务器）</a></li>
+    <li role="presentation"><a href="#messages" role="tab" data-toggle="tab">导入（JSON数据）</a></li>
+    <li role="presentation"><a href="#mock" role="tab" data-toggle="tab">生成模拟接口</a></li>
+    <li role="presentation"><a href="#settings" role="tab" data-toggle="tab">TEST</a></li>
+</ul>
+<!-- Tab panes -->
+<div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="home">
+        <form class="form about-form">
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon"><span class="glyphicon glyphicon-file"></span></div>
+                    <input type="file" class="form-control" placeholder="Amount">
+                </div>
+            </div>
+        </form>
     </div>
-    <div class="form-group">
-        <label for="import-url">导入（从服务器）</label>
-        <div class="input-group">
-            <div class="input-group-addon"><span class="glyphicon glyphicon-paperclip"></span></div>
-            <input type="text" class="form-control" id="import-url" placeholder="网址">
-        </div>
+    <div role="tabpanel" class="tab-pane" id="profile">
+        <form class="form about-form">
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon"><span class="glyphicon glyphicon-paperclip"></span></div>
+                    <input type="text" class="form-control" placeholder="网址或ID" ng-model="page.url">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary" ng-click="page.importFromPmService()">确定</button>
+        </form>
     </div>
-    <button type="submit" class="btn btn-primary" ng-click="page.importFromPmService()">导入（从服务器）</button>
-</form>
+    <div role="tabpanel" class="tab-pane" id="messages">
+        <form class="form about-form">
+            <div class="form-group">
+                <select class="form-control" ng-model="item.collectionId" ng-options="eo.id as eo.name for eo in page.collections">
+                    <option value="">请选择项目</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon"><span class="glyphicon glyphicon-text-width"></span></div>
+                    <textarea type="text" class="form-control" rows="5" placeholder="单个接口的JSON数据直接导入" ng-model="page.jsonData"></textarea>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary" ng-click="page.importRequestFromJson()">确定</button>
+        </form>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="mock">
+        <form class="form mock-form">
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon"><span class="glyphicon glyphicon-paperclip"></span></div>
+                    <input type="text" class="form-control" placeholder="输入对应的项目对应的远程ID" ng-model="page.id">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary" ng-click="page.generateMockApi()">点击生成</button>
+        </form>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="settings">
+        <button type="submit" class="btn btn-primary" ng-click="page.convertToC()">测试转换结构</button>
+    </div>
+</div>
+
+

@@ -12,7 +12,7 @@ define(function(require) {
 
             var extendHeaders = function(config) {
                 config.headers = config.headers || {};
-                //config.headers['Access-Control-Allow-Origin'] = '*';
+                // config.headers['Access-Control-Allow-Origin'] = '*';
             }
 
             angular.forEach(['get', 'delete', 'head', 'jsonp'], function(name) {
@@ -190,6 +190,18 @@ define(function(require) {
 
                 return result.replace('.','v');
             }
+            /**
+             * 转换自定义form数据成json
+             */
+            ajax.formToJson = function(data) {
+                var s = {};
+                console.log(data);
+                for (var i in data) {
+                    var d = data[i];
+                    s[d.key] = d.value;
+                }
+                return s;
+            };
             return ajax;
         }])
 

@@ -1,3 +1,5 @@
+var serveStatic = require('serve-static');
+
 module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
@@ -122,10 +124,60 @@ module.exports = function(grunt) {
                     spawn: true,
                     interrupt: true
                 }
+            },
+            dev: {
+                files: ['src/js/**/*.js'],
+                tasks: [''],
+                options: {
+                    spawn: true,
+                    interrupt: true
+                }
             }
         },
         clean: {
             deploy: ['dest/app/**/*.js', 'dest/.build', '!dest/app/main.js']
+        },
+        connect: {
+            options: {
+                port: 8081,
+                open: true,
+                livereload_bk: 35729,
+                hostname: '*'
+            },
+            server: {
+                options: {
+                    base: './src',
+                    middleware: function(connect, options, middlewares) {
+                        var proxy = require('grunt-connect-proxy/lib/utils').proxyRequest;
+                        return [
+                            serveStatic('./src'),
+                            proxy,
+                        ];
+                    }
+                },
+                proxies: [{
+                    context: '/webapi.php',
+                    host: '192.168.2.113',
+                    port: 8088,
+                    https: false,
+                    changeOrigin: true,
+                    headers: {
+                        host: 'wx.rbyair.com'
+                    }
+                }]
+            },
+            livereload_bk: {
+                options: {
+                    middleware: function(connect, options) {
+                        var middlewares = [require('grunt-connect-proxy/lib/utils').proxyRequest];
+                        return [
+                            serveStatic('./src'),
+                            middlewares,
+                        ];
+                        return middlewares;
+                    }
+                }
+            },
         }
     });
 
@@ -137,10 +189,19 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-connect-proxy');
 
     grunt.registerTask('default', ['concat', 'uglify']);
 
-    grunt.registerTask('wiwiy', ['copy:deploy', 'transport:deploy', 'concat:deploy', 'clean:deploy']);
+    grunt.registerTask('deploy', ['copy:deploy', 'transport:deploy', 'concat:deploy', 'clean:deploy']);
 
     grunt.registerTask('abc', ['uglify:deploy']);
+
+    grunt.registerTask('server', '启动本地服务', function() {
+        grunt.task.run([
+            'configureProxies:server',
+            'connect:server',
+            'watch:dev'
+        ]);
+    });
 };

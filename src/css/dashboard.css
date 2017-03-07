@@ -82,10 +82,10 @@ h6 {
 }
 
 .modal-dialog {
-    margin-top: 0px;
-    display: table-cell;
-    vertical-align: middle;
-    margin: 0px 20px;
+    // margin-top: 0px;
+    // display: table-cell;
+    // vertical-align: middle;
+    // margin: 0px 20px;
 }
 
 .btn-toolbar {
@@ -929,4 +929,27 @@ form .scroll-ad {
     to {
         -o-transform: rotate(360deg);
     }
+}
+
+.about-form{
+    margin-bottom: 25px;
+}
+.about-tabs{
+    margin-bottom: 15px;
+}
+
+.second-nav{
+    position: fixed;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: #fff;
+    box-shadow: 0 -2px 4px rgba(0,0,0,0.2);
+    padding: 0 0 0 10px;
+    z-index: 9;
+    overflow-y: auto;
+}
+.form-line{
+    background-image: url(../image/line.png);
+    background-repeat: repeat-y;
 }

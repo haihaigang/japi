@@ -3,13 +3,11 @@
  */
 define(function(require) {
     require('angular');
-    require('requester');
+    require('../base/service-api');
     require('../base/service-ajax');
 
-    var pm = require('../model/pm');
-
     angular.module('homeService', ['ajaxService'])
-        .factory('Home', ['$rootScope', '$location', 'Ajax', 'CONFIG', function($rootScope, $location, Ajax, CONFIG) {
+        .factory('Home', ['$rootScope', '$location', 'Ajax', 'CONFIG', 'pm', function($rootScope, $location, Ajax, CONFIG, pm) {
             var result = {
                 max: 10,//最大条数
                 collections: null,

@@ -3,17 +3,20 @@
  */
 define(function(require) {
     require('angular');
-    require('requester');
     require('../base/service-ajax');
 
-    var pm = require('../model/pm'),
+    var a = 1,
+        //pm = require('../model/pm'),
         Collection = require('../model/collection'),
         CollectionRequest = require('../model/collection-request');
 
     angular.module('aboutService', ['ajaxService'])
-        .factory('About', ['$rootScope', '$location', 'Ajax', 'CONFIG', function($rootScope, $location, Ajax, CONFIG) {
+        .factory('About', ['$rootScope', '$location', 'Ajax', 'CONFIG','pm', function($rootScope, $location, Ajax, CONFIG,pm) {
             var result = {
                 title: '关于',
+                url: null,//导入的地址
+                collectionId: null, //导入数据对应的collection
+                jsonData: null,//接口的json数据
                 status: false, //错误标志，success、error
                 message: null, //导入提示信息
                 importFromPmFile: function(files) {
@@ -31,13 +34,18 @@ define(function(require) {
                     };
                     reader.readAsText(files[0]);
                 },
-                importFromPmService: function(url) {
-                    var url = $('#import-url').val();
-                    if (!url || !/^http(s)?:\/\/.*$/.test(url)) {
-                        result.message = '导入失败，输入的url不是有效的。';
-                        result.status = 'error';
-                        // $rootScope.$apply();
-                        return false;
+                importFromPmService: function() {
+                    // if (!result.url || !/^http(s)?:\/\/.*$/.test(result.url)) {
+                    //     result.message = '导入失败，输入的url不是有效的。';
+                    //     result.status = 'error';
+                    //     return false;
+                    // }
+
+                    var url = result.url;
+
+                    //输入的可以是绝对的地址或者ID
+                    if(!isNaN(result.url)){
+                        url = '/webapi.php?api=399&id=' + result.url;
                     }
 
                     Ajax.get({
@@ -93,6 +101,82 @@ define(function(require) {
                     result.message = '导入成功，共计' + data.requests.length + '个接口';
                     result.status = 'success';
                     // $rootScope.$apply();
+                },
+                importRequestFromJson: function() {
+                    if (!result.jsonData || typeof result.jsonData != 'string') {
+                        result.message = '导入失败，参数错误';
+                        result.status = 'error';
+                        return false;
+                    }
+
+                    var data = undefined;
+
+                    try {
+                        data = JSON.parse(result.jsonData);
+                        //TODO 校验数据中的一些关键值是否存在，eg:id、collectionId
+                    } catch (e) {
+                        result.message = '尝试解析json错误 ' + e.message;
+                        result.status = 'error';
+                        return false;
+                    }
+
+                    var d = data,
+                        req = new CollectionRequest(data);
+
+                    pm.DB.saveCollectionRequest(req,function(){
+                        result.message = '导入接口数据成功';
+                        result.status = 'success';
+                    });
+                },
+                convertToC: function() {
+                    pm.indexedDB.getAllRequestsInCollection({
+                        collectionId: 'dad36cce-ed80-0558-79f0-f833bcadc6fe'
+                    }, function(response) {
+                        var length = response.length;
+                        for (var i = 0; i < length; i++) {
+                            var len = response[i].responses.length;
+                            for (var j = 0; j < len; j++) {
+                                var detail = response[i].responses[j].detail;
+                                if (!detail) {
+                                    continue;
+                                }
+                                try {
+                                    detail = JSON.parse(detail);
+                                    var children = [];
+                                    children = result.test(detail);
+                                    response[i].responses[j].children = children;
+                                    delete(response[i].responses[j].detail);
+                                } catch (e) {
+                                    console.log(response[i].url);
+                                }
+                            }
+
+                            pm.indexedDB.saveCollectionRequest(response[i],function(data){
+                                //console.log('success save ' + data.id)
+                            });
+                        }
+                    })
+                },
+                generateMockApi: function() {
+                    var id = result.id;
+
+                    Ajax.post({
+                        url: '/webapi.php?api=309',
+                        data: {
+                            id: id
+                        }
+                    }, function(response) {
+                        if (response.code != 0) {
+                            result.message = '生成失败！' + response.message;
+                            result.status = 'error';
+                            $rootScope.$apply();
+                            return false;
+                        }
+
+                        result.message = '生成成功！';
+                        result.status = 'success';
+                        // $rootScope.$apply();
+                    });
                 }
             };
 

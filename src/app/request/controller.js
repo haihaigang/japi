@@ -46,6 +46,16 @@ define(function(require) {
                     },
                     data: {}
                 })
+                .state('requests.query', {
+                    url: '/query/:id',
+                    views: {
+                        'main@requests': {
+                            templateUrl: 'app/request/view/json.html',
+                            controller: 'RequestSaveController'
+                        }
+                    },
+                    data: {}
+                })
         }])
         //列表
         .controller('RequestListController', [

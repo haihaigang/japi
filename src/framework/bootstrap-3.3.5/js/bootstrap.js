@@ -1,3 +1,6 @@
+define(function (require, exports, module) {
+    require('jquery');
+
 /*!
  * Bootstrap v3.3.5 (http://getbootstrap.com)
  * Copyright 2011-2015 Twitter, Inc.
@@ -2361,3 +2364,5 @@ if (typeof jQuery === 'undefined') {
   })
 
 }(jQuery);
+
+});

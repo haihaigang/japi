@@ -30,14 +30,20 @@ define(function(require) {
         }])
         //列表
         .controller('AboutController', [
-            '$scope', '$state', '$stateParams', 'About',
-            function($scope, $state, $stateParams, About) {
+            '$scope', '$state', '$stateParams', 'About', 'Storage',
+            function($scope, $state, $stateParams, About, Storage) {
                 $scope.page = About;
                 $scope.breadcrumbs = $scope.page.init($state);
+                $scope.page.collections = Storage.get('collections');
 
                 $('input[type="file"]').on('change', function() {
                     About.importFromPmFile(this.files);
                 });
+
+                $('#myTab a').click(function(e) {
+                    e.preventDefault()
+                    $(this).tab('show')
+                })
             }
         ])
 })

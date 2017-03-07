@@ -7,7 +7,7 @@
     <div class="list-buttons pull-right">
         <a type="button" class="btn btn-primary" ui-sref=".add">新增</a>
         <a type="button" class="btn btn-success" ng-click="page.export()">上传</a>
-        <a type="button" class="btn btn-default" ui-sref=".add">预览</a>
+        <a type="button" class="btn btn-default" ui-sref="collections.preview({id:page.collectionId})">预览</a>
     </div>
 </div>
 <div class="main-list table-responsive">
@@ -23,7 +23,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="item in page.pageData">
+            <tr ng-repeat="item in page.pageData" draggable="true" style="padding-left:50px;">
                 <td>{{$index+1}}</td>
                 <td class="ellipsis" j-quick j-value="item['name']" j-save="page.quickSave(item['id'],'name',item['name'])"></td>
                 <td class="ellipsis"j-quick j-value="item['url']" j-save="page.quickSave(item['id'],'url',item['url'])"></td>

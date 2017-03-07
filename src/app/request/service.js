@@ -3,19 +3,21 @@
  */
 define(function(require) {
     require('angular');
-    require('requester');
+    require('../base/service-api');
     require('../base/service-ajax');
-
-    var pm = require('../model/pm');
 
     angular.module('requestService', ['apiService'])
         .factory('Request', ['$rootScope', '$location', 'Ajax', 'CONFIG', 'Storage', 'ErrorService', 'pm', function($rootScope, $location, Ajax, CONFIG, Storage, ErrorService, pm) {
             var result = {
                 title: '接口管理',
+                collectionId: null, //项目编号
                 groups: null, //表单数据
                 pageData: null, //分页数据
                 condition: null, //当前搜索条件
                 conditionItems: null, //搜索条件项
+                showSource: false,
+                response: null,
+                responseFields: null, //响应正文的json字段
                 query: function(id) {
                     pm.DB.getCollectionRequest(id, function(response) {
                         var data = response.toForm();
@@ -35,7 +37,8 @@ define(function(require) {
                                 if (flag) break;
                             }
                             result.groups = data;
-                            // $rootScope.$apply();
+                            result.originData = JSON.stringify(response, null, '\r\n');
+                            $rootScope.$apply();
                         })
                     });
                 },
@@ -45,14 +48,18 @@ define(function(require) {
                     Storage.set('collectionId', data.collectionId);
                     pm.DB.saveCollectionRequest(data, function(response) {
                         $location.path('requests/' + data.collectionId);
-                        // $rootScope.$apply();
+                        $rootScope.$apply();
                     });
                 },
                 search: function(data) {
                     if (!data) {
                         data = Ajax.formatCondition(result.conditionItems);
                     }
-                    data.collectionId = Storage.get('collectionId');
+                    if (!data.collectionId) {
+                        //当前搜索条件若没有项目编号则获取本地存储的
+                        data.collectionId = Storage.get('collectionId');
+                    }
+                    result.collectionId = data.collectionId;
                     pm.DB.getAllRequestsInCollection(data, function(response) {
                         pm.DB.getCollections(function(cResponse) {
                             for (var i in response) {
@@ -66,7 +73,7 @@ define(function(require) {
                                 return Ajax.order(a, b);
                             });
                             result.pageData = response;
-                            // $rootScope.$apply();
+                            $rootScope.$apply();
                         })
                     });
                 },
@@ -155,10 +162,148 @@ define(function(require) {
                         response.name = '[copy]' + response.name;
                         pm.DB.saveCollectionRequest(response, function(rResponse) {
                             console.log('copy request ' + id + ' success');
-                            result.pageData.push(rResponse);
+
+                            var idx = -1;
+                            for(var i = 0; i < result.pageData.length; i++){
+                                if(result.pageData[i].id == id){
+                                    console.log(i)
+                                    idx = i;
+                                }
+                            }
+                            if(idx != -1){
+                                result.pageData.splice(idx + 1, 0, rResponse);
+                            }
                             $rootScope.$apply();
                         });
                     });
+                },
+                /**
+                 * 切换显示方式，源码or格式化
+                 * @param group 响应参数
+                 * @return
+                 */
+                change: function(group) {
+                    if (group.fields.length < 2) {
+                        return;
+                    }
+
+                    // group.fields[1].value是响应字段的参数列表
+
+                    try {
+
+                        if (!group.showSource) {
+                            group.source = JSON.stringify(group.fields[1].value, null, '    ');
+                        } else {
+                            group.fields[1].value = JSON.parse(group.source);
+                        }
+                    } catch (e) {
+                        ErrorService.showToast('处理JSON错误！');
+                        return;
+                    }
+
+                    group.showSource = !group.showSource;
+                },
+                /**
+                 * 从响应正文生成接口的响应文档并保存
+                 * @param  {[type]} id [description]
+                 * @return {[type]}    [description]
+                 */
+                saveFromResponseJson: function() {
+                    var json = {},
+                        responses = [];
+
+                    try {
+                        json = JSON.parse(result.responseFields);
+                    } catch (e) {
+                        console.log(e.message);
+                        return
+                    }
+
+                    if ('body' in json) {
+                        // 如果存在body则使用该字段
+                        json = json.body;
+                        if ('content' in json) {
+                            // 如果存在content则使用该字段
+                            json = json.content;
+                        }
+                    }
+
+                    var data = Ajax.formatData(result.groups);
+                    data.responses = result._getFieldsFromJson(json);
+                    console.log(data);
+                    // return;
+
+                    pm.DB.saveCollectionRequest(data, function(response) {
+                        $location.path('requests/' + data.collectionId);
+                        // $rootScope.$apply();
+                    });
+                },
+                /**
+                 * 从json中取得接口的字段
+                 * @param json json数据
+                 * @return
+                 */
+                _getFieldsFromJson(json) {
+                    var responses = [];
+
+                    if (!json) {
+                        return responses;
+                    }
+
+                    if (Array.isArray(json)) {
+                        if (json.length == 0) {
+                            return responses;
+                        }
+
+                        json = json[0];
+                    }
+
+                    for (var i in json) {
+                        var d = {},
+                            item = json[i];
+                        d.key = i;
+                        d.desc = i;
+                        // object(对象or数组)
+                        // 字符串
+                        // 数值
+                        // 布尔
+                        // 其它
+                        switch (typeof item) {
+                            case 'object':
+                                {
+                                    if (Array.isArray(item)) {
+                                        if (item.length > 0) {
+                                            d.type = 'array';
+                                            d.children = this._getFieldsFromJson(item[0]);
+                                        }
+                                    } else {
+                                        d.type = 'object';
+                                        d.children = this._getFieldsFromJson(item);
+                                    }
+                                    break;
+                                }
+                            case 'string':
+                                {
+                                    d.type = 'string';
+                                    break;
+                                }
+                            case 'number':
+                                {
+                                    d.type = 'number';
+                                    break;
+                                }
+                            case 'boolean':
+                                {
+                                    d.type = 'enum';
+                                    break;
+                                }
+                        }
+                        responses.push(d);
+                    }
+                    return responses;
+                },
+                formatFields() {
+                    result.responseFields = JSON.stringify(result.responseFields, null, '\r\n');
                 }
             };
 

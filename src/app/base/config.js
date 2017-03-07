@@ -9,7 +9,7 @@ define(function(require) {
         //接口地址等配置信息
         .constant('CONFIG', {
             HOST_API: location.protocol +'//'+location.host+'/',
-            HOST_API: 'http://121.43.115.115:8088/',
+            // HOST_API: 'http://121.43.115.115:8088/',
             HOST_IMAGE: '',
             DEF_URL_IMG: 'image/d300x300-1.png', //默认图片地址
 

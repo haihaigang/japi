@@ -21,15 +21,15 @@
                 <option value="other">Other</option>
             </select>
         </div>
-        <div class="col-md-3" ng-if="options.key=='data'">
+        <div class="col-md-2" ng-if="options.key=='data'">
             <label class="checkbox">
                 <input type="checkbox" ng-model="item.checked">是否必填
             </label>
         </div>
-        <div class="col-md-3" ng-if="options.key=='responses'">
+        <div class="col-md-2" ng-if="options.key=='responses'">
             <input type="text" class="form-control" placeholder="约束" ng-model="item.remark">
         </div>
-        <div class="col-md-2">
+        <div class="col-md-3">
             <div class="btn btn-primary" ng-if="!$last" ng-click="remove(data, $index)">
                 <span class="glyphicon glyphicon-remove"></span>
             </div>
@@ -38,6 +38,12 @@
             </div>
             <div class="btn btn-primary" ng-click="toggle(data, $index)" ng-class="{active:item.showDetail}">
                 <span class="glyphicon glyphicon-th"></span>
+            </div>
+            <div class="btn btn-primary" ng-click="up(data, $index)" ng-class="{active:item.showDetail,disabled:$index==0}">
+                <span class="glyphicon glyphicon-chevron-up"></span>
+            </div>
+            <div class="btn btn-primary" ng-click="down(data, $index)" ng-class="{active:item.showDetail,disabled:$index==data.length-1}">
+                <span class="glyphicon glyphicon-chevron-down"></span>
             </div>
         </div>
     </div>

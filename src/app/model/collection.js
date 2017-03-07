@@ -9,7 +9,7 @@ define(function(require, exports, module) {
         this.content = null;
 
         this.synced = false;
-        this.remoteLink = null;
+        this.remoteId = null;
 
         this.init(data);
     }
@@ -61,10 +61,16 @@ define(function(require, exports, module) {
             field.value = this.host;
         }
         fields.push(field);
+        field = new Field("remoteId", "远程地址", "text");
+        if (this.remoteId) {
+            field.value = this.remoteId;
+        }
+        fields.push(field);
         ret.data.push({
             name: "附加信息",
             fields: fields
-        })
+        });
+
         return ret;
     }
 

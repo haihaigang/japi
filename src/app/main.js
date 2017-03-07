@@ -1,6 +1,7 @@
 define(function(require) {
     require('jquery'),
     require('angular'),
+    require('bootstrap'),
     require('angular-ui-router'),
     require('./base/directive-dialog');
     require('./base/directive-form');
@@ -11,12 +12,12 @@ define(function(require) {
     require('./request/controller');
     require('./about/controller');
 
-    var pm = require('./model/pm');
+    // var pm = require('./model/pm');
 
     //声明一个基础模块，
     angular.module('baseModule',[]);
 
-    pm.init();
+    // pm.init();
     window.tick = new Date().getTime();
 
     var routerApp = angular.module('routerApp', [
@@ -129,22 +130,22 @@ define(function(require) {
                     roles: [ROLES.GUEST]
                 }
             })
-            .state('home_', {
-                url: '',
-                views: {
-                    '': {
-                        templateUrl: 'app/main.html'
-                    },
-                    'menu@home': {
-                        templateUrl: 'app/header/view/menu.html',
-                        controller: 'HeaderController'
-                    },
-                    'main@home': {
-                        templateUrl: 'app/home/view/index.html',
-                        controller: 'HomeController'
-                    }
-                }
-            })
+            // .state('home_', {
+            //     url: '',
+            //     views: {
+            //         '': {
+            //             templateUrl: 'app/main.html'
+            //         },
+            //         'menu@home': {
+            //             templateUrl: 'app/header/view/menu.html',
+            //             controller: 'HeaderController'
+            //         },
+            //         'main@home': {
+            //             templateUrl: 'app/home/view/index.html',
+            //             controller: 'HomeController'
+            //         }
+            //     }
+            // })
             .state('home', {
                 url: '/',
                 views: {

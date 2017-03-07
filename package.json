@@ -1,34 +1,38 @@
 {
-  "name": "jApi",
-  "version": "v0.0.1",
-  "description": "接口文档",
-  "main": "index.js",
-  "repository": {},
-  "dependencies": {
-    "express": "^4.13.3",
-    "grunt": "~0.4.4",
-    "grunt-cmd-transport": "~0.5.1",
-    "grunt-contrib-clean": "~0.6.0",
-    "grunt-contrib-concat": "~0.4.0",
-    "grunt-contrib-copy": "~0.8.0",
-    "grunt-contrib-jshint": "~0.10.0",
-    "grunt-contrib-uglify": "~0.4.0"
-  },
-  "devDependencies": {
-    "coffee-script": "~1.6.3",
-    "grunt": "^0.4.5",
-    "grunt-cmd-transport": "^0.5.1",
-    "grunt-contrib-clean": "^0.6.0",
-    "grunt-contrib-concat": "^0.4.0",
-    "grunt-contrib-connect": "^0.11.2",
-    "grunt-contrib-copy": "^0.8.1",
-    "grunt-contrib-jshint": "^0.10.0",
-    "grunt-contrib-uglify": "^0.4.1",
-    "grunt-contrib-watch": "^0.6.1"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "hgwang  ",
-  "license": "MIT"
+    "name": "jApi",
+    "version": "v0.0.1",
+    "description": "接口文档",
+    "main": "index.js",
+    "repository": {},
+    "dependencies": {
+        "express": "^4.13.3",
+        "grunt": "~0.4.4",
+        "grunt-cmd-transport": "~0.5.1",
+        "grunt-contrib-clean": "~0.6.0",
+        "grunt-contrib-concat": "~0.4.0",
+        "grunt-contrib-copy": "~0.8.0",
+        "grunt-contrib-jshint": "~0.10.0",
+        "grunt-contrib-uglify": "~0.4.0"
+    },
+    "devDependencies": {
+        "coffee-script": "~1.6.3",
+        "grunt": "^0.4.5",
+        "grunt-cmd-transport": "^0.5.1",
+        "grunt-connect-proxy": "^0.2.0",
+        "grunt-contrib-clean": "^0.6.0",
+        "grunt-contrib-concat": "^0.4.0",
+        "grunt-contrib-connect": "^0.11.2",
+        "grunt-contrib-copy": "^0.8.1",
+        "grunt-contrib-jshint": "^0.10.0",
+        "grunt-contrib-uglify": "^0.4.1",
+        "grunt-contrib-watch": "^0.6.1",
+        "serve-static": "^1.11.1"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "dev": "grunt server",
+        "deploy": "grunt deploy",
+    },
+    "author": "hgwang  ",
+    "license": "MIT"
 }

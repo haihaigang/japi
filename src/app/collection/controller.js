@@ -50,8 +50,17 @@ define(function(require) {
                     url: '/preview/:id',
                     views: {
                         'main@collections': {
-                            templateUrl: 'app/collection/view/preview.html',
+                            templateUrl: 'app/collection/view/preview2.html',
                             controller: 'CollectionPreviewController'
+                        }
+                    }
+                })
+                .state("collections.preview2", {
+                    url: "/preview2/:id",
+                    views: {
+                        "main@collections": {
+                            templateUrl: "app/collection/view/preview2.html",
+                            controller: "CollectionPreviewController"
                         }
                     }
                 })
@@ -59,7 +68,7 @@ define(function(require) {
                     url: '/model',
                     views: {
                         'main@collections': {
-                            templateUrl: 'app/collection/view/model2.html',
+                            templateUrl: 'app/collection/view/model.html',
                             controller: 'CollectionModelController'
                         }
                     }

@@ -3,11 +3,8 @@
  */
 define(function(require) {
     require('angular');
-    require('requester');
     require('../base/service-api');
     require('../base/service-ajax');
-
-    // var pm = require('../model/pm');
 
     angular.module('collectionService', ['apiService'])
         .factory('Collection', ['$rootScope', '$location', 'Ajax', 'CONFIG', 'ErrorService', 'Storage', 'pm', function($rootScope, $location, Ajax, CONFIG, ErrorService, Storage, pm) {
@@ -21,25 +18,22 @@ define(function(require) {
                 query: function(id) {
                     pm.DB.getCollection(id, function(response) {
                         result.groups = response.toForm();
-                        //$rootScope.$apply(); //为什么这里不能添加$apply，必须加上，以便立即更新视图
+                        $rootScope.$apply(); //为什么这里不能添加$apply，必须加上，以便立即更新视图
                     });
                 },
                 save: function(callback) {
                     var data = Ajax.formatData(result.groups);
-                    data.remoteId = 48;
                     pm.DB.saveCollection(data, function(response) {
                         $location.path('collections');
-
-                        //$rootScope.$apply();
+                        $rootScope.$apply();
                     });
                 },
                 search: function(data) {
                     result.condition = data;
                     pm.DB.getCollections(function(response) {
-                        console.log(response);
                         result.pageData = response;
-                        console.log($rootScope)
-                        // $rootScope.$apply();
+                        Storage.set('collections', response);
+                        $rootScope.$apply();
                     });
                 },
                 remove: function(id) {
@@ -54,27 +48,30 @@ define(function(require) {
                         }, function(rResponse) {
                             rResponse.sort(Ajax.order);
                             response.requests = rResponse;
-
                             // document.write((JSON.stringify(response)))
-
+                            var tempId = '';
+                            if (response.remoteId && response.remoteId != 'undefined' && response.remoteId != 'null') {
+                                //忽略保存的值可能是字符串‘undefined’
+                                tempId = response.remoteId;
+                            }
                             //保存数据到服务端
                             Ajax.post({
                                 url: CONFIG.HOST_API + CONFIG.API_COLLECTION_SYNC,
-                                data: 'id=' + response.remoteId + '&data=' + encodeURIComponent(JSON.stringify(response)),
+                                data: "id=" + tempId + "&data=" + encodeURIComponent(JSON.stringify(response)),
                                 headers: {
-                                    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+                                    "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"
                                 }
                             }, function(aResponse) {
                                 if (aResponse.code != 0) {
                                     ErrorService.showAlert(aResponse.message);
                                 }
-                                ErrorService.showToast('上传成功！');
+                                ErrorService.showToast("上传成功！");
                                 response.remoteId = aResponse.body.id;
                                 delete response.requests;
                                 pm.DB.saveCollection(response, function(cResponse) {});
-                            })
-                        })
-                    })
+                            });
+                        });
+                    });
                 },
                 //导出PM用的数据
                 exportToPM: function(id) {
@@ -151,22 +148,18 @@ define(function(require) {
                 processData: function(data) {
                     var arr = [];
                     var lastIdx = -1;
-
                     data.requests.sort(Ajax.order);
-
                     for (var i in data.requests) {
                         var s = data.requests[i].url;
-                        var a = s.split('/');
+                        var a = s.split("/");
                         var first = true;
-                        var colors = ['red', 'blue', 'green', 'aquamarine', 'violet', 'purple', 'orange'];
-
+                        var colors = ["red", "blue", "green", "aquamarine", "violet", "purple", "orange"];
                         for (var j in arr) {
                             if (a[0] == arr[j].module) {
                                 first = false;
                                 break;
                             }
                         }
-
                         //移除最后一个的空值
                         if (!data.requests[i].data[data.requests[i].data.length - 1].key) {
                             data.requests[i].data.pop();
@@ -174,7 +167,6 @@ define(function(require) {
                         if (!data.requests[i].responses[data.requests[i].responses.length - 1].key) {
                             data.requests[i].responses.pop();
                         }
-
                         if (first) {
                             var code = 0;
                             for (var k = 0; k < a[0].length; k++) {
@@ -188,7 +180,6 @@ define(function(require) {
                                 sub: []
                             });
                         }
-
                         if (lastIdx > -1) {
                             data.requests[i].originId = parseInt(i);
                             arr[lastIdx].sub.push(data.requests[i]);
@@ -331,6 +322,36 @@ define(function(require) {
                         result.models = processData;
 
                         $rootScope.$apply();
+                    });
+                },
+                /**
+                 * 复制项目
+                 */
+                copy: function(id) {
+                    pm.DB.getCollection(id, function(response) {
+                        var cid = response.id;
+                        delete response.id;
+                        delete response.remoteId;
+                        response.name = "[copy]" + response.name;
+                        pm.DB.saveCollection(response, function(rResponse) {
+                            console.log("copy collection " + id + " success");
+
+                            pm.DB.getAllRequestsInCollection({
+                                collectionId: cid
+                            }, function(cResponse) {
+                                for (var i in cResponse) {
+                                    delete cResponse[i].id;
+                                    // cResponse[i].name = "[copy]" + cResponse[i].name;
+                                    cResponse[i].collectionId = rResponse.id;
+                                    pm.DB.saveCollectionRequest(cResponse[i], function() {
+                                        // console.log("copy request " + id + " success");
+                                    });
+                                }
+                            });
+
+                            result.pageData.push(rResponse);
+                            $rootScope.$apply();
+                        });
                     });
                 }
             };
