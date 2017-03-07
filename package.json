@@ -31,7 +31,7 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "dev": "grunt server",
-        "deploy": "grunt deploy",
+        "deploy": "grunt deploy"
     },
     "author": "hgwang  ",
     "license": "MIT"

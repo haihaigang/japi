@@ -63,7 +63,6 @@ th:nth-child(3) {
 
 .quick-nav a {
     display: inline-block;
-    /*width: 25px;*/
     padding: 0 7px;
     text-align: center;
     color: #fff;
@@ -100,14 +99,6 @@ th:nth-child(3) {
     background-color: #ddd;
 }
 
-.second-nav-btn{
-    position: fixed;
-    top: 50%;
-    right: 210px;
-    padding: 10px;
-    font-size: 24px;
-}
-
 </style>
 <div class="quick-nav">
     <div class="quick-nav-content">
@@ -121,10 +112,13 @@ th:nth-child(3) {
     <div><b>约定：</b><pre>{{page.data.content}}</pre></div>
 </div>
 <div class="second-nav">
-    <div ng-repeat="item in page.data.requests">
-        <h3>{{item.module}}</h3>
-        <p ng-repeat="sitem in item.sub"><a href="javascript:;" data-i="{{sitem.originId}}">{{sitem.originId + 1}}{{sitem.name}}</a></p>
+    <div class="second-nav-content">
+        <div ng-repeat="item in page.data.requests">
+            <h3>{{item.module}}</h3>
+            <p ng-repeat="sitem in item.sub"><a href="javascript:;" data-i="{{sitem.originId}}">{{sitem.originId + 1}}{{sitem.name}}</a></p>
+        </div>
     </div>
+    <a href="javascript:;" class="second-nav-btn">点击收起</a>
 </div>
 <!-- <div class="second-nav-btn glyphicon glyphicon-chevron-left"></div> -->
 <div class="requests" ng-repeat="pitem in page.data.requests">
@@ -229,7 +223,7 @@ $(function() {
             tar = $('#r' + idx).offset();
 
         scrollTo(tar.top);
-    }).on('click', '.second-nav a', function(e) {
+    }).on('click', '.second-nav-content a', function(e) {
         e.preventDefault();
         var idx = $(this).attr('data-i'),
             tar = $('#r' + idx).offset();
@@ -238,6 +232,7 @@ $(function() {
     }).on('click','.request-module a',function(e){
         $(this).parent().next().toggle();
     })
+
     $(window).scroll(function(e) {
         if ($(this).scrollTop() > 100) {
             $('.quick-nav').css('height',$('.quick-nav-content').outerHeight());
@@ -250,5 +245,18 @@ $(function() {
     function scrollTo(y){
         window.scrollTo(0, y - 94);
     }
+
+    var secondNavDom = $('.second-nav');
+    $('.second-nav-btn').click(function(e){
+        e.preventDefault();
+
+        if(secondNavDom.hasClass('closed')){
+            $(this).text('点击收起');
+            secondNavDom.removeClass('closed');
+        }else{
+            $(this).text('点击展开');
+            secondNavDom.addClass('closed');
+        }
+    })
 });
 </script>

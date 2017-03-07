@@ -50,7 +50,7 @@ define(function(require) {
                     url: '/preview/:id',
                     views: {
                         'main@collections': {
-                            templateUrl: 'app/collection/view/preview2.html',
+                            templateUrl: 'app/collection/view/preview-sidebar.html',
                             controller: 'CollectionPreviewController'
                         }
                     }
@@ -59,7 +59,7 @@ define(function(require) {
                     url: "/preview2/:id",
                     views: {
                         "main@collections": {
-                            templateUrl: "app/collection/view/preview2.html",
+                            templateUrl: "app/collection/view/preview.html",
                             controller: "CollectionPreviewController"
                         }
                     }

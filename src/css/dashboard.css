@@ -204,8 +204,9 @@ label.control-label {
 }
 
 .navbar-inverse {
+    border-radius: 0;
     background-color: #008cba;
-    border-color: #006687;
+    border-color: #008cba;
 }
 
 .navbar-inverse .navbar-brand {
@@ -943,11 +944,33 @@ form .scroll-ad {
     right: 0;
     top: 0;
     bottom: 0;
+    width: 200px;
     background-color: #fff;
     box-shadow: 0 -2px 4px rgba(0,0,0,0.2);
-    padding: 0 0 0 10px;
     z-index: 9;
+    transition: .2s;
+    -webkit-transition: .2s;
+}
+.second-nav.closed{
+    transform: translateX(100%);
+}
+.second-nav-content{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    padding: 0 0 0 10px;
     overflow-y: auto;
+}
+.second-nav-btn{
+    position: fixed;
+    position: absolute;
+    top: 50%;
+    // right: 210px;
+    left: -20px;
+    font-size: 10px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    writing-mode: vertical-lr;
+    -webkit-writing-mode: vertical-lr;
 }
 .form-line{
     background-image: url(../image/line.png);

@@ -112,10 +112,15 @@ define(function(require) {
                  */
                 preview: function(id) {
                     if (id.length < 32) {
-                        // if(Storage.get('jdata')){
-                        //     result.data = Storage.get('jdata');
-                        //     return;
-                        // }
+                        // 若存储数据存在且有效期在5分钟之内则使用存储数据
+                        var tempData = Storage.get('jdata');
+                        if(tempData){
+                            var timestamp = new Date().getTime();
+                            if(timestamp - tempData.timestamp <= 300000){
+                                result.data = tempData.data;
+                                return;
+                            }
+                        }
                         Ajax.get({
                             url: CONFIG.HOST_API + CONFIG.API_COLLECTION_SYNC,
                             data: {
@@ -127,7 +132,7 @@ define(function(require) {
                             }
                             result.processData(response.body);
                             result.data = response.body;
-                            Storage.set('jdata', response.body);
+                            Storage.set('jdata', {data: response.body, timestamp: new Date().getTime()});
                         })
                     } else {
                         pm.DB.getCollection(id, function(response) {
