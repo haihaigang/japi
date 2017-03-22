@@ -1,0 +1,92 @@
+<style type="text/css">
+.mycontent{
+}
+.mytitle{
+	font-size: 30px;
+	padding: 10px;
+	text-align: center;
+	color: #fff;
+	display: block;
+}
+.mytitle em{
+	font-size: 12px;
+}
+.mypanel {
+	float: left;
+	position: absolute;
+	margin-bottom: 0;
+    width: 200px;
+}
+.mypanel .panel-title{
+	cursor: pointer;
+}
+.mypanel .panel-heading{
+	position: relative;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.mypanel .myidx{
+	position: absolute;
+	width: 15px;
+	height: 15px;
+	top: 0;
+	left: 0;
+	text-align: center;
+	background-color: #fff;
+	color: #000;
+	border-radius: 50%;
+	line-height: 15px;
+	font-size: 10px;
+}
+}
+.circle{
+	border: 1px solid #000;
+	border-radius: 50%;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+}
+.circle.c1{
+	width: 200px;
+	height: 200px;
+	margin-left: -100px;
+	margin-top: -100px;
+}
+.circle.c2{
+	width: 300px;
+	height: 300px;
+	margin-left: -150px;
+	margin-top: -150px;
+}
+.circle.c3{
+	width: 400px;
+	height: 400px;
+	margin-left: -200px;
+	margin-top: -200px;
+}
+.mycasde{
+	position: absolute;
+	z-index: 2;
+	right: -1px;
+	left: -1px;
+	top: 40px;
+	background-color: #fff;
+	border: 1px solid #337ab7;
+	border-top: 0;
+}
+.mycasde-item{
+	display: block;
+	padding: 10px 15px;
+	margin-bottom: -1px;
+	background-color: #fff;
+	border: 1px solid #ddd;
+}
+.mycasde-item:last-child{
+	border-bottom-color: #337ab7;
+}
+</style>
+<div class="mymodule clearfix" ng-repeat="pitem in page.maps">
+	{{pitem.name}}
+	<div j-qiantao j-data="pitem" j-abc="page.abc"></div>
+</div>

@@ -58,19 +58,19 @@ define(function(require) {
                 },
                 template: '<span ng-click="changeStatus()" ng-show="!editable">{{jValue}}</span><input type="text" value="{{jValue}}" ng-model="jValue" ng-blur="onBlur()" ng-keyup="onKeyup($event)" ng-show="editable">',
                 link: function($scope, element, attrs) {
-                    if(!$scope.jValue) return;
-                    
+                    if (!$scope.jValue) return;
+
                     var oldValue = $scope.jValue.length;
                     $scope.editable = false;
-                    $scope.changeStatus = function(){
+                    $scope.changeStatus = function() {
                         $scope.editable = !$scope.editable;
                     }
                     $scope.onBlur = function() {
                         $scope.editable = false;
                         // preSave();
                     }
-                    $scope.onKeyup = function(e){
-                        if(e.keyCode != 13){
+                    $scope.onKeyup = function(e) {
+                        if (e.keyCode != 13) {
                             return;
                         }
                         $scope.editable = !$scope.editable;
@@ -78,8 +78,8 @@ define(function(require) {
                     }
 
                     //调用保存方法，只在内容有变动时修改
-                    function preSave(){
-                        if($scope.jValue.length != oldValue){
+                    function preSave() {
+                        if ($scope.jValue.length != oldValue) {
                             oldValue = $scope.jValue.length;
                             $scope.jSave();
                             return;
@@ -87,5 +87,55 @@ define(function(require) {
                     }
                 }
             };
-        }]);;
+        }])
+        /**
+         * 展示嵌套数据
+         * <div j-qiantao j-data=""></div>
+         */
+        .directive('jQiantao', ['$log', 'ErrorService', function($log, ErrorService) {
+            return {
+                restrict: 'A',
+                transclude: true,
+                scope: {
+                    jData: '=jData',
+                    jAbc: '=jAbc'
+                },
+                template: '<div ng-bind-html="html1"></div>',
+                controller: ['$scope', function MyTabsController($scope) {
+                    console.log('controller')
+
+                    console.log($scope.jData);
+                }],
+                link: function($scope, element, attrs) {
+                    if(!$scope.jData) return;
+                    var html = getHtml($scope.jData.items);
+                    $scope.html1 = html;
+
+                    function getHtml(data) {
+                        if(!data){
+                            return '';
+                        }
+
+                        var str = '';
+                        for (var i in data) {
+
+                            str += '<div>' + getSep(data[i].level) + data[i].name + '</div>' + getHtml(data[i].items);
+                        }
+
+                        return str;
+                    }
+
+                    function getSep(n){
+                        var i = 0;
+                        var str = '';
+                        while(i < n){
+                            str += '——';
+                            i++;
+                        }
+
+                        return str;
+                    }
+                }
+            };
+        }]);
 })

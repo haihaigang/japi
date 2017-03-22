@@ -114,9 +114,9 @@ define(function(require) {
                     if (id.length < 32) {
                         // 若存储数据存在且有效期在5分钟之内则使用存储数据
                         var tempData = Storage.get('jdata');
-                        if(tempData){
+                        if (tempData) {
                             var timestamp = new Date().getTime();
-                            if(timestamp - tempData.timestamp <= 300000){
+                            if (timestamp - tempData.timestamp <= 300000) {
                                 result.data = tempData.data;
                                 return;
                             }
@@ -132,7 +132,7 @@ define(function(require) {
                             }
                             result.processData(response.body);
                             result.data = response.body;
-                            Storage.set('jdata', {data: response.body, timestamp: new Date().getTime()});
+                            Storage.set('jdata', { data: response.body, timestamp: new Date().getTime() });
                         })
                     } else {
                         pm.DB.getCollection(id, function(response) {
@@ -280,11 +280,14 @@ define(function(require) {
                         pad = 15, //单元格上下左右的间隙
                         groups = [],
                         gLen = Math.floor(result.cwidth / (dist + pad));
+
                     data.collectionId = Storage.get('collectionId');
+
                     pm.DB.getAllRequestsInCollection(data, function(response) {
                         var processData = result.processData({
                             requests: response
                         });
+
                         for (var i in processData) {
                             groups = [];
                             for (var j in processData[i].sub) {
@@ -313,10 +316,10 @@ define(function(require) {
 
                                 for (var k = 0; k < rLen; k++) {
                                     var o = processData[i].sub[j].responses[k];
-                                    if (o.type == 'object' || o.type == 'array'){
-                                        try{
+                                    if (o.type == 'object' || o.type == 'array') {
+                                        try {
                                             processData[i].sub[j].responses[k]['detail'] = JSON.parse(o.detail);
-                                        }catch(e){
+                                        } catch (e) {
                                             console.log(processData[i].sub[j].url + ' ' + o.detail);
                                             processData[i].sub[j].responses[k]['detail'] = {};
                                         }
@@ -324,6 +327,7 @@ define(function(require) {
                                 }
                             }
                         }
+
                         result.models = processData;
 
                         $rootScope.$apply();
@@ -357,6 +361,88 @@ define(function(require) {
                             result.pageData.push(rResponse);
                             $rootScope.$apply();
                         });
+                    });
+                },
+                getDataForMap: function() {
+                    var data = {};
+                    data.collectionId = Storage.get('collectionId');
+                    result.abc = [1,2,3,4,5]
+
+                    pm.DB.getAllRequestsInCollection(data, function(response) {
+                        var requests = response;
+                        var maps = {};
+                        requests.sort(Ajax.order);
+
+                        for (var i in requests) {
+                            var url = requests[i].url;
+                            var paths = url.split("/");
+
+                            var len = paths.length;
+                            for (var j = 0; j < len; j++) {
+                                var key = paths[j];
+                                var arr = [];
+
+                                if(!maps[key]){
+                                    maps[key] = {};
+                                }
+
+                                if(maps[key] && maps[key].children){
+                                    arr = maps[key].children;
+                                }
+
+                                if ( j + 1 < len) {
+                                    arr.push(paths[j + 1]);
+                                }
+
+                                maps[key].children = arr;
+                                maps[key].level = j;
+                                maps[key].name = key;
+
+                                if(arr.length == 0){
+                                    maps[key].url = url;
+                                }
+                            }
+                        }
+
+                        // 去除重复的children
+                        for(var i in maps){
+                            var tar = [];
+                            var arr = maps[i].children;
+                            for(var j = 0; j < arr.length; j++){
+                                var flag = false;
+                                for(var k = 0; k < tar.length; k++){
+                                    if(tar[k] == arr[j]){
+                                        flag = true;
+                                        break;
+                                    }
+                                }
+
+                                if(!flag){
+                                    tar.push(arr[j]);
+                                }
+                            }
+
+                            maps[i].children = tar;
+                        }
+
+                        // 转换成结构化嵌套数据
+                        for(var i in maps){
+                            for(var j = 0; j < maps[i].children.length; j++){
+                                maps[i].items = maps[i].items || [];
+                                maps[i].items.push(maps[maps[i].children[j]]);
+                            }
+                        }
+
+                        // 去除非顶级节点的
+                        for(var i in maps){
+                            if(maps[i].level != 0){
+                                delete maps[i];
+                            }
+                        }
+
+                        result.maps = maps;
+
+                        $rootScope.$apply();
                     });
                 }
             };

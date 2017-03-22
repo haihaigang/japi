@@ -1,8 +1,9 @@
 define(function(require) {
-    require('jquery'),
-    require('angular'),
-    require('bootstrap'),
-    require('angular-ui-router'),
+    require('jquery');
+    require('angular');
+    require('angular-sanitize');
+    require('bootstrap');
+    require('angular-ui-router');
     require('./base/directive-dialog');
     require('./base/directive-form');
     require('./base/controller');
@@ -15,7 +16,7 @@ define(function(require) {
     // var pm = require('./model/pm');
 
     //声明一个基础模块，
-    angular.module('baseModule',[]);
+    angular.module('baseModule',['ngSanitize']);
 
     // pm.init();
     window.tick = new Date().getTime();

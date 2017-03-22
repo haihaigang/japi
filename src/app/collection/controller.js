@@ -68,8 +68,17 @@ define(function(require) {
                     url: '/model',
                     views: {
                         'main@collections': {
-                            templateUrl: 'app/collection/view/model.html',
+                            templateUrl: 'app/collection/view/model2.html',
                             controller: 'CollectionModelController'
+                        }
+                    }
+                })
+                .state('collections.map', {
+                    url: '/map',
+                    views: {
+                        'main@collections': {
+                            templateUrl: 'app/collection/view/map.html',
+                            controller: 'CollectionMapController'
                         }
                     }
                 })
@@ -111,6 +120,14 @@ define(function(require) {
                 $scope.tog = function(item){
                     item.show = !item.show;
                 }
+            }
+        ])
+        //模型
+        .controller('CollectionMapController', [
+            '$scope', '$state', '$stateParams', '$location', 'Collection',
+            function($scope, $state, $stateParams, $location, Collection) {
+                $scope.page = Collection;
+                $scope.page.getDataForMap();
             }
         ])
 
